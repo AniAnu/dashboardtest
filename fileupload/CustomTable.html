@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".col_count").change(function(){
+    	$(".contant_col").empty();
+       var row_count =  parseInt($(this).val());
+       for (i=0;i<row_count;++i){
+       s=i+1;
+       $(".contant_col").append("<p>Col "+ s +"</p>col_name : <input class = 'input_col"+ s +"' type='input'></input>Type:<select class = 'type_col"+ s +"' name='row_count'><option value='0' selected></option><option value='type'>type</option><option value='int'>int</option><option value='text'>text</option></select><br>");
+       }
+    });
+    
+    
+    $(".row_count").change(function(){
+    $(".contant_row").empty();
+       var row_count =  parseInt($(this).val());
+       for (i=0;i<row_count;++i){
+       s=i+1;
+       $(".contant_row").append("Row "+ s +": <input class = 'input_row"+ s +"' type='input'></input><br><br>");
+       }
+    });
+});
+</script>
+<style>
+body{
+	background:transparent !important;
+	color:#fff  !important;
+}
+</style>
+</head>
+<body>
+<div>
+<span style="color: black;">Field title:</span> <input class = "table_title" type='input'></input><br><br>
+</div>
+
+<div>
+<span style="color: black;">Cols:</span>
+<select class="col_count">
+<option value="0" selected></option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+</select>
+<span style="color: black;">Rows:</span>
+<select class="row_count">
+<option value="0" selected></option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+</select>
+<div>
+
+<div>
+<h3 style="color: black;">Table rows name</h3>
+<div class="contant_row">
+
+</div>
+</div>
+
+
+
+<div>
+<h3  style="color: black;">Table cols name</h3>
+<div class="contant_col">
+
+</div>
+</div>
+<div>
+<br>
+<button id = "save_div" class = "table_save" name="Save">Save</button>
+</div>
+
+<script>
+
+
+	$(document).ready(function(){
+	$("#save_div").click(function(){
+
+		var input_row_array = new Array();
+		var input_col_array = new Array();
+		var input_type_array = new Array();
+
+	
+		var tablename = $(".table_title").val();
+			
+			if(!charset_test($(".table_title").val())){alert("No save"); return false;}
+			if(parseInt($(".col_count").val()) == 0 || parseInt($(".row_count").val()) == 0){alert("No save"); return false;}
+			
+	
+	   var row_count =  $(".row_count").val();
+	   
+       for (i=0;i<row_count;++i){
+			s=i+1;
+			input_row_array.push($(".input_row"+ s +"").val());
+			if(!charset_test($(".input_row"+ s +"").val())){
+			alert("No save");
+			return false;
+			}
+	   }
+	
+	   var col_count =  $(".col_count").val();
+	   
+       for (i=0;i<col_count;++i){
+			s=i+1;
+			input_col_array.push($(".input_col"+ s +"").val());
+			input_type_array.push($(".type_col"+ s +"").val());
+			if(!charset_test($(".input_col"+ s +"").val())){
+			alert("No save");
+			return false;
+			}
+	   }
+
+	   
+		input_row_json = JSON.stringify(input_row_array);
+		input_col_json= JSON.stringify(input_col_array);
+		input_type_json = JSON.stringify(input_type_array);
+		
+		
+		$.post("../scripts/Update.php",{tablename:tablename,input_row_json:input_row_json,input_col_json:input_col_json,input_type_json:input_type_json},function(result){},'json');
+	
+	});
+	
+	
+	});
+
+	
+	function charset_test(str) {
+		
+		var patt = new RegExp(/^([(A-Z)(a-z)])/);
+		var res = patt.test(str);
+		return res;
+	}
+
+
+	
+</script>	
+
+
+</body>
+
+
+</html>
