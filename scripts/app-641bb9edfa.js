@@ -65,7 +65,7 @@ function() {
             }
         })
     }
-    e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.charts", ["BlurAdmin.pages.charts.amCharts", "BlurAdmin.pages.charts.chartJs", "BlurAdmin.pages.charts.chartist", "BlurAdmin.pages.charts.morris"]).config(e)
+    e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.charts", ["BlurAdmin.pages.charts.chartJs"]).config(e)
 }(),
 // function() {
 //     "use strict";
@@ -455,208 +455,208 @@ function() {
     "use strict";
     angular.module("BlurAdmin.theme.inputs", [])
 }(),
-function() {
-    "use strict";
+// function() {
+//     "use strict";
 
-    function e(e) {
-        e.state("charts.amCharts", {
-            url: "/amCharts",
-            templateUrl: "app/pages/charts/amCharts/charts.html",
-            title: "amCharts",
-            sidebarMeta: {
-                order: 0
-            }
-        })
-    }
+//     function e(e) {
+//         e.state("charts.amCharts", {
+//             url: "/amCharts",
+//             templateUrl: "app/pages/charts/amCharts/charts.html",
+//             title: "amCharts",
+//             sidebarMeta: {
+//                 order: 0
+//             }
+//         })
+//     }
 
-    function a(e) {
-        var a = e.colors;
-        AmCharts.themes.blur = {
-            themeName: "blur",
-            AmChart: {
-                color: a.defaultText,
-                backgroundColor: "#FFFFFF"
-            },
-            AmCoordinateChart: {
-                colors: [a.primary, a.danger, a.warning, a.success, a.info, a.primaryDark, a.warningLight, a.successDark, a.successLight, a.primaryLight, a.warningDark]
-            },
-            AmStockChart: {
-                colors: [a.primary, a.danger, a.warning, a.success, a.info, a.primaryDark, a.warningLight, a.successDark, a.successLight, a.primaryLight, a.warningDark]
-            },
-            AmSlicedChart: {
-                colors: [a.primary, a.danger, a.warning, a.success, a.info, a.primaryDark, a.warningLight, a.successDark, a.successLight, a.primaryLight, a.warningDark],
-                labelTickColor: "#FFFFFF",
-                labelTickAlpha: .3
-            },
-            AmRectangularChart: {
-                zoomOutButtonColor: "#FFFFFF",
-                zoomOutButtonRollOverAlpha: .15,
-                zoomOutButtonImage: "lens.png"
-            },
-            AxisBase: {
-                axisColor: "#FFFFFF",
-                axisAlpha: .3,
-                gridAlpha: .1,
-                gridColor: "#FFFFFF"
-            },
-            ChartScrollbar: {
-                backgroundColor: "#FFFFFF",
-                backgroundAlpha: .12,
-                graphFillAlpha: .5,
-                graphLineAlpha: 0,
-                selectedBackgroundColor: "#FFFFFF",
-                selectedBackgroundAlpha: .4,
-                gridAlpha: .15
-            },
-            ChartCursor: {
-                cursorColor: a.primary,
-                color: "#FFFFFF",
-                cursorAlpha: .5
-            },
-            AmLegend: {
-                color: "#FFFFFF"
-            },
-            AmGraph: {
-                lineAlpha: .9
-            },
-            GaugeArrow: {
-                color: "#FFFFFF",
-                alpha: .8,
-                nailAlpha: 0,
-                innerRadius: "40%",
-                nailRadius: 15,
-                startWidth: 15,
-                borderAlpha: .8,
-                nailBorderAlpha: 0
-            },
-            GaugeAxis: {
-                tickColor: "#FFFFFF",
-                tickAlpha: 1,
-                tickLength: 15,
-                minorTickLength: 8,
-                axisThickness: 3,
-                axisColor: "#FFFFFF",
-                axisAlpha: 1,
-                bandAlpha: .8
-            },
-            TrendLine: {
-                lineColor: a.danger,
-                lineAlpha: .8
-            },
-            AreasSettings: {
-                alpha: .8,
-                color: a.info,
-                colorSolid: a.primaryDark,
-                unlistedAreasAlpha: .4,
-                unlistedAreasColor: "#FFFFFF",
-                outlineColor: "#FFFFFF",
-                outlineAlpha: .5,
-                outlineThickness: .5,
-                rollOverColor: a.primary,
-                rollOverOutlineColor: "#FFFFFF",
-                selectedOutlineColor: "#FFFFFF",
-                selectedColor: "#f15135",
-                unlistedAreasOutlineColor: "#FFFFFF",
-                unlistedAreasOutlineAlpha: .5
-            },
-            LinesSettings: {
-                color: "#FFFFFF",
-                alpha: .8
-            },
-            ImagesSettings: {
-                alpha: .8,
-                labelColor: "#FFFFFF",
-                color: "#FFFFFF",
-                labelRollOverColor: a.primaryDark
-            },
-            ZoomControl: {
-                buttonFillAlpha: .8,
-                buttonIconColor: a.defaultText,
-                buttonRollOverColor: a.danger,
-                buttonFillColor: a.primaryDark,
-                buttonBorderColor: a.primaryDark,
-                buttonBorderAlpha: 0,
-                buttonCornerRadius: 0,
-                gridColor: "#FFFFFF",
-                gridBackgroundColor: "#FFFFFF",
-                buttonIconAlpha: .6,
-                gridAlpha: .6,
-                buttonSize: 20
-            },
-            SmallMap: {
-                mapColor: "#000000",
-                rectangleColor: a.danger,
-                backgroundColor: "#FFFFFF",
-                backgroundAlpha: .7,
-                borderThickness: 1,
-                borderAlpha: .8
-            },
-            PeriodSelector: {
-                color: "#FFFFFF"
-            },
-            PeriodButton: {
-                color: "#FFFFFF",
-                background: "transparent",
-                opacity: .7,
-                border: "1px solid rgba(0, 0, 0, .3)",
-                MozBorderRadius: "5px",
-                borderRadius: "5px",
-                margin: "1px",
-                outline: "none",
-                boxSizing: "border-box"
-            },
-            PeriodButtonSelected: {
-                color: "#FFFFFF",
-                backgroundColor: "#b9cdf5",
-                border: "1px solid rgba(0, 0, 0, .3)",
-                MozBorderRadius: "5px",
-                borderRadius: "5px",
-                margin: "1px",
-                outline: "none",
-                opacity: 1,
-                boxSizing: "border-box"
-            },
-            PeriodInputField: {
-                color: "#FFFFFF",
-                background: "transparent",
-                border: "1px solid rgba(0, 0, 0, .3)",
-                outline: "none"
-            },
-            DataSetSelector: {
-                color: "#FFFFFF",
-                selectedBackgroundColor: "#b9cdf5",
-                rollOverBackgroundColor: "#a8b0e4"
-            },
-            DataSetCompareList: {
-                color: "#FFFFFF",
-                lineHeight: "100%",
-                boxSizing: "initial",
-                webkitBoxSizing: "initial",
-                border: "1px solid rgba(0, 0, 0, .3)"
-            },
-            DataSetSelect: {
-                border: "1px solid rgba(0, 0, 0, .3)",
-                outline: "none"
-            }
-        }
-    }
-    e.$inject = ["$stateProvider"], a.$inject = ["baConfigProvider"], angular.module("BlurAdmin.pages.charts.amCharts", []).config(e).config(a)
-}(),
-function() {
-    "use strict";
+//     function a(e) {
+//         var a = e.colors;
+//         AmCharts.themes.blur = {
+//             themeName: "blur",
+//             AmChart: {
+//                 color: a.defaultText,
+//                 backgroundColor: "#FFFFFF"
+//             },
+//             AmCoordinateChart: {
+//                 colors: [a.primary, a.danger, a.warning, a.success, a.info, a.primaryDark, a.warningLight, a.successDark, a.successLight, a.primaryLight, a.warningDark]
+//             },
+//             AmStockChart: {
+//                 colors: [a.primary, a.danger, a.warning, a.success, a.info, a.primaryDark, a.warningLight, a.successDark, a.successLight, a.primaryLight, a.warningDark]
+//             },
+//             AmSlicedChart: {
+//                 colors: [a.primary, a.danger, a.warning, a.success, a.info, a.primaryDark, a.warningLight, a.successDark, a.successLight, a.primaryLight, a.warningDark],
+//                 labelTickColor: "#FFFFFF",
+//                 labelTickAlpha: .3
+//             },
+//             AmRectangularChart: {
+//                 zoomOutButtonColor: "#FFFFFF",
+//                 zoomOutButtonRollOverAlpha: .15,
+//                 zoomOutButtonImage: "lens.png"
+//             },
+//             AxisBase: {
+//                 axisColor: "#FFFFFF",
+//                 axisAlpha: .3,
+//                 gridAlpha: .1,
+//                 gridColor: "#FFFFFF"
+//             },
+//             ChartScrollbar: {
+//                 backgroundColor: "#FFFFFF",
+//                 backgroundAlpha: .12,
+//                 graphFillAlpha: .5,
+//                 graphLineAlpha: 0,
+//                 selectedBackgroundColor: "#FFFFFF",
+//                 selectedBackgroundAlpha: .4,
+//                 gridAlpha: .15
+//             },
+//             ChartCursor: {
+//                 cursorColor: a.primary,
+//                 color: "#FFFFFF",
+//                 cursorAlpha: .5
+//             },
+//             AmLegend: {
+//                 color: "#FFFFFF"
+//             },
+//             AmGraph: {
+//                 lineAlpha: .9
+//             },
+//             GaugeArrow: {
+//                 color: "#FFFFFF",
+//                 alpha: .8,
+//                 nailAlpha: 0,
+//                 innerRadius: "40%",
+//                 nailRadius: 15,
+//                 startWidth: 15,
+//                 borderAlpha: .8,
+//                 nailBorderAlpha: 0
+//             },
+//             GaugeAxis: {
+//                 tickColor: "#FFFFFF",
+//                 tickAlpha: 1,
+//                 tickLength: 15,
+//                 minorTickLength: 8,
+//                 axisThickness: 3,
+//                 axisColor: "#FFFFFF",
+//                 axisAlpha: 1,
+//                 bandAlpha: .8
+//             },
+//             TrendLine: {
+//                 lineColor: a.danger,
+//                 lineAlpha: .8
+//             },
+//             AreasSettings: {
+//                 alpha: .8,
+//                 color: a.info,
+//                 colorSolid: a.primaryDark,
+//                 unlistedAreasAlpha: .4,
+//                 unlistedAreasColor: "#FFFFFF",
+//                 outlineColor: "#FFFFFF",
+//                 outlineAlpha: .5,
+//                 outlineThickness: .5,
+//                 rollOverColor: a.primary,
+//                 rollOverOutlineColor: "#FFFFFF",
+//                 selectedOutlineColor: "#FFFFFF",
+//                 selectedColor: "#f15135",
+//                 unlistedAreasOutlineColor: "#FFFFFF",
+//                 unlistedAreasOutlineAlpha: .5
+//             },
+//             LinesSettings: {
+//                 color: "#FFFFFF",
+//                 alpha: .8
+//             },
+//             ImagesSettings: {
+//                 alpha: .8,
+//                 labelColor: "#FFFFFF",
+//                 color: "#FFFFFF",
+//                 labelRollOverColor: a.primaryDark
+//             },
+//             ZoomControl: {
+//                 buttonFillAlpha: .8,
+//                 buttonIconColor: a.defaultText,
+//                 buttonRollOverColor: a.danger,
+//                 buttonFillColor: a.primaryDark,
+//                 buttonBorderColor: a.primaryDark,
+//                 buttonBorderAlpha: 0,
+//                 buttonCornerRadius: 0,
+//                 gridColor: "#FFFFFF",
+//                 gridBackgroundColor: "#FFFFFF",
+//                 buttonIconAlpha: .6,
+//                 gridAlpha: .6,
+//                 buttonSize: 20
+//             },
+//             SmallMap: {
+//                 mapColor: "#000000",
+//                 rectangleColor: a.danger,
+//                 backgroundColor: "#FFFFFF",
+//                 backgroundAlpha: .7,
+//                 borderThickness: 1,
+//                 borderAlpha: .8
+//             },
+//             PeriodSelector: {
+//                 color: "#FFFFFF"
+//             },
+//             PeriodButton: {
+//                 color: "#FFFFFF",
+//                 background: "transparent",
+//                 opacity: .7,
+//                 border: "1px solid rgba(0, 0, 0, .3)",
+//                 MozBorderRadius: "5px",
+//                 borderRadius: "5px",
+//                 margin: "1px",
+//                 outline: "none",
+//                 boxSizing: "border-box"
+//             },
+//             PeriodButtonSelected: {
+//                 color: "#FFFFFF",
+//                 backgroundColor: "#b9cdf5",
+//                 border: "1px solid rgba(0, 0, 0, .3)",
+//                 MozBorderRadius: "5px",
+//                 borderRadius: "5px",
+//                 margin: "1px",
+//                 outline: "none",
+//                 opacity: 1,
+//                 boxSizing: "border-box"
+//             },
+//             PeriodInputField: {
+//                 color: "#FFFFFF",
+//                 background: "transparent",
+//                 border: "1px solid rgba(0, 0, 0, .3)",
+//                 outline: "none"
+//             },
+//             DataSetSelector: {
+//                 color: "#FFFFFF",
+//                 selectedBackgroundColor: "#b9cdf5",
+//                 rollOverBackgroundColor: "#a8b0e4"
+//             },
+//             DataSetCompareList: {
+//                 color: "#FFFFFF",
+//                 lineHeight: "100%",
+//                 boxSizing: "initial",
+//                 webkitBoxSizing: "initial",
+//                 border: "1px solid rgba(0, 0, 0, .3)"
+//             },
+//             DataSetSelect: {
+//                 border: "1px solid rgba(0, 0, 0, .3)",
+//                 outline: "none"
+//             }
+//         }
+//     }
+//     e.$inject = ["$stateProvider"], a.$inject = ["baConfigProvider"], angular.module("BlurAdmin.pages.charts.amCharts", []).config(e).config(a)
+// }(),
+// function() {
+//     "use strict";
 
-    function e(e) {
-        e.state("charts.chartist", {
-            url: "/chartist",
-            templateUrl: "app/pages/charts/chartist/chartist.html",
-            title: "Chartist",
-            sidebarMeta: {
-                order: 100
-            }
-        })
-    }
-    e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.charts.chartist", []).config(e)
-}(),
+//     function e(e) {
+//         e.state("charts.chartist", {
+//             url: "/chartist",
+//             templateUrl: "app/pages/charts/chartist/chartist.html",
+//             title: "Chartist",
+//             sidebarMeta: {
+//                 order: 100
+//             }
+//         })
+//     }
+//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.charts.chartist", []).config(e)
+// }(),
 function() {
     "use strict";
 
@@ -712,24 +712,24 @@ function() {
     }
     e.$inject = ["$stateProvider"], a.$inject = ["ChartJsProvider", "baConfigProvider"], angular.module("BlurAdmin.pages.charts.chartJs", []).config(e).config(a)
 }(),
-function() {
-    "use strict";
+// function() {
+//     "use strict";
 
-    function e(e) {
-        e.state("charts.morris", {
-            url: "/morris",
-            templateUrl: "app/pages/charts/morris/morris.html",
-            title: "Morris",
-            sidebarMeta: {
-                order: 300
-            }
-        })
-    }
-    e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.charts.morris", []).config(e).config(["baConfigProvider", function(e) {
-        var a = e.colors;
-        Morris.Donut.prototype.defaults.backgroundColor = "transparent", Morris.Donut.prototype.defaults.labelColor = a.defaultText, Morris.Grid.prototype.gridDefaults.gridLineColor = a.borderDark, Morris.Grid.prototype.gridDefaults.gridTextColor = a.defaultText
-    }])
-}(),
+//     function e(e) {
+//         e.state("charts.morris", {
+//             url: "/morris",
+//             templateUrl: "app/pages/charts/morris/morris.html",
+//             title: "Morris",
+//             sidebarMeta: {
+//                 order: 300
+//             }
+//         })
+//     }
+//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.charts.morris", []).config(e).config(["baConfigProvider", function(e) {
+//         var a = e.colors;
+//         Morris.Donut.prototype.defaults.backgroundColor = "transparent", Morris.Donut.prototype.defaults.labelColor = a.defaultText, Morris.Grid.prototype.gridDefaults.gridLineColor = a.borderDark, Morris.Grid.prototype.gridDefaults.gridTextColor = a.defaultText
+//     }])
+// }(),
 // function() {
 //     "use strict";
 
@@ -1925,185 +1925,185 @@ function() {
         }
         e.$inject = ["$window"], angular.module("BlurAdmin.theme").service("stopableInterval", e)
     }(),
-    function() {
-        "use strict";
+    // function() {
+    //     "use strict";
 
-        function e(e, a, t) {
-            function i(e, a) {
-                return [
-                    ["screen and (min-width: 1550px)", {
-                        chartPadding: e,
-                        labelOffset: a,
-                        labelDirection: "explode",
-                        labelInterpolationFnc: function(e) {
-                            return e
-                        }
-                    }],
-                    ["screen and (max-width: 1200px)", {
-                        chartPadding: e,
-                        labelOffset: a,
-                        labelDirection: "explode",
-                        labelInterpolationFnc: function(e) {
-                            return e
-                        }
-                    }],
-                    ["screen and (max-width: 600px)", {
-                        chartPadding: 0,
-                        labelOffset: 0,
-                        labelInterpolationFnc: function(e) {
-                            return e[0]
-                        }
-                    }]
-                ]
-            }
-            e.simpleLineOptions = {
-                color: t.colors.defaultText,
-                fullWidth: !0,
-                height: "300px",
-                chartPadding: {
-                    right: 40
-                }
-            }, e.simpleLineData = {
-                labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-                series: [
-                    [20, 20, 12, 45, 50],
-                    [10, 45, 30, 14, 12],
-                    [34, 12, 12, 40, 50],
-                    [10, 43, 25, 22, 16],
-                    [3, 6, 30, 33, 43]
-                ]
-            }, e.areaLineData = {
-                labels: [1, 2, 3, 4, 5, 6, 7, 8],
-                series: [
-                    [5, 9, 7, 8, 5, 3, 5, 4]
-                ]
-            }, e.areaLineOptions = {
-                fullWidth: !0,
-                height: "300px",
-                low: 0,
-                showArea: !0
-            }, e.biLineData = {
-                labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-                series: [
-                    [1, 2, 3, 1, -2, 0, 1],
-                    [-2, -1, -2, -1, -2.5, -1, -2],
-                    [0, 0, 0, 1, 2, 2.5, 2],
-                    [2.5, 2, 1, .5, 1, .5, -1]
-                ]
-            }, e.biLineOptions = {
-                height: "300px",
-                high: 3,
-                low: -3,
-                showArea: !0,
-                showLine: !1,
-                showPoint: !1,
-                fullWidth: !0,
-                axisX: {
-                    showGrid: !1
-                }
-            }, e.simpleBarData = {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                series: [
-                    [15, 24, 43, 27, 5, 10, 23, 44, 68, 50, 26, 8],
-                    [13, 22, 49, 22, 4, 6, 24, 46, 57, 48, 22, 4]
-                ]
-            }, e.simpleBarOptions = {
-                fullWidth: !0,
-                height: "300px"
-            }, e.multiBarData = {
-                labels: ["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"],
-                series: [
-                    [5, 4, 3, 7],
-                    [3, 2, 9, 5],
-                    [1, 5, 8, 4],
-                    [2, 3, 4, 6],
-                    [4, 1, 2, 1]
-                ]
-            }, e.multiBarOptions = {
-                fullWidth: !0,
-                height: "300px",
-                stackBars: !0,
-                axisX: {
-                    labelInterpolationFnc: function(e) {
-                        return e.split(/\s+/).map(function(e) {
-                            return e[0]
-                        }).join("")
-                    }
-                },
-                axisY: {
-                    offset: 20
-                }
-            }, e.multiBarResponsive = [
-                ["screen and (min-width: 400px)", {
-                    reverseData: !0,
-                    horizontalBars: !0,
-                    axisX: {
-                        labelInterpolationFnc: Chartist.noop
-                    },
-                    axisY: {
-                        offset: 60
-                    }
-                }],
-                ["screen and (min-width: 700px)", {
-                    stackBars: !1,
-                    reverseData: !1,
-                    horizontalBars: !1,
-                    seriesBarDistance: 15
-                }]
-            ], e.stackedBarData = {
-                labels: ["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"],
-                series: [
-                    [8e5, 12e5, 14e5, 13e5],
-                    [2e5, 4e5, 5e5, 3e5],
-                    [1e5, 2e5, 4e5, 6e5]
-                ]
-            }, e.stackedBarOptions = {
-                fullWidth: !0,
-                height: "300px",
-                stackBars: !0,
-                axisY: {
-                    labelInterpolationFnc: function(e) {
-                        return e / 1e3 + "k"
-                    }
-                }
-            }, e.simplePieData = {
-                series: [5, 3, 4]
-            }, e.simplePieOptions = {
-                fullWidth: !0,
-                height: "300px",
-                weight: "300px",
-                labelInterpolationFnc: function(e) {
-                    return Math.round(e / 12 * 100) + "%"
-                }
-            }, e.labelsPieData = {
-                labels: ["Bananas", "Apples", "Grapes"],
-                series: [20, 15, 40]
-            }, e.labelsPieOptions = {
-                fullWidth: !0,
-                height: "300px",
-                weight: "300px",
-                labelDirection: "explode",
-                labelInterpolationFnc: function(e) {
-                    return e[0]
-                }
-            }, e.simpleDonutData = {
-                labels: ["Bananas", "Apples", "Grapes"],
-                series: [20, 15, 40]
-            }, e.simpleDonutOptions = {
-                fullWidth: !0,
-                donut: !0,
-                height: "300px",
-                weight: "300px",
-                labelDirection: "explode",
-                labelInterpolationFnc: function(e) {
-                    return e[0]
-                }
-            }, e.donutResponsive = i(5, 40), e.pieResponsive = i(20, 80), a(function() {
-                new Chartist.Line("#line-chart", e.simpleLineData, e.simpleLineOptions), new Chartist.Line("#area-chart", e.areaLineData, e.areaLineOptions), new Chartist.Line("#bi-chart", e.biLineData, e.biLineOptions), new Chartist.Bar("#simple-bar", e.simpleBarData, e.simpleBarOptions), new Chartist.Bar("#multi-bar", e.multiBarData, e.multiBarOptions, e.multiBarResponsive), new Chartist.Bar("#stacked-bar", e.stackedBarData, e.stackedBarOptions), new Chartist.Pie("#simple-pie", e.simplePieData, e.simplePieOptions, e.pieResponsive), new Chartist.Pie("#label-pie", e.labelsPieData, e.labelsPieOptions), new Chartist.Pie("#donut", e.simpleDonutData, e.simpleDonutOptions, e.donutResponsive)
-            })
-        }
-        e.$inject = ["$scope", "$timeout", "baConfig"], angular.module("BlurAdmin.pages.charts.chartist").controller("chartistCtrl", e)
-    }(),
+    //     function e(e, a, t) {
+    //         function i(e, a) {
+    //             return [
+    //                 ["screen and (min-width: 1550px)", {
+    //                     chartPadding: e,
+    //                     labelOffset: a,
+    //                     labelDirection: "explode",
+    //                     labelInterpolationFnc: function(e) {
+    //                         return e
+    //                     }
+    //                 }],
+    //                 ["screen and (max-width: 1200px)", {
+    //                     chartPadding: e,
+    //                     labelOffset: a,
+    //                     labelDirection: "explode",
+    //                     labelInterpolationFnc: function(e) {
+    //                         return e
+    //                     }
+    //                 }],
+    //                 ["screen and (max-width: 600px)", {
+    //                     chartPadding: 0,
+    //                     labelOffset: 0,
+    //                     labelInterpolationFnc: function(e) {
+    //                         return e[0]
+    //                     }
+    //                 }]
+    //             ]
+    //         }
+    //         e.simpleLineOptions = {
+    //             color: t.colors.defaultText,
+    //             fullWidth: !0,
+    //             height: "300px",
+    //             chartPadding: {
+    //                 right: 40
+    //             }
+    //         }, e.simpleLineData = {
+    //             labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+    //             series: [
+    //                 [20, 20, 12, 45, 50],
+    //                 [10, 45, 30, 14, 12],
+    //                 [34, 12, 12, 40, 50],
+    //                 [10, 43, 25, 22, 16],
+    //                 [3, 6, 30, 33, 43]
+    //             ]
+    //         }, e.areaLineData = {
+    //             labels: [1, 2, 3, 4, 5, 6, 7, 8],
+    //             series: [
+    //                 [5, 9, 7, 8, 5, 3, 5, 4]
+    //             ]
+    //         }, e.areaLineOptions = {
+    //             fullWidth: !0,
+    //             height: "300px",
+    //             low: 0,
+    //             showArea: !0
+    //         }, e.biLineData = {
+    //             labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    //             series: [
+    //                 [1, 2, 3, 1, -2, 0, 1],
+    //                 [-2, -1, -2, -1, -2.5, -1, -2],
+    //                 [0, 0, 0, 1, 2, 2.5, 2],
+    //                 [2.5, 2, 1, .5, 1, .5, -1]
+    //             ]
+    //         }, e.biLineOptions = {
+    //             height: "300px",
+    //             high: 3,
+    //             low: -3,
+    //             showArea: !0,
+    //             showLine: !1,
+    //             showPoint: !1,
+    //             fullWidth: !0,
+    //             axisX: {
+    //                 showGrid: !1
+    //             }
+    //         }, e.simpleBarData = {
+    //             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    //             series: [
+    //                 [15, 24, 43, 27, 5, 10, 23, 44, 68, 50, 26, 8],
+    //                 [13, 22, 49, 22, 4, 6, 24, 46, 57, 48, 22, 4]
+    //             ]
+    //         }, e.simpleBarOptions = {
+    //             fullWidth: !0,
+    //             height: "300px"
+    //         }, e.multiBarData = {
+    //             labels: ["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"],
+    //             series: [
+    //                 [5, 4, 3, 7],
+    //                 [3, 2, 9, 5],
+    //                 [1, 5, 8, 4],
+    //                 [2, 3, 4, 6],
+    //                 [4, 1, 2, 1]
+    //             ]
+    //         }, e.multiBarOptions = {
+    //             fullWidth: !0,
+    //             height: "300px",
+    //             stackBars: !0,
+    //             axisX: {
+    //                 labelInterpolationFnc: function(e) {
+    //                     return e.split(/\s+/).map(function(e) {
+    //                         return e[0]
+    //                     }).join("")
+    //                 }
+    //             },
+    //             axisY: {
+    //                 offset: 20
+    //             }
+    //         }, e.multiBarResponsive = [
+    //             ["screen and (min-width: 400px)", {
+    //                 reverseData: !0,
+    //                 horizontalBars: !0,
+    //                 axisX: {
+    //                     labelInterpolationFnc: Chartist.noop
+    //                 },
+    //                 axisY: {
+    //                     offset: 60
+    //                 }
+    //             }],
+    //             ["screen and (min-width: 700px)", {
+    //                 stackBars: !1,
+    //                 reverseData: !1,
+    //                 horizontalBars: !1,
+    //                 seriesBarDistance: 15
+    //             }]
+    //         ], e.stackedBarData = {
+    //             labels: ["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"],
+    //             series: [
+    //                 [8e5, 12e5, 14e5, 13e5],
+    //                 [2e5, 4e5, 5e5, 3e5],
+    //                 [1e5, 2e5, 4e5, 6e5]
+    //             ]
+    //         }, e.stackedBarOptions = {
+    //             fullWidth: !0,
+    //             height: "300px",
+    //             stackBars: !0,
+    //             axisY: {
+    //                 labelInterpolationFnc: function(e) {
+    //                     return e / 1e3 + "k"
+    //                 }
+    //             }
+    //         }, e.simplePieData = {
+    //             series: [5, 3, 4]
+    //         }, e.simplePieOptions = {
+    //             fullWidth: !0,
+    //             height: "300px",
+    //             weight: "300px",
+    //             labelInterpolationFnc: function(e) {
+    //                 return Math.round(e / 12 * 100) + "%"
+    //             }
+    //         }, e.labelsPieData = {
+    //             labels: ["Bananas", "Apples", "Grapes"],
+    //             series: [20, 15, 40]
+    //         }, e.labelsPieOptions = {
+    //             fullWidth: !0,
+    //             height: "300px",
+    //             weight: "300px",
+    //             labelDirection: "explode",
+    //             labelInterpolationFnc: function(e) {
+    //                 return e[0]
+    //             }
+    //         }, e.simpleDonutData = {
+    //             labels: ["Bananas", "Apples", "Grapes"],
+    //             series: [20, 15, 40]
+    //         }, e.simpleDonutOptions = {
+    //             fullWidth: !0,
+    //             donut: !0,
+    //             height: "300px",
+    //             weight: "300px",
+    //             labelDirection: "explode",
+    //             labelInterpolationFnc: function(e) {
+    //                 return e[0]
+    //             }
+    //         }, e.donutResponsive = i(5, 40), e.pieResponsive = i(20, 80), a(function() {
+    //             new Chartist.Line("#line-chart", e.simpleLineData, e.simpleLineOptions), new Chartist.Line("#area-chart", e.areaLineData, e.areaLineOptions), new Chartist.Line("#bi-chart", e.biLineData, e.biLineOptions), new Chartist.Bar("#simple-bar", e.simpleBarData, e.simpleBarOptions), new Chartist.Bar("#multi-bar", e.multiBarData, e.multiBarOptions, e.multiBarResponsive), new Chartist.Bar("#stacked-bar", e.stackedBarData, e.stackedBarOptions), new Chartist.Pie("#simple-pie", e.simplePieData, e.simplePieOptions, e.pieResponsive), new Chartist.Pie("#label-pie", e.labelsPieData, e.labelsPieOptions), new Chartist.Pie("#donut", e.simpleDonutData, e.simpleDonutOptions, e.donutResponsive)
+    //         })
+    //     }
+    //     e.$inject = ["$scope", "$timeout", "baConfig"], angular.module("BlurAdmin.pages.charts.chartist").controller("chartistCtrl", e)
+    // }(),
     function() {
         "use strict";
 
@@ -2173,108 +2173,108 @@ function() {
         }
         e.$inject = ["$scope", "$interval", "stopableInterval"], angular.module("BlurAdmin.pages.charts.chartJs").controller("chartJsWaveCtrl", e)
     }(),
-    function() {
-        "use strict";
+    // function() {
+    //     "use strict";
 
-        function e(e, a, t) {
-            var i = t.colors;
-            e.colors = [i.primary, i.warning, i.danger, i.info, i.success, i.primaryDark], e.lineData = [{
-                y: "2006",
-                a: 100,
-                b: 90
-            }, {
-                y: "2007",
-                a: 75,
-                b: 65
-            }, {
-                y: "2008",
-                a: 50,
-                b: 40
-            }, {
-                y: "2009",
-                a: 75,
-                b: 65
-            }, {
-                y: "2010",
-                a: 50,
-                b: 40
-            }, {
-                y: "2011",
-                a: 75,
-                b: 65
-            }, {
-                y: "2012",
-                a: 100,
-                b: 90
-            }], e.areaData = [{
-                y: "2006",
-                a: 100,
-                b: 90
-            }, {
-                y: "2007",
-                a: 75,
-                b: 65
-            }, {
-                y: "2008",
-                a: 50,
-                b: 40
-            }, {
-                y: "2009",
-                a: 75,
-                b: 65
-            }, {
-                y: "2010",
-                a: 50,
-                b: 40
-            }, {
-                y: "2011",
-                a: 75,
-                b: 65
-            }, {
-                y: "2012",
-                a: 100,
-                b: 90
-            }], e.barData = [{
-                y: "2006",
-                a: 100,
-                b: 90
-            }, {
-                y: "2007",
-                a: 75,
-                b: 65
-            }, {
-                y: "2008",
-                a: 50,
-                b: 40
-            }, {
-                y: "2009",
-                a: 75,
-                b: 65
-            }, {
-                y: "2010",
-                a: 50,
-                b: 40
-            }, {
-                y: "2011",
-                a: 75,
-                b: 65
-            }, {
-                y: "2012",
-                a: 100,
-                b: 90
-            }], e.donutData = [{
-                label: "Download Sales",
-                value: 12
-            }, {
-                label: "In-Store Sales",
-                value: 30
-            }, {
-                label: "Mail-Order Sales",
-                value: 20
-            }], angular.element(a).bind("resize", function() {})
-        }
-        e.$inject = ["$scope", "$window", "baConfig"], angular.module("BlurAdmin.pages.charts.morris").controller("morrisCtrl", e)
-    }(),
+    //     function e(e, a, t) {
+    //         var i = t.colors;
+    //         e.colors = [i.primary, i.warning, i.danger, i.info, i.success, i.primaryDark], e.lineData = [{
+    //             y: "2006",
+    //             a: 100,
+    //             b: 90
+    //         }, {
+    //             y: "2007",
+    //             a: 75,
+    //             b: 65
+    //         }, {
+    //             y: "2008",
+    //             a: 50,
+    //             b: 40
+    //         }, {
+    //             y: "2009",
+    //             a: 75,
+    //             b: 65
+    //         }, {
+    //             y: "2010",
+    //             a: 50,
+    //             b: 40
+    //         }, {
+    //             y: "2011",
+    //             a: 75,
+    //             b: 65
+    //         }, {
+    //             y: "2012",
+    //             a: 100,
+    //             b: 90
+    //         }], e.areaData = [{
+    //             y: "2006",
+    //             a: 100,
+    //             b: 90
+    //         }, {
+    //             y: "2007",
+    //             a: 75,
+    //             b: 65
+    //         }, {
+    //             y: "2008",
+    //             a: 50,
+    //             b: 40
+    //         }, {
+    //             y: "2009",
+    //             a: 75,
+    //             b: 65
+    //         }, {
+    //             y: "2010",
+    //             a: 50,
+    //             b: 40
+    //         }, {
+    //             y: "2011",
+    //             a: 75,
+    //             b: 65
+    //         }, {
+    //             y: "2012",
+    //             a: 100,
+    //             b: 90
+    //         }], e.barData = [{
+    //             y: "2006",
+    //             a: 100,
+    //             b: 90
+    //         }, {
+    //             y: "2007",
+    //             a: 75,
+    //             b: 65
+    //         }, {
+    //             y: "2008",
+    //             a: 50,
+    //             b: 40
+    //         }, {
+    //             y: "2009",
+    //             a: 75,
+    //             b: 65
+    //         }, {
+    //             y: "2010",
+    //             a: 50,
+    //             b: 40
+    //         }, {
+    //             y: "2011",
+    //             a: 75,
+    //             b: 65
+    //         }, {
+    //             y: "2012",
+    //             a: 100,
+    //             b: 90
+    //         }], e.donutData = [{
+    //             label: "Download Sales",
+    //             value: 12
+    //         }, {
+    //             label: "In-Store Sales",
+    //             value: 30
+    //         }, {
+    //             label: "Mail-Order Sales",
+    //             value: 20
+    //         }], angular.element(a).bind("resize", function() {})
+    //     }
+    //     e.$inject = ["$scope", "$window", "baConfig"], angular.module("BlurAdmin.pages.charts.morris").controller("morrisCtrl", e)
+    // }(),
     // function() {
     //     "use strict";
 
@@ -6594,1029 +6594,1029 @@ function() {
         }
         angular.module("BlurAdmin.theme.inputs").directive("baSwitcher", e)
     }(),
-    function() {
-        "use strict";
+    // function() {
+    //     "use strict";
 
-        function e(e, a, t, i) {
-            var s = a.colors,
-                l = t[0].getAttribute("id");
-
-
-            AmCharts.makeChart(l, {
-                type: "serial",
-                theme: "blur",
-                color: s.defaultText,
-
-                dataProvider: [{
-                    country: "USA",
-                    visits: 3025,
-                    color: s.primary
-                }, {
-                    country: "China",
-                    visits: 1882,
-                    color: s.danger
-                }, {
-                    country: "Japan",
-                    visits: 1809,
-                    color: s.info
-                }, {
-                    country: "Germany",
-                    visits: 1322,
-                    color: s.success
-                }, {
-                    country: "UK",
-                    visits: 1122,
-                    color: s.warning
-                }, {
-                    country: "France",
-                    visits: 1114,
-                    color: s.primaryLight
-                }],
-                valueAxes: [{
-                    axisAlpha: 0,
-                    position: "left",
-                    title: "Visitors from country",
-                    gridAlpha: .5,
-                    gridColor: s.border
-                }],
-                startDuration: 1,
-                graphs: [{
-                    balloonText: "<b>[[category]]: [[value]]</b>",
-                    fillColorsField: "color",
-                    fillAlphas: .7,
-                    lineAlpha: .2,
-                    type: "column",
-                    valueField: "visits"
-                }],
-                chartCursor: {
-                    categoryBalloonEnabled: !1,
-                    cursorAlpha: 0,
-                    zoomable: !1
-                },
-                categoryField: "country",
-                categoryAxis: {
-                    gridPosition: "start",
-                    labelRotation: 45,
-                    gridAlpha: .5,
-                    gridColor: s.border
-                },
-                export: {
-                    enabled: !0
-                },
-                creditsPosition: "top-right",
-                pathToImages: i.images.amChart
-            })
-        }
+    //     function e(e, a, t, i) {
+    //         var s = a.colors,
+    //             l = t[0].getAttribute("id");
 
 
-        e.$inject = ["$scope", "baConfig", "$element", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("BarChartCtrl", e)
-    }(),
-    function() {
-        "use strict";
+    //         AmCharts.makeChart(l, {
+    //             type: "serial",
+    //             theme: "blur",
+    //             color: s.defaultText,
 
-        function e(e, a, t, i) {
-            function s() {
-                n.zoomToDates(new Date(2012, 0, 3), new Date(2012, 0, 11))
-            }
-            var l = a.colors,
-                o = t[0].getAttribute("id"),
-                n = AmCharts.makeChart(o, {
-                    type: "serial",
-                    theme: "blur",
-                    color: l.defaultText,
+    //             dataProvider: [{
+    //                 country: "USA",
+    //                 visits: 3025,
+    //                 color: s.primary
+    //             }, {
+    //                 country: "China",
+    //                 visits: 1882,
+    //                 color: s.danger
+    //             }, {
+    //                 country: "Japan",
+    //                 visits: 1809,
+    //                 color: s.info
+    //             }, {
+    //                 country: "Germany",
+    //                 visits: 1322,
+    //                 color: s.success
+    //             }, {
+    //                 country: "UK",
+    //                 visits: 1122,
+    //                 color: s.warning
+    //             }, {
+    //                 country: "France",
+    //                 visits: 1114,
+    //                 color: s.primaryLight
+    //             }],
+    //             valueAxes: [{
+    //                 axisAlpha: 0,
+    //                 position: "left",
+    //                 title: "Visitors from country",
+    //                 gridAlpha: .5,
+    //                 gridColor: s.border
+    //             }],
+    //             startDuration: 1,
+    //             graphs: [{
+    //                 balloonText: "<b>[[category]]: [[value]]</b>",
+    //                 fillColorsField: "color",
+    //                 fillAlphas: .7,
+    //                 lineAlpha: .2,
+    //                 type: "column",
+    //                 valueField: "visits"
+    //             }],
+    //             chartCursor: {
+    //                 categoryBalloonEnabled: !1,
+    //                 cursorAlpha: 0,
+    //                 zoomable: !1
+    //             },
+    //             categoryField: "country",
+    //             categoryAxis: {
+    //                 gridPosition: "start",
+    //                 labelRotation: 45,
+    //                 gridAlpha: .5,
+    //                 gridColor: s.border
+    //             },
+    //             export: {
+    //                 enabled: !0
+    //             },
+    //             creditsPosition: "top-right",
+    //             pathToImages: i.images.amChart
+    //         })
+    //     }
 
 
+    //     e.$inject = ["$scope", "baConfig", "$element", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("BarChartCtrl", e)
+    // }(),
+    // function() {
+    //     "use strict";
 
-
-                    dataProvider: [{
-                        lineColor: l.info,
-                        date: "2012-01-01",
-                        duration: 408
-                    }, {
-                        date: "2012-01-02",
-                        duration: 482
-                    }, {
-                        date: "2012-01-03",
-                        duration: 562
-                    }, {
-                        date: "2012-01-04",
-                        duration: 379
-                    }, {
-                        lineColor: l.warning,
-                        date: "2012-01-05",
-                        duration: 501
-                    }, {
-                        date: "2012-01-06",
-                        duration: 443
-                    }, {
-                        date: "2012-01-07",
-                        duration: 405
-                    }, {
-                        date: "2012-01-08",
-                        duration: 309,
-                        lineColor: l.danger
-                    }, {
-                        date: "2012-01-09",
-                        duration: 287
-                    }, {
-                        date: "2012-01-10",
-                        duration: 485
-                    }, {
-                        date: "2012-01-11",
-                        duration: 890
-                    }, {
-                        date: "2012-01-12",
-                        duration: 810
-                    }],
-                    balloon: {
-                        cornerRadius: 6,
-                        horizontalPadding: 15,
-                        verticalPadding: 10
-                    },
-                    valueAxes: [{
-                        duration: "mm",
-                        durationUnits: {
-                            hh: "h ",
-                            mm: "min"
-                        },
-                        gridAlpha: .5,
-                        gridColor: l.border
-                    }],
-                    graphs: [{
-                        bullet: "square",
-                        bulletBorderAlpha: 1,
-                        bulletBorderThickness: 1,
-                        fillAlphas: .5,
-                        fillColorsField: "lineColor",
-                        legendValueText: "[[value]]",
-                        lineColorField: "lineColor",
-                        title: "duration",
-                        valueField: "duration"
-                    }],
-                    chartCursor: {
-                        categoryBalloonDateFormat: "YYYY MMM DD",
-                        cursorAlpha: 0,
-                        fullWidth: !0
-                    },
-                    dataDateFormat: "YYYY-MM-DD",
-                    categoryField: "date",
-                    categoryAxis: {
-                        dateFormats: [{
-                            period: "DD",
-                            format: "DD"
-                        }, {
-                            period: "WW",
-                            format: "MMM DD"
-                        }, {
-                            period: "MM",
-                            format: "MMM"
-                        }, {
-                            period: "YYYY",
-                            format: "YYYY"
-                        }],
-                        parseDates: !0,
-                        autoGridCount: !1,
-                        gridCount: 50,
-                        gridAlpha: .5,
-                        gridColor: l.border
-                    },
-                    export: {
-                        enabled: !0
-                    },
-                    pathToImages: i.images.amChart
-                });
-            n.addListener("dataUpdated", s)
-        }
-        e.$inject = ["$scope", "baConfig", "$element", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("AreaChartCtrl", e)
-    }(),
-    function() {
-        "use strict";
-
-        function e(e, a, t) {
-            var i = a.colors,
-                s = e[0].getAttribute("id");
-            AmCharts.makeChart(s, {
-                type: "serial",
-                theme: "none",
-                color: i.defaultText,
-                dataDateFormat: "YYYY-MM-DD",
-                precision: 2,
-                valueAxes: [{
-                    color: i.defaultText,
-                    axisColor: i.defaultText,
-                    gridColor: i.defaultText,
-                    id: "v1",
-                    title: "Sales",
-                    position: "left",
-                    autoGridCount: !1,
-                    labelFunction: function(e) {
-                        return "$" + Math.round(e) + "M"
-                    }
-                }, {
-                    color: i.defaultText,
-                    axisColor: i.defaultText,
-                    gridColor: i.defaultText,
-                    id: "v2",
-                    title: "Market Days",
-                    gridAlpha: 0,
-                    position: "right",
-                    autoGridCount: !1
-                }],
-                graphs: [{
-                    id: "g3",
-                    color: i.defaultText,
-                    valueAxis: "v1",
-                    lineColor: i.primaryLight,
-                    fillColors: i.primaryLight,
-                    fillAlphas: .8,
-                    lineAlpha: .8,
-                    type: "column",
-                    title: "Actual Sales",
-                    valueField: "sales2",
-                    clustered: !1,
-                    columnWidth: .5,
-                    lineColorField: i.defaultText,
-                    legendValueText: "$[[value]]M",
-                    balloonText: "[[title]]<br/><b style='font-size: 130%'>$[[value]]M</b>"
-                }, {
-                    id: "g4",
-                    valueAxis: "v1",
-                    color: i.defaultText,
-                    lineColor: i.primary,
-                    fillColors: i.primary,
-                    fillAlphas: .9,
-                    lineAlpha: .9,
-                    type: "column",
-                    title: "Target Sales",
-                    valueField: "sales1",
-                    clustered: !1,
-                    columnWidth: .3,
-                    legendValueText: "$[[value]]M",
-                    balloonText: "[[title]]<br/><b style='font-size: 130%'>$[[value]]M</b>"
-                }, {
-                    id: "g1",
-                    valueAxis: "v2",
-                    bullet: "round",
-                    bulletBorderAlpha: 1,
-                    bulletColor: i.defaultText,
-                    color: i.defaultText,
-                    bulletSize: 5,
-                    hideBulletsCount: 50,
-                    lineThickness: 2,
-                    lineColor: i.danger,
-                    type: "smoothedLine",
-                    title: "Market Days",
-                    useLineColorForBulletBorder: !0,
-                    valueField: "market1",
-                    balloonText: "[[title]]<br/><b style='font-size: 130%'>[[value]]</b>"
-                }, {
-                    id: "g2",
-                    valueAxis: "v2",
-                    color: i.defaultText,
-                    bullet: "round",
-                    bulletBorderAlpha: 1,
-                    bulletColor: i.defaultText,
-                    bulletSize: 5,
-                    hideBulletsCount: 50,
-                    lineThickness: 2,
-                    lineColor: i.warning,
-                    type: "smoothedLine",
-                    dashLength: 5,
-                    title: "Market Days ALL",
-                    useLineColorForBulletBorder: !0,
-                    valueField: "market2",
-                    balloonText: "[[title]]<br/><b style='font-size: 130%'>[[value]]</b>"
-                }],
-                chartScrollbar: {
-                    graph: "g1",
-                    oppositeAxis: !1,
-                    offset: 30,
-                    gridAlpha: 0,
-                    color: i.defaultText,
-                    scrollbarHeight: 50,
-                    backgroundAlpha: 0,
-                    selectedBackgroundAlpha: .05,
-                    selectedBackgroundColor: i.defaultText,
-                    graphFillAlpha: 0,
-                    autoGridCount: !0,
-                    selectedGraphFillAlpha: 0,
-                    graphLineAlpha: .2,
-                    selectedGraphLineColor: i.defaultText,
-                    selectedGraphLineAlpha: 1
-                },
-                chartCursor: {
-                    pan: !0,
-                    cursorColor: i.danger,
-                    valueLineEnabled: !0,
-                    valueLineBalloonEnabled: !0,
-                    cursorAlpha: 0,
-                    valueLineAlpha: .2
-                },
-                categoryField: "date",
-                categoryAxis: {
-                    axisColor: i.defaultText,
-                    color: i.defaultText,
-                    gridColor: i.defaultText,
-                    parseDates: !0,
-                    dashLength: 1,
-                    minorGridEnabled: !0
-                },
-                legend: {
-                    useGraphSettings: !0,
-                    position: "top",
-                    color: i.defaultText
-                },
-                balloon: {
-                    borderThickness: 1,
-                    shadowAlpha: 0
-                },
-                export: {
-                    enabled: !0
-                },
-                dataProvider: [{
-                    date: "2013-01-16",
-                    market1: 71,
-                    market2: 75,
-                    sales1: 5,
-                    sales2: 8
-                }, {
-                    date: "2013-01-17",
-                    market1: 74,
-                    market2: 78,
-                    sales1: 4,
-                    sales2: 6
-                }, {
-                    date: "2013-01-18",
-                    market1: 78,
-                    market2: 88,
-                    sales1: 5,
-                    sales2: 2
-                }, {
-                    date: "2013-01-19",
-                    market1: 85,
-                    market2: 89,
-                    sales1: 8,
-                    sales2: 9
-                }, {
-                    date: "2013-01-20",
-                    market1: 82,
-                    market2: 89,
-                    sales1: 9,
-                    sales2: 6
-                }, {
-                    date: "2013-01-21",
-                    market1: 83,
-                    market2: 85,
-                    sales1: 3,
-                    sales2: 5
-                }, {
-                    date: "2013-01-22",
-                    market1: 88,
-                    market2: 92,
-                    sales1: 5,
-                    sales2: 7
-                }, {
-                    date: "2013-01-23",
-                    market1: 85,
-                    market2: 90,
-                    sales1: 7,
-                    sales2: 6
-                }, {
-                    date: "2013-01-24",
-                    market1: 85,
-                    market2: 91,
-                    sales1: 9,
-                    sales2: 5
-                }, {
-                    date: "2013-01-25",
-                    market1: 80,
-                    market2: 84,
-                    sales1: 5,
-                    sales2: 8
-                }, {
-                    date: "2013-01-26",
-                    market1: 87,
-                    market2: 92,
-                    sales1: 4,
-                    sales2: 8
-                }, {
-                    date: "2013-01-27",
-                    market1: 84,
-                    market2: 87,
-                    sales1: 3,
-                    sales2: 4
-                }, {
-                    date: "2013-01-28",
-                    market1: 83,
-                    market2: 88,
-                    sales1: 5,
-                    sales2: 7
-                }, {
-                    date: "2013-01-29",
-                    market1: 84,
-                    market2: 87,
-                    sales1: 5,
-                    sales2: 8
-                }, {
-                    date: "2013-01-30",
-                    market1: 81,
-                    market2: 85,
-                    sales1: 4,
-                    sales2: 7
-                }],
-                pathToImages: t.images.amChart
-            })
-        }
-        e.$inject = ["$element", "baConfig", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("combinedChartCtrl", e)
-    }(),
-    function() {
-        "use strict";
-
-        function e(e, a, t, i) {
-            var s = i.colors,
-                l = a[0].getAttribute("id");
-            AmCharts.makeChart(l, {
-                type: "funnel",
-                theme: "blur",
-                color: s.defaultText,
-                labelTickColor: s.borderDark,
-                dataProvider: [{
-                    title: "Website visits",
-                    value: 300
-                }, {
-                    title: "Downloads",
-                    value: 123
-                }, {
-                    title: "Requested prices",
-                    value: 98
-                }, {
-                    title: "Contaced",
-                    value: 72
-                }, {
-                    title: "Purchased",
-                    value: 35
-                }, {
-                    title: "Asked for support",
-                    value: 25
-                }, {
-                    title: "Purchased more",
-                    value: 18
-                }],
-                titleField: "title",
-                marginRight: 160,
-                marginLeft: 15,
-                labelPosition: "right",
-                funnelAlpha: .9,
-                valueField: "value",
-                startX: 0,
-                alpha: .8,
-                neckWidth: "0%",
-                startAlpha: 0,
-                outlineThickness: 1,
-                neckHeight: "0%",
-                balloonText: "[[title]]:<b>[[value]]</b>",
-                export: {
-                    enabled: !0
-                },
-                creditsPosition: "bottom-left",
-                pathToImages: t
-            })
-        }
-        e.$inject = ["$scope", "$element", "layoutPaths", "baConfig"], angular.module("BlurAdmin.pages.charts.amCharts").controller("FunnelChartCtrl", e)
-    }(),
-    function() {
-        "use strict";
-
-        function e(e) {
-            var a = e[0].getAttribute("id");
-            AmCharts.makeChart(a, {
-                type: "gantt",
-                theme: "light",
-                marginRight: 70,
-                period: "hh",
-                dataDateFormat: "YYYY-MM-DD",
-                balloonDateFormat: "JJ:NN",
-                columnWidth: .5,
-                valueAxis: {
-                    type: "date",
-                    minimum: 7,
-                    maximum: 31
-                },
-                brightnessStep: 10,
-                graph: {
-                    fillAlphas: 1,
-                    balloonText: "<b>[[task]]</b>: [[open]] [[value]]"
-                },
-                rotate: !0,
-                categoryField: "category",
-                segmentsField: "segments",
-                colorField: "color",
-                startDate: "2015-01-01",
-                startField: "start",
-                endField: "end",
-                durationField: "duration",
-                dataProvider: [{
-                    category: "John",
-                    segments: [{
-                        start: 7,
-                        duration: 2,
-                        color: "#46615e",
-                        task: "Task #1"
-                    }, {
-                        duration: 2,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        duration: 2,
-                        color: "#8dc49f",
-                        task: "Task #3"
-                    }]
-                }, {
-                    category: "Smith",
-                    segments: [{
-                        start: 10,
-                        duration: 2,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        duration: 1,
-                        color: "#8dc49f",
-                        task: "Task #3"
-                    }, {
-                        duration: 4,
-                        color: "#46615e",
-                        task: "Task #1"
-                    }]
-                }, {
-                    category: "Ben",
-                    segments: [{
-                        start: 12,
-                        duration: 2,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        start: 16,
-                        duration: 2,
-                        color: "#FFE4C4",
-                        task: "Task #4"
-                    }]
-                }, {
-                    category: "Mike",
-                    segments: [{
-                        start: 9,
-                        duration: 6,
-                        color: "#46615e",
-                        task: "Task #1"
-                    }, {
-                        duration: 4,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }]
-                }, {
-                    category: "Lenny",
-                    segments: [{
-                        start: 8,
-                        duration: 1,
-                        color: "#8dc49f",
-                        task: "Task #3"
-                    }, {
-                        duration: 4,
-                        color: "#46615e",
-                        task: "Task #1"
-                    }]
-                }, {
-                    category: "Scott",
-                    segments: [{
-                        start: 15,
-                        duration: 3,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }]
-                }, {
-                    category: "Julia",
-                    segments: [{
-                        start: 9,
-                        duration: 2,
-                        color: "#46615e",
-                        task: "Task #1"
-                    }, {
-                        duration: 1,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        duration: 8,
-                        color: "#8dc49f",
-                        task: "Task #3"
-                    }]
-                }, {
-                    category: "Bob",
-                    segments: [{
-                        start: 9,
-                        duration: 8,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        duration: 7,
-                        color: "#8dc49f",
-                        task: "Task #3"
-                    }]
-                }, {
-                    category: "Kendra",
-                    segments: [{
-                        start: 11,
-                        duration: 8,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        start: 16,
-                        duration: 2,
-                        color: "#FFE4C4",
-                        task: "Task #4"
-                    }]
-                }, {
-                    category: "Tom",
-                    segments: [{
-                        start: 9,
-                        duration: 4,
-                        color: "#46615e",
-                        task: "Task #1"
-                    }, {
-                        duration: 3,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        duration: 5,
-                        color: "#8dc49f",
-                        task: "Task #3"
-                    }]
-                }, {
-                    category: "Kyle",
-                    segments: [{
-                        start: 6,
-                        duration: 3,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }]
-                }, {
-                    category: "Anita",
-                    segments: [{
-                        start: 12,
-                        duration: 2,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        start: 16,
-                        duration: 2,
-                        color: "#FFE4C4",
-                        task: "Task #4"
-                    }]
-                }, {
-                    category: "Jack",
-                    segments: [{
-                        start: 8,
-                        duration: 10,
-                        color: "#46615e",
-                        task: "Task #1"
-                    }, {
-                        duration: 2,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }]
-                }, {
-                    category: "Kim",
-                    segments: [{
-                        start: 12,
-                        duration: 2,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        duration: 3,
-                        color: "#8dc49f",
-                        task: "Task #3"
-                    }]
-                }, {
-                    category: "Aaron",
-                    segments: [{
-                        start: 18,
-                        duration: 2,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        duration: 2,
-                        color: "#FFE4C4",
-                        task: "Task #4"
-                    }]
-                }, {
-                    category: "Alan",
-                    segments: [{
-                        start: 17,
-                        duration: 2,
-                        color: "#46615e",
-                        task: "Task #1"
-                    }, {
-                        duration: 2,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        duration: 2,
-                        color: "#8dc49f",
-                        task: "Task #3"
-                    }]
-                }, {
-                    category: "Ruth",
-                    segments: [{
-                        start: 13,
-                        duration: 2,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        duration: 1,
-                        color: "#8dc49f",
-                        task: "Task #3"
-                    }, {
-                        duration: 4,
-                        color: "#46615e",
-                        task: "Task #1"
-                    }]
-                }, {
-                    category: "Simon",
-                    segments: [{
-                        start: 10,
-                        duration: 3,
-                        color: "#727d6f",
-                        task: "Task #2"
-                    }, {
-                        start: 17,
-                        duration: 4,
-                        color: "#FFE4C4",
-                        task: "Task #4"
-                    }]
-                }],
-                valueScrollbar: {
-                    autoGridCount: !0
-                },
-                chartCursor: {
-                    cursorColor: "#55bb76",
-                    valueBalloonsEnabled: !1,
-                    cursorAlpha: 0,
-                    valueLineAlpha: .5,
-                    valueLineBalloonEnabled: !0,
-                    valueLineEnabled: !0,
-                    zoomable: !1,
-                    valueZoomable: !0
-                },
-                export: {
-                    enabled: !0
-                }
-            })
-        }
-        e.$inject = ["$element"], angular.module("BlurAdmin.pages.charts.amCharts").controller("ganttChartCtrl", e)
-    }(),
-    function() {
-        "use strict";
-
-        function e(e, a, t, i) {
-            function s() {
-                n.zoomToIndexes(Math.round(.4 * n.dataProvider.length), Math.round(.55 * n.dataProvider.length))
-            }
-            var l = a.colors,
-                o = t[0].getAttribute("id"),
-                n = AmCharts.makeChart(o, {
-                    type: "serial",
-                    theme: "blur",
-                    color: l.defaultText,
-                    marginTop: 0,
-                    marginRight: 15,
-                    dataProvider: [{
-                        year: "1990",
-                        value: -.17
-                    }, {
-                        year: "1991",
-                        value: -.254
-                    }, {
-                        year: "1992",
-                        value: .019
-                    }, {
-                        year: "1993",
-                        value: -.063
-                    }, {
-                        year: "1994",
-                        value: .005
-                    }, {
-                        year: "1995",
-                        value: .077
-                    }, {
-                        year: "1996",
-                        value: .12
-                    }, {
-                        year: "1997",
-                        value: .011
-                    }, {
-                        year: "1998",
-                        value: .177
-                    }, {
-                        year: "1999",
-                        value: -.021
-                    }, {
-                        year: "2000",
-                        value: -.037
-                    }, {
-                        year: "2001",
-                        value: .03
-                    }, {
-                        year: "2002",
-                        value: .179
-                    }, {
-                        year: "2003",
-                        value: .2
-                    }, {
-                        year: "2004",
-                        value: .18
-                    }, {
-                        year: "2005",
-                        value: .21
-                    }],
-                    valueAxes: [{
-                        axisAlpha: 0,
-                        position: "left",
-                        gridAlpha: .5,
-                        gridColor: l.border
-                    }],
-                    graphs: [{
-                        id: "g1",
-                        balloonText: "[[value]]",
-                        bullet: "round",
-                        bulletSize: 8,
-                        lineColor: l.danger,
-                        lineThickness: 1,
-                        negativeLineColor: l.warning,
-                        type: "smoothedLine",
-                        valueField: "value"
-                    }],
-                    chartScrollbar: {
-                        graph: "g1",
-                        gridAlpha: 0,
-                        color: l.defaultText,
-                        scrollbarHeight: 55,
-                        backgroundAlpha: 0,
-                        selectedBackgroundAlpha: .05,
-                        selectedBackgroundColor: l.defaultText,
-                        graphFillAlpha: 0,
-                        autoGridCount: !0,
-                        selectedGraphFillAlpha: 0,
-                        graphLineAlpha: .2,
-                        selectedGraphLineColor: l.defaultText,
-                        selectedGraphLineAlpha: 1
-                    },
-                    chartCursor: {
-                        categoryBalloonDateFormat: "YYYY",
-                        cursorAlpha: 0,
-                        valueLineEnabled: !0,
-                        valueLineBalloonEnabled: !0,
-                        valueLineAlpha: .5,
-                        fullWidth: !0
-                    },
-                    dataDateFormat: "YYYY",
-                    categoryField: "year",
-                    categoryAxis: {
-                        minPeriod: "YYYY",
-                        parseDates: !0,
-                        minorGridAlpha: .1,
-                        minorGridEnabled: !0,
-                        gridAlpha: .5,
-                        gridColor: l.border
-                    },
-                    export: {
-                        enabled: !0
-                    },
-                    creditsPosition: "bottom-right",
-                    pathToImages: i.images.amChart
-                });
+    //     function e(e, a, t, i) {
+    //         function s() {
+    //             n.zoomToDates(new Date(2012, 0, 3), new Date(2012, 0, 11))
+    //         }
+    //         var l = a.colors,
+    //             o = t[0].getAttribute("id"),
+    //             n = AmCharts.makeChart(o, {
+    //                 type: "serial",
+    //                 theme: "blur",
+    //                 color: l.defaultText,
 
 
 
-            n.addListener("rendered", s), n.zoomChart && n.zoomChart()
-        }
-        e.$inject = ["$scope", "baConfig", "$element", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("LineChartCtrl", e)
-    }(),
-    function() {
-        "use strict";
 
-        function e(e, a, t) {
-            function i() {
-                n.legend.addListener("rollOverItem", s)
-            }
+    //                 dataProvider: [{
+    //                     lineColor: l.info,
+    //                     date: "2012-01-01",
+    //                     duration: 408
+    //                 }, {
+    //                     date: "2012-01-02",
+    //                     duration: 482
+    //                 }, {
+    //                     date: "2012-01-03",
+    //                     duration: 562
+    //                 }, {
+    //                     date: "2012-01-04",
+    //                     duration: 379
+    //                 }, {
+    //                     lineColor: l.warning,
+    //                     date: "2012-01-05",
+    //                     duration: 501
+    //                 }, {
+    //                     date: "2012-01-06",
+    //                     duration: 443
+    //                 }, {
+    //                     date: "2012-01-07",
+    //                     duration: 405
+    //                 }, {
+    //                     date: "2012-01-08",
+    //                     duration: 309,
+    //                     lineColor: l.danger
+    //                 }, {
+    //                     date: "2012-01-09",
+    //                     duration: 287
+    //                 }, {
+    //                     date: "2012-01-10",
+    //                     duration: 485
+    //                 }, {
+    //                     date: "2012-01-11",
+    //                     duration: 890
+    //                 }, {
+    //                     date: "2012-01-12",
+    //                     duration: 810
+    //                 }],
+    //                 balloon: {
+    //                     cornerRadius: 6,
+    //                     horizontalPadding: 15,
+    //                     verticalPadding: 10
+    //                 },
+    //                 valueAxes: [{
+    //                     duration: "mm",
+    //                     durationUnits: {
+    //                         hh: "h ",
+    //                         mm: "min"
+    //                     },
+    //                     gridAlpha: .5,
+    //                     gridColor: l.border
+    //                 }],
+    //                 graphs: [{
+    //                     bullet: "square",
+    //                     bulletBorderAlpha: 1,
+    //                     bulletBorderThickness: 1,
+    //                     fillAlphas: .5,
+    //                     fillColorsField: "lineColor",
+    //                     legendValueText: "[[value]]",
+    //                     lineColorField: "lineColor",
+    //                     title: "duration",
+    //                     valueField: "duration"
+    //                 }],
+    //                 chartCursor: {
+    //                     categoryBalloonDateFormat: "YYYY MMM DD",
+    //                     cursorAlpha: 0,
+    //                     fullWidth: !0
+    //                 },
+    //                 dataDateFormat: "YYYY-MM-DD",
+    //                 categoryField: "date",
+    //                 categoryAxis: {
+    //                     dateFormats: [{
+    //                         period: "DD",
+    //                         format: "DD"
+    //                     }, {
+    //                         period: "WW",
+    //                         format: "MMM DD"
+    //                     }, {
+    //                         period: "MM",
+    //                         format: "MMM"
+    //                     }, {
+    //                         period: "YYYY",
+    //                         format: "YYYY"
+    //                     }],
+    //                     parseDates: !0,
+    //                     autoGridCount: !1,
+    //                     gridCount: 50,
+    //                     gridAlpha: .5,
+    //                     gridColor: l.border
+    //                 },
+    //                 export: {
+    //                     enabled: !0
+    //                 },
+    //                 pathToImages: i.images.amChart
+    //             });
+    //         n.addListener("dataUpdated", s)
+    //     }
+    //     e.$inject = ["$scope", "baConfig", "$element", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("AreaChartCtrl", e)
+    // }(),
+    // function() {
+    //     "use strict";
 
-            function s(e) {
-                var a = e.dataItem.wedge.node;
-                a.parentNode.appendChild(a)
-            }
-            var l = t.colors,
-                o = e[0].getAttribute("id"),
-                n = AmCharts.makeChart(o, {
-                    type: "pie",
-                    startDuration: 0,
-                    theme: "blur",
-                    addClassNames: !0,
-                    color: l.defaultText,
-                    labelTickColor: l.borderDark,
-                    legend: {
-                        position: "right",
-                        marginRight: 100,
-                        autoMargins: !1
-                    },
-                    innerRadius: "40%",
-                    defs: {
-                        filter: [{
-                            id: "shadow",
-                            width: "200%",
-                            height: "200%",
-                            feOffset: {
-                                result: "offOut",
-                                in: "SourceAlpha",
-                                dx: 0,
-                                dy: 0
-                            },
-                            feGaussianBlur: {
-                                result: "blurOut",
-                                in: "offOut",
-                                stdDeviation: 5
-                            },
-                            feBlend: { in: "SourceGraphic",
-                                in2: "blurOut",
-                                mode: "normal"
-                            }
-                        }]
-                    },
+    //     function e(e, a, t) {
+    //         var i = a.colors,
+    //             s = e[0].getAttribute("id");
+    //         AmCharts.makeChart(s, {
+    //             type: "serial",
+    //             theme: "none",
+    //             color: i.defaultText,
+    //             dataDateFormat: "YYYY-MM-DD",
+    //             precision: 2,
+    //             valueAxes: [{
+    //                 color: i.defaultText,
+    //                 axisColor: i.defaultText,
+    //                 gridColor: i.defaultText,
+    //                 id: "v1",
+    //                 title: "Sales",
+    //                 position: "left",
+    //                 autoGridCount: !1,
+    //                 labelFunction: function(e) {
+    //                     return "$" + Math.round(e) + "M"
+    //                 }
+    //             }, {
+    //                 color: i.defaultText,
+    //                 axisColor: i.defaultText,
+    //                 gridColor: i.defaultText,
+    //                 id: "v2",
+    //                 title: "Market Days",
+    //                 gridAlpha: 0,
+    //                 position: "right",
+    //                 autoGridCount: !1
+    //             }],
+    //             graphs: [{
+    //                 id: "g3",
+    //                 color: i.defaultText,
+    //                 valueAxis: "v1",
+    //                 lineColor: i.primaryLight,
+    //                 fillColors: i.primaryLight,
+    //                 fillAlphas: .8,
+    //                 lineAlpha: .8,
+    //                 type: "column",
+    //                 title: "Actual Sales",
+    //                 valueField: "sales2",
+    //                 clustered: !1,
+    //                 columnWidth: .5,
+    //                 lineColorField: i.defaultText,
+    //                 legendValueText: "$[[value]]M",
+    //                 balloonText: "[[title]]<br/><b style='font-size: 130%'>$[[value]]M</b>"
+    //             }, {
+    //                 id: "g4",
+    //                 valueAxis: "v1",
+    //                 color: i.defaultText,
+    //                 lineColor: i.primary,
+    //                 fillColors: i.primary,
+    //                 fillAlphas: .9,
+    //                 lineAlpha: .9,
+    //                 type: "column",
+    //                 title: "Target Sales",
+    //                 valueField: "sales1",
+    //                 clustered: !1,
+    //                 columnWidth: .3,
+    //                 legendValueText: "$[[value]]M",
+    //                 balloonText: "[[title]]<br/><b style='font-size: 130%'>$[[value]]M</b>"
+    //             }, {
+    //                 id: "g1",
+    //                 valueAxis: "v2",
+    //                 bullet: "round",
+    //                 bulletBorderAlpha: 1,
+    //                 bulletColor: i.defaultText,
+    //                 color: i.defaultText,
+    //                 bulletSize: 5,
+    //                 hideBulletsCount: 50,
+    //                 lineThickness: 2,
+    //                 lineColor: i.danger,
+    //                 type: "smoothedLine",
+    //                 title: "Market Days",
+    //                 useLineColorForBulletBorder: !0,
+    //                 valueField: "market1",
+    //                 balloonText: "[[title]]<br/><b style='font-size: 130%'>[[value]]</b>"
+    //             }, {
+    //                 id: "g2",
+    //                 valueAxis: "v2",
+    //                 color: i.defaultText,
+    //                 bullet: "round",
+    //                 bulletBorderAlpha: 1,
+    //                 bulletColor: i.defaultText,
+    //                 bulletSize: 5,
+    //                 hideBulletsCount: 50,
+    //                 lineThickness: 2,
+    //                 lineColor: i.warning,
+    //                 type: "smoothedLine",
+    //                 dashLength: 5,
+    //                 title: "Market Days ALL",
+    //                 useLineColorForBulletBorder: !0,
+    //                 valueField: "market2",
+    //                 balloonText: "[[title]]<br/><b style='font-size: 130%'>[[value]]</b>"
+    //             }],
+    //             chartScrollbar: {
+    //                 graph: "g1",
+    //                 oppositeAxis: !1,
+    //                 offset: 30,
+    //                 gridAlpha: 0,
+    //                 color: i.defaultText,
+    //                 scrollbarHeight: 50,
+    //                 backgroundAlpha: 0,
+    //                 selectedBackgroundAlpha: .05,
+    //                 selectedBackgroundColor: i.defaultText,
+    //                 graphFillAlpha: 0,
+    //                 autoGridCount: !0,
+    //                 selectedGraphFillAlpha: 0,
+    //                 graphLineAlpha: .2,
+    //                 selectedGraphLineColor: i.defaultText,
+    //                 selectedGraphLineAlpha: 1
+    //             },
+    //             chartCursor: {
+    //                 pan: !0,
+    //                 cursorColor: i.danger,
+    //                 valueLineEnabled: !0,
+    //                 valueLineBalloonEnabled: !0,
+    //                 cursorAlpha: 0,
+    //                 valueLineAlpha: .2
+    //             },
+    //             categoryField: "date",
+    //             categoryAxis: {
+    //                 axisColor: i.defaultText,
+    //                 color: i.defaultText,
+    //                 gridColor: i.defaultText,
+    //                 parseDates: !0,
+    //                 dashLength: 1,
+    //                 minorGridEnabled: !0
+    //             },
+    //             legend: {
+    //                 useGraphSettings: !0,
+    //                 position: "top",
+    //                 color: i.defaultText
+    //             },
+    //             balloon: {
+    //                 borderThickness: 1,
+    //                 shadowAlpha: 0
+    //             },
+    //             export: {
+    //                 enabled: !0
+    //             },
+    //             dataProvider: [{
+    //                 date: "2013-01-16",
+    //                 market1: 71,
+    //                 market2: 75,
+    //                 sales1: 5,
+    //                 sales2: 8
+    //             }, {
+    //                 date: "2013-01-17",
+    //                 market1: 74,
+    //                 market2: 78,
+    //                 sales1: 4,
+    //                 sales2: 6
+    //             }, {
+    //                 date: "2013-01-18",
+    //                 market1: 78,
+    //                 market2: 88,
+    //                 sales1: 5,
+    //                 sales2: 2
+    //             }, {
+    //                 date: "2013-01-19",
+    //                 market1: 85,
+    //                 market2: 89,
+    //                 sales1: 8,
+    //                 sales2: 9
+    //             }, {
+    //                 date: "2013-01-20",
+    //                 market1: 82,
+    //                 market2: 89,
+    //                 sales1: 9,
+    //                 sales2: 6
+    //             }, {
+    //                 date: "2013-01-21",
+    //                 market1: 83,
+    //                 market2: 85,
+    //                 sales1: 3,
+    //                 sales2: 5
+    //             }, {
+    //                 date: "2013-01-22",
+    //                 market1: 88,
+    //                 market2: 92,
+    //                 sales1: 5,
+    //                 sales2: 7
+    //             }, {
+    //                 date: "2013-01-23",
+    //                 market1: 85,
+    //                 market2: 90,
+    //                 sales1: 7,
+    //                 sales2: 6
+    //             }, {
+    //                 date: "2013-01-24",
+    //                 market1: 85,
+    //                 market2: 91,
+    //                 sales1: 9,
+    //                 sales2: 5
+    //             }, {
+    //                 date: "2013-01-25",
+    //                 market1: 80,
+    //                 market2: 84,
+    //                 sales1: 5,
+    //                 sales2: 8
+    //             }, {
+    //                 date: "2013-01-26",
+    //                 market1: 87,
+    //                 market2: 92,
+    //                 sales1: 4,
+    //                 sales2: 8
+    //             }, {
+    //                 date: "2013-01-27",
+    //                 market1: 84,
+    //                 market2: 87,
+    //                 sales1: 3,
+    //                 sales2: 4
+    //             }, {
+    //                 date: "2013-01-28",
+    //                 market1: 83,
+    //                 market2: 88,
+    //                 sales1: 5,
+    //                 sales2: 7
+    //             }, {
+    //                 date: "2013-01-29",
+    //                 market1: 84,
+    //                 market2: 87,
+    //                 sales1: 5,
+    //                 sales2: 8
+    //             }, {
+    //                 date: "2013-01-30",
+    //                 market1: 81,
+    //                 market2: 85,
+    //                 sales1: 4,
+    //                 sales2: 7
+    //             }],
+    //             pathToImages: t.images.amChart
+    //         })
+    //     }
+    //     e.$inject = ["$element", "baConfig", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("combinedChartCtrl", e)
+    // }(),
+    // function() {
+    //     "use strict";
 
-                    dataProvider: [{
-                        country: "Lithuania",
-                        litres: 501.9
-                    }, {
-                        country: "Czech Republic",
-                        litres: 301.9
-                    }, {
-                        country: "Ireland",
-                        litres: 201.1
-                    }, {
-                        country: "Germany",
-                        litres: 165.8
-                    }, {
-                        country: "Australia",
-                        litres: 139.9
-                    }, {
-                        country: "Austria",
-                        litres: 128.3
-                    }, {
-                        country: "UK",
-                        litres: 99
-                    }, {
-                        country: "Belgium",
-                        litres: 60
-                    }],
-                    valueField: "litres",
-                    titleField: "country",
-                    export: {
-                        enabled: !0
-                    },
-                    creditsPosition: "bottom-left",
-                    autoMargins: !1,
-                    marginTop: 10,
-                    alpha: .8,
-                    marginBottom: 0,
-                    marginLeft: 0,
-                    marginRight: 0,
-                    pullOutRadius: 0,
-                    pathToImages: a.images.amChart,
-                    responsive: {
-                        enabled: !0,
-                        rules: [{
-                            maxWidth: 900,
-                            overrides: {
-                                legend: {
-                                    enabled: !1
-                                }
-                            }
-                        }, {
-                            maxWidth: 200,
-                            overrides: {
-                                valueAxes: {
-                                    labelsEnabled: !1
-                                },
-                                marginTop: 30,
-                                marginBottom: 30,
-                                marginLeft: 30,
-                                marginRight: 30
-                            }
-                        }]
-                    }
-                });
-            n.addListener("init", i), n.addListener("rollOverSlice", function(e) {
-                s(e)
-            })
-        }
-        e.$inject = ["$element", "layoutPaths", "baConfig"], angular.module("BlurAdmin.pages.charts.amCharts").controller("PieChartCtrl", e)
-    }(),
+    //     function e(e, a, t, i) {
+    //         var s = i.colors,
+    //             l = a[0].getAttribute("id");
+    //         AmCharts.makeChart(l, {
+    //             type: "funnel",
+    //             theme: "blur",
+    //             color: s.defaultText,
+    //             labelTickColor: s.borderDark,
+    //             dataProvider: [{
+    //                 title: "Website visits",
+    //                 value: 300
+    //             }, {
+    //                 title: "Downloads",
+    //                 value: 123
+    //             }, {
+    //                 title: "Requested prices",
+    //                 value: 98
+    //             }, {
+    //                 title: "Contaced",
+    //                 value: 72
+    //             }, {
+    //                 title: "Purchased",
+    //                 value: 35
+    //             }, {
+    //                 title: "Asked for support",
+    //                 value: 25
+    //             }, {
+    //                 title: "Purchased more",
+    //                 value: 18
+    //             }],
+    //             titleField: "title",
+    //             marginRight: 160,
+    //             marginLeft: 15,
+    //             labelPosition: "right",
+    //             funnelAlpha: .9,
+    //             valueField: "value",
+    //             startX: 0,
+    //             alpha: .8,
+    //             neckWidth: "0%",
+    //             startAlpha: 0,
+    //             outlineThickness: 1,
+    //             neckHeight: "0%",
+    //             balloonText: "[[title]]:<b>[[value]]</b>",
+    //             export: {
+    //                 enabled: !0
+    //             },
+    //             creditsPosition: "bottom-left",
+    //             pathToImages: t
+    //         })
+    //     }
+    //     e.$inject = ["$scope", "$element", "layoutPaths", "baConfig"], angular.module("BlurAdmin.pages.charts.amCharts").controller("FunnelChartCtrl", e)
+    // }(),
+    // function() {
+    //     "use strict";
+
+    //     function e(e) {
+    //         var a = e[0].getAttribute("id");
+    //         AmCharts.makeChart(a, {
+    //             type: "gantt",
+    //             theme: "light",
+    //             marginRight: 70,
+    //             period: "hh",
+    //             dataDateFormat: "YYYY-MM-DD",
+    //             balloonDateFormat: "JJ:NN",
+    //             columnWidth: .5,
+    //             valueAxis: {
+    //                 type: "date",
+    //                 minimum: 7,
+    //                 maximum: 31
+    //             },
+    //             brightnessStep: 10,
+    //             graph: {
+    //                 fillAlphas: 1,
+    //                 balloonText: "<b>[[task]]</b>: [[open]] [[value]]"
+    //             },
+    //             rotate: !0,
+    //             categoryField: "category",
+    //             segmentsField: "segments",
+    //             colorField: "color",
+    //             startDate: "2015-01-01",
+    //             startField: "start",
+    //             endField: "end",
+    //             durationField: "duration",
+    //             dataProvider: [{
+    //                 category: "John",
+    //                 segments: [{
+    //                     start: 7,
+    //                     duration: 2,
+    //                     color: "#46615e",
+    //                     task: "Task #1"
+    //                 }, {
+    //                     duration: 2,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     duration: 2,
+    //                     color: "#8dc49f",
+    //                     task: "Task #3"
+    //                 }]
+    //             }, {
+    //                 category: "Smith",
+    //                 segments: [{
+    //                     start: 10,
+    //                     duration: 2,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     duration: 1,
+    //                     color: "#8dc49f",
+    //                     task: "Task #3"
+    //                 }, {
+    //                     duration: 4,
+    //                     color: "#46615e",
+    //                     task: "Task #1"
+    //                 }]
+    //             }, {
+    //                 category: "Ben",
+    //                 segments: [{
+    //                     start: 12,
+    //                     duration: 2,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     start: 16,
+    //                     duration: 2,
+    //                     color: "#FFE4C4",
+    //                     task: "Task #4"
+    //                 }]
+    //             }, {
+    //                 category: "Mike",
+    //                 segments: [{
+    //                     start: 9,
+    //                     duration: 6,
+    //                     color: "#46615e",
+    //                     task: "Task #1"
+    //                 }, {
+    //                     duration: 4,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }]
+    //             }, {
+    //                 category: "Lenny",
+    //                 segments: [{
+    //                     start: 8,
+    //                     duration: 1,
+    //                     color: "#8dc49f",
+    //                     task: "Task #3"
+    //                 }, {
+    //                     duration: 4,
+    //                     color: "#46615e",
+    //                     task: "Task #1"
+    //                 }]
+    //             }, {
+    //                 category: "Scott",
+    //                 segments: [{
+    //                     start: 15,
+    //                     duration: 3,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }]
+    //             }, {
+    //                 category: "Julia",
+    //                 segments: [{
+    //                     start: 9,
+    //                     duration: 2,
+    //                     color: "#46615e",
+    //                     task: "Task #1"
+    //                 }, {
+    //                     duration: 1,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     duration: 8,
+    //                     color: "#8dc49f",
+    //                     task: "Task #3"
+    //                 }]
+    //             }, {
+    //                 category: "Bob",
+    //                 segments: [{
+    //                     start: 9,
+    //                     duration: 8,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     duration: 7,
+    //                     color: "#8dc49f",
+    //                     task: "Task #3"
+    //                 }]
+    //             }, {
+    //                 category: "Kendra",
+    //                 segments: [{
+    //                     start: 11,
+    //                     duration: 8,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     start: 16,
+    //                     duration: 2,
+    //                     color: "#FFE4C4",
+    //                     task: "Task #4"
+    //                 }]
+    //             }, {
+    //                 category: "Tom",
+    //                 segments: [{
+    //                     start: 9,
+    //                     duration: 4,
+    //                     color: "#46615e",
+    //                     task: "Task #1"
+    //                 }, {
+    //                     duration: 3,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     duration: 5,
+    //                     color: "#8dc49f",
+    //                     task: "Task #3"
+    //                 }]
+    //             }, {
+    //                 category: "Kyle",
+    //                 segments: [{
+    //                     start: 6,
+    //                     duration: 3,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }]
+    //             }, {
+    //                 category: "Anita",
+    //                 segments: [{
+    //                     start: 12,
+    //                     duration: 2,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     start: 16,
+    //                     duration: 2,
+    //                     color: "#FFE4C4",
+    //                     task: "Task #4"
+    //                 }]
+    //             }, {
+    //                 category: "Jack",
+    //                 segments: [{
+    //                     start: 8,
+    //                     duration: 10,
+    //                     color: "#46615e",
+    //                     task: "Task #1"
+    //                 }, {
+    //                     duration: 2,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }]
+    //             }, {
+    //                 category: "Kim",
+    //                 segments: [{
+    //                     start: 12,
+    //                     duration: 2,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     duration: 3,
+    //                     color: "#8dc49f",
+    //                     task: "Task #3"
+    //                 }]
+    //             }, {
+    //                 category: "Aaron",
+    //                 segments: [{
+    //                     start: 18,
+    //                     duration: 2,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     duration: 2,
+    //                     color: "#FFE4C4",
+    //                     task: "Task #4"
+    //                 }]
+    //             }, {
+    //                 category: "Alan",
+    //                 segments: [{
+    //                     start: 17,
+    //                     duration: 2,
+    //                     color: "#46615e",
+    //                     task: "Task #1"
+    //                 }, {
+    //                     duration: 2,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     duration: 2,
+    //                     color: "#8dc49f",
+    //                     task: "Task #3"
+    //                 }]
+    //             }, {
+    //                 category: "Ruth",
+    //                 segments: [{
+    //                     start: 13,
+    //                     duration: 2,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     duration: 1,
+    //                     color: "#8dc49f",
+    //                     task: "Task #3"
+    //                 }, {
+    //                     duration: 4,
+    //                     color: "#46615e",
+    //                     task: "Task #1"
+    //                 }]
+    //             }, {
+    //                 category: "Simon",
+    //                 segments: [{
+    //                     start: 10,
+    //                     duration: 3,
+    //                     color: "#727d6f",
+    //                     task: "Task #2"
+    //                 }, {
+    //                     start: 17,
+    //                     duration: 4,
+    //                     color: "#FFE4C4",
+    //                     task: "Task #4"
+    //                 }]
+    //             }],
+    //             valueScrollbar: {
+    //                 autoGridCount: !0
+    //             },
+    //             chartCursor: {
+    //                 cursorColor: "#55bb76",
+    //                 valueBalloonsEnabled: !1,
+    //                 cursorAlpha: 0,
+    //                 valueLineAlpha: .5,
+    //                 valueLineBalloonEnabled: !0,
+    //                 valueLineEnabled: !0,
+    //                 zoomable: !1,
+    //                 valueZoomable: !0
+    //             },
+    //             export: {
+    //                 enabled: !0
+    //             }
+    //         })
+    //     }
+    //     e.$inject = ["$element"], angular.module("BlurAdmin.pages.charts.amCharts").controller("ganttChartCtrl", e)
+    // }(),
+    // function() {
+    //     "use strict";
+
+    //     function e(e, a, t, i) {
+    //         function s() {
+    //             n.zoomToIndexes(Math.round(.4 * n.dataProvider.length), Math.round(.55 * n.dataProvider.length))
+    //         }
+    //         var l = a.colors,
+    //             o = t[0].getAttribute("id"),
+    //             n = AmCharts.makeChart(o, {
+    //                 type: "serial",
+    //                 theme: "blur",
+    //                 color: l.defaultText,
+    //                 marginTop: 0,
+    //                 marginRight: 15,
+    //                 dataProvider: [{
+    //                     year: "1990",
+    //                     value: -.17
+    //                 }, {
+    //                     year: "1991",
+    //                     value: -.254
+    //                 }, {
+    //                     year: "1992",
+    //                     value: .019
+    //                 }, {
+    //                     year: "1993",
+    //                     value: -.063
+    //                 }, {
+    //                     year: "1994",
+    //                     value: .005
+    //                 }, {
+    //                     year: "1995",
+    //                     value: .077
+    //                 }, {
+    //                     year: "1996",
+    //                     value: .12
+    //                 }, {
+    //                     year: "1997",
+    //                     value: .011
+    //                 }, {
+    //                     year: "1998",
+    //                     value: .177
+    //                 }, {
+    //                     year: "1999",
+    //                     value: -.021
+    //                 }, {
+    //                     year: "2000",
+    //                     value: -.037
+    //                 }, {
+    //                     year: "2001",
+    //                     value: .03
+    //                 }, {
+    //                     year: "2002",
+    //                     value: .179
+    //                 }, {
+    //                     year: "2003",
+    //                     value: .2
+    //                 }, {
+    //                     year: "2004",
+    //                     value: .18
+    //                 }, {
+    //                     year: "2005",
+    //                     value: .21
+    //                 }],
+    //                 valueAxes: [{
+    //                     axisAlpha: 0,
+    //                     position: "left",
+    //                     gridAlpha: .5,
+    //                     gridColor: l.border
+    //                 }],
+    //                 graphs: [{
+    //                     id: "g1",
+    //                     balloonText: "[[value]]",
+    //                     bullet: "round",
+    //                     bulletSize: 8,
+    //                     lineColor: l.danger,
+    //                     lineThickness: 1,
+    //                     negativeLineColor: l.warning,
+    //                     type: "smoothedLine",
+    //                     valueField: "value"
+    //                 }],
+    //                 chartScrollbar: {
+    //                     graph: "g1",
+    //                     gridAlpha: 0,
+    //                     color: l.defaultText,
+    //                     scrollbarHeight: 55,
+    //                     backgroundAlpha: 0,
+    //                     selectedBackgroundAlpha: .05,
+    //                     selectedBackgroundColor: l.defaultText,
+    //                     graphFillAlpha: 0,
+    //                     autoGridCount: !0,
+    //                     selectedGraphFillAlpha: 0,
+    //                     graphLineAlpha: .2,
+    //                     selectedGraphLineColor: l.defaultText,
+    //                     selectedGraphLineAlpha: 1
+    //                 },
+    //                 chartCursor: {
+    //                     categoryBalloonDateFormat: "YYYY",
+    //                     cursorAlpha: 0,
+    //                     valueLineEnabled: !0,
+    //                     valueLineBalloonEnabled: !0,
+    //                     valueLineAlpha: .5,
+    //                     fullWidth: !0
+    //                 },
+    //                 dataDateFormat: "YYYY",
+    //                 categoryField: "year",
+    //                 categoryAxis: {
+    //                     minPeriod: "YYYY",
+    //                     parseDates: !0,
+    //                     minorGridAlpha: .1,
+    //                     minorGridEnabled: !0,
+    //                     gridAlpha: .5,
+    //                     gridColor: l.border
+    //                 },
+    //                 export: {
+    //                     enabled: !0
+    //                 },
+    //                 creditsPosition: "bottom-right",
+    //                 pathToImages: i.images.amChart
+    //             });
+
+
+
+    //         n.addListener("rendered", s), n.zoomChart && n.zoomChart()
+    //     }
+    //     e.$inject = ["$scope", "baConfig", "$element", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("LineChartCtrl", e)
+    // }(),
+    // function() {
+    //     "use strict";
+
+    //     function e(e, a, t) {
+    //         function i() {
+    //             n.legend.addListener("rollOverItem", s)
+    //         }
+
+    //         function s(e) {
+    //             var a = e.dataItem.wedge.node;
+    //             a.parentNode.appendChild(a)
+    //         }
+    //         var l = t.colors,
+    //             o = e[0].getAttribute("id"),
+    //             n = AmCharts.makeChart(o, {
+    //                 type: "pie",
+    //                 startDuration: 0,
+    //                 theme: "blur",
+    //                 addClassNames: !0,
+    //                 color: l.defaultText,
+    //                 labelTickColor: l.borderDark,
+    //                 legend: {
+    //                     position: "right",
+    //                     marginRight: 100,
+    //                     autoMargins: !1
+    //                 },
+    //                 innerRadius: "40%",
+    //                 defs: {
+    //                     filter: [{
+    //                         id: "shadow",
+    //                         width: "200%",
+    //                         height: "200%",
+    //                         feOffset: {
+    //                             result: "offOut",
+    //                             in: "SourceAlpha",
+    //                             dx: 0,
+    //                             dy: 0
+    //                         },
+    //                         feGaussianBlur: {
+    //                             result: "blurOut",
+    //                             in: "offOut",
+    //                             stdDeviation: 5
+    //                         },
+    //                         feBlend: { in: "SourceGraphic",
+    //                             in2: "blurOut",
+    //                             mode: "normal"
+    //                         }
+    //                     }]
+    //                 },
+
+    //                 dataProvider: [{
+    //                     country: "Lithuania",
+    //                     litres: 501.9
+    //                 }, {
+    //                     country: "Czech Republic",
+    //                     litres: 301.9
+    //                 }, {
+    //                     country: "Ireland",
+    //                     litres: 201.1
+    //                 }, {
+    //                     country: "Germany",
+    //                     litres: 165.8
+    //                 }, {
+    //                     country: "Australia",
+    //                     litres: 139.9
+    //                 }, {
+    //                     country: "Austria",
+    //                     litres: 128.3
+    //                 }, {
+    //                     country: "UK",
+    //                     litres: 99
+    //                 }, {
+    //                     country: "Belgium",
+    //                     litres: 60
+    //                 }],
+    //                 valueField: "litres",
+    //                 titleField: "country",
+    //                 export: {
+    //                     enabled: !0
+    //                 },
+    //                 creditsPosition: "bottom-left",
+    //                 autoMargins: !1,
+    //                 marginTop: 10,
+    //                 alpha: .8,
+    //                 marginBottom: 0,
+    //                 marginLeft: 0,
+    //                 marginRight: 0,
+    //                 pullOutRadius: 0,
+    //                 pathToImages: a.images.amChart,
+    //                 responsive: {
+    //                     enabled: !0,
+    //                     rules: [{
+    //                         maxWidth: 900,
+    //                         overrides: {
+    //                             legend: {
+    //                                 enabled: !1
+    //                             }
+    //                         }
+    //                     }, {
+    //                         maxWidth: 200,
+    //                         overrides: {
+    //                             valueAxes: {
+    //                                 labelsEnabled: !1
+    //                             },
+    //                             marginTop: 30,
+    //                             marginBottom: 30,
+    //                             marginLeft: 30,
+    //                             marginRight: 30
+    //                         }
+    //                     }]
+    //                 }
+    //             });
+    //         n.addListener("init", i), n.addListener("rollOverSlice", function(e) {
+    //             s(e)
+    //         })
+    //     }
+    //     e.$inject = ["$element", "layoutPaths", "baConfig"], angular.module("BlurAdmin.pages.charts.amCharts").controller("PieChartCtrl", e)
+    // }(),
     // function() {
     //     "use strict";
 
@@ -8060,7 +8060,7 @@ function() {
             e.put("app/pages/form/fileupload/fileupload.html", '<div style="height:1200px; width:80%;"><iframe scrolling="No" height="100%" width="80%" id="myFrame1" src="fileupload/index.html"></iframe></div>'),
             e.put("app/pages/form/test/View.php", '<div style="height:1200px; width:80%"><iframe scrolling="No" height="100%" width="80%" id="myFrame1" src="fileupload/View.php"></iframe></div>'),
 
-            e.put("app/pages/form/test/test.html", '<style> #contant_form * {background: transparent !important; color:#fff !important;}</style><div class="widgets"><div class="row"><div class="col-md-6"><div ba-panel="" ba-panel-title="Basic Form" ba-panel-class="with-scroll"><form id="from_table"><div id="contant_form">' + Formdata_contant + '</div><button type="submit" title="Save" class="btn btn-danger" onclick="save_data_post()">Save</button></form></div></div></div>'),
+            e.put("app/pages/form/test/test.html", '<style> #contant_form * {background: transparent !important; color:#fff !important;}</style><div class="widgets"><div class="row"><div class="col-md-6"><div ba-panel="" ba-panel-title="Form Collection" ba-panel-class="with-scroll" style="width: 1300px;"><form id="from_table"><div id="contant_form">' + Formdata_contant + '</div><button type="submit" title="Save" class="btn btn-danger" onclick="save_data_post()">Save</button></form></div></div></div>'),
             e.put("app/pages/profile/profile.html", '<div ba-panel="" ba-panel-class="profile-page"><div class="panel-content"><div class="progress-info">Your profile is 70% Complete</div><div class="progress"><div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div></div><h3 class="with-line">General Information</h3><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputFirstName" class="col-sm-3 control-label">Picture</label><div class="col-sm-9"><div class="userpic"><div class="userpic-wrapper"><img ng-src="{{ picture }}" ng-click="uploadPicture()"></div><i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!noPicture"></i> <a href="" class="change-userpic" ng-click="uploadPicture()">Change Profile Picture</a> <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)"></div></div></div></div><div class="col-md-6"></div></div><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputFirstName" class="col-sm-3 control-label">First Name</label><div class="col-sm-9"><input type="text" class="form-control" id="inputFirstName" placeholder="" value="Anastasiya"></div></div><div class="form-group row clearfix"><label for="inputLastName" class="col-sm-3 control-label">Last Name</label><div class="col-sm-9"><input type="text" class="form-control" id="inputLastName" placeholder="" value=""></div></div></div><div class="col-md-6"><div class="form-group row clearfix"><label class="col-sm-3 control-label">Department</label><div class="col-sm-9"><select class="form-control" selectpicker=""><option>Web Development</option><option>System Development</option><option>Sales</option><option>Human Resources</option></select></div></div><div class="form-group row clearfix"><label for="inputOccupation" class="col-sm-3 control-label">Occupation</label><div class="col-sm-9"><input type="text" class="form-control" id="inputOccupation" placeholder="" value="Front End Web Developer"></div></div></div></div><h3 class="with-line">Change Password</h3><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputPassword" class="col-sm-3 control-label">Password</label><div class="col-sm-9"><input type="password" class="form-control" id="inputPassword" placeholder="" value="12345678"></div></div></div><div class="col-md-6"><div class="form-group row clearfix"><label for="inputConfirmPassword" class="col-sm-3 control-label">Confirm Password</label><div class="col-sm-9"><input type="password" class="form-control" id="inputConfirmPassword" placeholder=""></div></div></div></div><h3 class="with-line">Contact Information</h3><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputEmail3" class="col-sm-3 control-label">Email</label><div class="col-sm-9"><input type="email" class="form-control" id="inputEmail3" placeholder="" value="contact@akveo.com"></div></div><div class="form-group row clearfix"><label for="inputPhone" class="col-sm-3 control-label">Phone</label><div class="col-sm-9"><input type="text" class="form-control" id="inputPhone" placeholder="" value="+1 (23) 456 7890"></div></div></div><div class="col-md-6"><div class="form-group row clearfix"><label class="col-sm-3 control-label">Office Location</label><div class="col-sm-9"><select class="form-control" title="Standard Select" selectpicker=""><option>San Francisco</option><option>London</option><option>Minsk</option><option>Tokio</option></select></div></div><div class="form-group row clearfix"><label for="inputRoom" class="col-sm-3 control-label">Room</label><div class="col-sm-9"><input type="text" class="form-control" id="inputRoom" placeholder="" value="303"></div></div></div></div><h3 class="with-line">Social Profiles</h3><div class="social-profiles row clearfix"><div class="col-md-3 col-sm-4" ng-repeat="item in socialProfiles"><a class="sn-link" href="" ng-click="showModal(item)" ng-if="!item.href"><i class="socicon {{ item.icon }}"></i> <span>{{ item.name }}</span></a> <a class="sn-link connected" href="{{ item.href }}" target="_blank" ng-if="item.href"><i class="socicon {{ item.icon }}"></i> <span>{{ item.name }}</span> <em class="ion-ios-close-empty sn-link-close" ng-mousedown="unconnect(item)"></em></a></div></div><h3 class="with-line">Send Email Notifications</h3><div class="notification row clearfix"><div class="col-sm-6"><div class="form-group row clearfix"><label class="col-xs-8">When I receive a message</label><div class="col-xs-4"><switch color="primary" ng-model="switches[0]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">When Someone sends me an invitation</label><div class="col-xs-4"><switch color="primary" ng-model="switches[1]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">When profile information changes</label><div class="col-xs-4"><switch color="primary" ng-model="switches[2]"></switch></div></div></div><div class="col-sm-6"><div class="form-group row clearfix"><label class="col-xs-8">When anyone logs into your account from a new device or browser</label><div class="col-xs-4"><switch color="primary" ng-model="switches[3]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">Weekly Reports</label><div class="col-xs-4"><switch color="primary" ng-model="switches[4]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">Daily Reports</label><div class="col-xs-4"><switch color="primary" ng-model="switches[5]"></switch></div></div></div></div><button type="button" class="btn btn-primary btn-with-icon save-profile"><i class="ion-android-checkmark-circle"></i>Update Profile</button></div></div>'),
             e.put("app/pages/profile/profileModal.html", '<div class="modal-content"><div class="modal-header"><button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><em class="ion-ios-close-empty sn-link-close"></em></button><h4 class="modal-title" id="myModalLabel">Add Account</h4></div><form name="linkForm"><div class="modal-body"><p>Paste a link to your profile into the box below</p><div class="form-group"><input type="text" class="form-control" placeholder="Link to Profile" ng-model="link"></div></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="ok(link)">Save changes</button></div></form></div>'),
             e.put("app/theme/components/backTop/backTop.html", '<i class="fa fa-angle-up back-top" id="backTop" title="Back to Top"></i>'),
@@ -8069,7 +8069,7 @@ function() {
             e.put("app/theme/components/baWizard/baWizardStep.html", '<section ng-show="selected" class="step" ng-transclude=""></section>'),
             e.put("app/theme/components/contentTop/contentTop.html", '<div class="content-top clearfix"><h1 class="al-title">{{ activePageTitle }}</h1><ul class="breadcrumb al-breadcrumb"><li><a href="#/dashboard">Home</a></li><li>{{ activePageTitle }}</li></ul></div>'),
             e.put("app/theme/components/msgCenter/msgCenter.html", '<ul class="al-msg-center clearfix"><li uib-dropdown=""><a href="" uib-dropdown-toggle=""><i class="fa fa-bell-o"></i><span>5</span><div class="notification-ring"></div></a><div uib-dropdown-menu="" class="top-dropdown-menu"><i class="dropdown-arr"></i><div class="header clearfix"><strong>Notifications</strong> <a href="">Mark All as Read</a> <a href="">Settings</a></div><div class="msg-list"><a href="" class="clearfix" ng-repeat="msg in notifications"><div class="img-area"><img ng-class="{\'photo-msg-item\' : !msg.image}" ng-src="{{::( msg.image || (users[msg.userId].name | profilePicture) )}}"></div><div class="msg-area"><div ng-bind-html="getMessage(msg)"></div><span>{{ msg.time }}</span></div></a></div><a href="">See all notifications</a></div></li><li uib-dropdown=""><a href="" class="msg" uib-dropdown-toggle=""><i class="fa fa-envelope-o"></i><span>5</span><div class="notification-ring"></div></a><div uib-dropdown-menu="" class="top-dropdown-menu"><i class="dropdown-arr"></i><div class="header clearfix"><strong>Messages</strong> <a href="">Mark All as Read</a> <a href="">Settings</a></div><div class="msg-list"><a href="" class="clearfix" ng-repeat="msg in messages"><div class="img-area"><img class="photo-msg-item" ng-src="{{::( users[msg.userId].name | profilePicture )}}"></div><div class="msg-area"><div>{{ msg.text }}</div><span>{{ msg.time }}</span></div></a></div><a href="">See all messages</a></div></li></ul>'),
-            e.put("app/theme/components/pageTop/pageTop.html", '<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{\'scrolled\': scrolled}"><a href="#/dashboard" class="al-logo clearfix"><div><img style="max-width:100px;" ng-src="{{::( \'Nick\' | profilePicture )}}"></div></a> <a href="" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu=""></a><div class="search"><i class="ion-ios-search-strong" ng-click="startSearch()"></i> <input id="searchInput" type="text" placeholder="Search for..."></div><div class="user-profile clearfix"><div class="al-user-profile" uib-dropdown=""><a uib-dropdown-toggle="" class="profile-toggle-link"><img ng-src="{{::( \'anmol\' | profilePicture )}}"></a><ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu=""><li><i class="dropdown-arr"></i></li><li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li><li><a href=""><i class="fa fa-cog"></i>Settings</a></li><li><a href="" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li></ul></div><msg-center></msg-center></div></div>'),
+            e.put("app/theme/components/pageTop/pageTop.html", '<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{\'scrolled\': scrolled}"><a href="#/dashboard" class="al-logo clearfix"><div><img style="max-width:100px;" ng-src="{{::( \'garago\' | profilePicture )}}"></div></a> <a href="" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu=""></a><div class="search"><i class="ion-ios-search-strong" ng-click="startSearch()"></i> <input id="searchInput" type="text" placeholder="Search for..."></div><div class="user-profile clearfix"><div class="al-user-profile" uib-dropdown=""><a uib-dropdown-toggle="" class="profile-toggle-link"><img ng-src="{{::( \'anmol\' | profilePicture )}}"></a><ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu=""><li><i class="dropdown-arr"></i></li><li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li><li><a href=""><i class="fa fa-cog"></i>Settings</a></li><li><a href="" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li></ul></div><msg-center></msg-center></div></div>'),
             e.put("app/theme/components/progressBarRound/progressBarRound.html", '<svg class="center-block progress-bar-round" width="200" height="200"><circle cx="100" cy="100" r="90" fill="none" stroke="#F8F8FF" stroke-width="8"></circle><circle cx="100" cy="100" r="90" fill="none" id="loader" class="" stroke="#209e91" stroke-width="8" stroke-dasharray="0,20000" transform="rotate(-90,100,100)" stroke-linecap="round"></circle><text text-anchor="middle" class="loading" x="100" y="90">Loading...</text><text class="percentage" text-anchor="middle" x="100" y="130">{{progress}}%</text></svg>'),
             e.put("app/theme/components/widgets/widgets.html", '<div class="widgets"><div ng-repeat="widgetBlock in ngModel" ng-class="{\'row\': widgetBlock.widgets.length > 1}"><div ng-repeat="widgetCol in widgetBlock.widgets" ng-class="{\'col-md-6\': widgetBlock.widgets.length === 2}" ng-model="widgetCol" class="widgets-block"><div ba-panel="" ba-panel-title="{{::widget.title}}" ng-repeat="widget in widgetCol" ba-panel-class="with-scroll {{widget.panelClass}}"><div ng-include="widget.url"></div></div></div></div></div>'),
             e.put("app/theme/inputs/baSwitcher/baSwitcher.html", '<label class="switcher-container"><input type="checkbox" ng-model="switcherValue"><div class="switcher" ng-class="::switcherStyle"><div class="handle-container"><span class="handle handle-on">ON</span> <span class="handle"></span> <span class="handle handle-off">OFF</span></div></div></label>'),

@@ -17,7 +17,7 @@ $(function() {
       $newPageTemplate = $(document.getElementById('new-page')),
       $newPage = $newPageTemplate.clone().attr('id', tabId).addClass('fb-editor'),
       $newTab = $(this).clone().removeAttr('id'),
-      $tabLink = $('a', $newTab).attr('href', '#' + tabId).text('Page ' + tabCount);
+      $tabLink = $('a', $newTab).attr('href', '#' + tabId).text('Form ' + tabCount);
 
     $newPage.insertBefore($newPageTemplate);
     $newTab.insertBefore(this);

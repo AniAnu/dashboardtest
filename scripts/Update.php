@@ -89,7 +89,7 @@ function go_mysql($query)
         global $mysql_link;*/
         $servername = "localhost";
 		$username = "root";
-		$password = "";
+		$password = "ANMOLSHAH";
 		$dbname = "smartsearch";
 		// Create connection
 		$mysql_link = new mysqli($servername, $username, $password, $dbname);

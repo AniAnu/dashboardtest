@@ -3,7 +3,7 @@
 <head>
 
 
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
 <script type="text/javascript">
 function showUser(str) {
   if (str=="") {
@@ -25,21 +25,21 @@ function showUser(str) {
   xmlhttp.send();
 }
 
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
+// function googleTranslateElementInit() {
+//   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+// }
 
 
 </script>
 </head>
 <body>
-<h1>My Web Page</h1>
-<div id="google_translate_element"></div>
+<!-- <h1>My Web Page</h1>
+<div id="google_translate_element"></div> -->
 
 <form>
 <?php
 
-$con = mysqli_connect('localhost','root','');
+$con = mysqli_connect('localhost','root','ANMOLSHAH');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
