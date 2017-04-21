@@ -19,7 +19,7 @@ th {text-align: left;}
 
 <?php
 $q = $_GET['q'];
-$con = mysqli_connect('localhost','root','ANMOLSHAH');
+$con = mysqli_connect('localhost','root','');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
