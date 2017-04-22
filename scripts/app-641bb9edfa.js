@@ -2992,7 +2992,7 @@ function() {
                         center: "title",
                         right: "month,agendaWeek,agendaDay"
                     },
-                    defaultDate: "2016-03-08",
+                    defaultDate: "2017-04-21",
                     selectable: !0,
                     selectHelper: !0,
                     select: function(e, a) {
@@ -3535,7 +3535,37 @@ function() {
                     description: "Budget",
                     stats: "$ 832,500",
                     icon: "refresh"
-                }],
+                }, {
+                    color: n,
+                    description: "Forms (to date)",
+                    stats: "1378",
+                    icon: "person"
+                } , {
+
+
+                    color: n,
+                    description: "Number of projects",
+                    stats: "37",
+                    icon: "money"
+
+
+
+                } , {
+
+
+                    color: n,
+                    description: "Partners",
+                    stats: "22",
+                    icon: "face" 
+                }, {
+
+
+                     color: n,
+                    description: "Budget",
+                    stats: "$ 832,500",
+                    icon: "refresh"
+
+                     }],
 
 
 
@@ -3606,17 +3636,17 @@ function() {
         function e() {}
         angular.module("BlurAdmin.pages.dashboard").service("dashboardPieChart", e)
     }(),
-    function() {
-        "use strict";
+    // function() {
+    //     "use strict";
 
-        function e() {
-            return {
-                restrict: "E",
-                templateUrl: "app/pages/dashboard/popularApp/popularApp.html"
-            }
-        }
-        angular.module("BlurAdmin.pages.dashboard").directive("popularApp", e)
-    }(),
+    //     function e() {
+    //         return {
+    //             restrict: "E",
+    //             templateUrl: "app/pages/dashboard/popularApp/popularApp.html"
+    //         }
+    //     }
+    //     angular.module("BlurAdmin.pages.dashboard").directive("popularApp", e)
+    // }(),
     function() {
         "use strict";
 
@@ -8051,7 +8081,7 @@ function() {
 
 
 
-        e.put("app/pages/dashboard/dashboard.html", '<dashboard-pie-chart></dashboard-pie-chart><div class="row"><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="MUNICIPAL BUDGET" ba-panel-class="medium-panel traffic-panel"><traffic-chart></traffic-chart></div><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="Users by Country" ba-panel-class="medium-panel"><dashboard-map></dashboard-map></div></div><div class="row"><div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="row"><div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12" ba-panel="" ba-panel-title="Revenue" ba-panel-class="medium-panel"><dashboard-line-chart></dashboard-line-chart></div><div class="col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12" ba-panel="" ba-panel-class="popular-app medium-panel"><popular-app></popular-app></div></div></div><div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12" ba-panel="" ba-panel-title="Feed" ba-panel-class="large-panel with-scroll feed-panel"><blur-feed></blur-feed></div></div><div class="row shift-up"><div class="col-xlg-3 col-lg-6 col-md-6 col-xs-12" ba-panel="" ba-panel-title="To Do List" ba-panel-class="xmedium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div><div class="col-xlg-6 col-lg-6 col-md-6 col-xs-12" ba-panel="" ba-panel-title="Calendar" ba-panel-class="xmedium-panel feed-comply-panel with-scroll calendar-panel"><dashboard-calendar></dashboard-calendar></div></div>'),
+        e.put("app/pages/dashboard/dashboard.html", '<dashboard-pie-chart></dashboard-pie-chart><div class="row"><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="MUNICIPAL BUDGET" ba-panel-class="medium-panel traffic-panel"><traffic-chart></traffic-chart></div><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="To Do List Tasks" ba-panel-class="medium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div></div><div class="row"><div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="row"><div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12" ba-panel="" ba-panel-title="Revenue" ba-panel-class="medium-panel"><dashboard-line-chart></dashboard-line-chart></div><div class="col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12" ba-panel="" ba-panel-title="My Forms" ba-panel-class="medium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div></div></div><div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12" ba-panel="" ba-panel-title="My Templates" ba-panel-class="medium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div></div><div class="row"><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="Calender" ba-panel-class="xmedium-panel feed-comply-panel with-scroll calendar-panel"><dashboard-calendar></dashboard-calendar></div><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="Feed" ba-panel-class="large-panel with-scroll feed-panel"><blur-feed></blur-feed></div></div>'),
 
 
 
@@ -8069,7 +8099,7 @@ function() {
             e.put("app/theme/components/baWizard/baWizardStep.html", '<section ng-show="selected" class="step" ng-transclude=""></section>'),
             e.put("app/theme/components/contentTop/contentTop.html", '<div class="content-top clearfix"><h1 class="al-title">{{ activePageTitle }}</h1><ul class="breadcrumb al-breadcrumb"><li><a href="#/dashboard">Home</a></li><li>{{ activePageTitle }}</li></ul></div>'),
             e.put("app/theme/components/msgCenter/msgCenter.html", '<ul class="al-msg-center clearfix"><li uib-dropdown=""><a href="" uib-dropdown-toggle=""><i class="fa fa-bell-o"></i><span>5</span><div class="notification-ring"></div></a><div uib-dropdown-menu="" class="top-dropdown-menu"><i class="dropdown-arr"></i><div class="header clearfix"><strong>Notifications</strong> <a href="">Mark All as Read</a> <a href="">Settings</a></div><div class="msg-list"><a href="" class="clearfix" ng-repeat="msg in notifications"><div class="img-area"><img ng-class="{\'photo-msg-item\' : !msg.image}" ng-src="{{::( msg.image || (users[msg.userId].name | profilePicture) )}}"></div><div class="msg-area"><div ng-bind-html="getMessage(msg)"></div><span>{{ msg.time }}</span></div></a></div><a href="">See all notifications</a></div></li><li uib-dropdown=""><a href="" class="msg" uib-dropdown-toggle=""><i class="fa fa-envelope-o"></i><span>5</span><div class="notification-ring"></div></a><div uib-dropdown-menu="" class="top-dropdown-menu"><i class="dropdown-arr"></i><div class="header clearfix"><strong>Messages</strong> <a href="">Mark All as Read</a> <a href="">Settings</a></div><div class="msg-list"><a href="" class="clearfix" ng-repeat="msg in messages"><div class="img-area"><img class="photo-msg-item" ng-src="{{::( users[msg.userId].name | profilePicture )}}"></div><div class="msg-area"><div>{{ msg.text }}</div><span>{{ msg.time }}</span></div></a></div><a href="">See all messages</a></div></li></ul>'),
-            e.put("app/theme/components/pageTop/pageTop.html", '<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{\'scrolled\': scrolled}"><a href="#/dashboard" class="al-logo clearfix"><div><img style="max-width:100px; height: 50px;" ng-src="{{::( \'Nick\' | profilePicture )}}"></div></a> <a href="" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu=""></a><div class="search"><i class="ion-ios-search-strong" ng-click="startSearch()"></i> <input id="searchInput" type="text" placeholder="Search for..."></div><div class="user-profile clearfix"><div class="al-user-profile" uib-dropdown=""><a uib-dropdown-toggle="" class="profile-toggle-link"><img ng-src="{{::( \'anmol\' | profilePicture )}}"></a><ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu=""><li><i class="dropdown-arr"></i></li><li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li><li><a href=""><i class="fa fa-cog"></i>Settings</a></li><li><a href="" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li></ul></div><msg-center></msg-center></div></div>'),
+            e.put("app/theme/components/pageTop/pageTop.html", '<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{\'scrolled\': scrolled}"><a href="#/dashboard" class="al-logo clearfix"><div><img style="max-width:100px; height: 25px;" ng-src="{{::( \'Nick\' | profilePicture )}}"></div></a> <a href="" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu=""></a><div class="search"><i class="ion-ios-search-strong" ng-click="startSearch()"></i> <input id="searchInput" type="text" placeholder="Search for..."></div><div class="user-profile clearfix"><div class="al-user-profile" uib-dropdown=""><a uib-dropdown-toggle="" class="profile-toggle-link"><img ng-src="{{::( \'anmol\' | profilePicture )}}"></a><ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu=""><li><i class="dropdown-arr"></i></li><li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li><li><a href=""><i class="fa fa-cog"></i>Settings</a></li><li><a href="" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li></ul></div><msg-center></msg-center></div></div>'),
             e.put("app/theme/components/progressBarRound/progressBarRound.html", '<svg class="center-block progress-bar-round" width="200" height="200"><circle cx="100" cy="100" r="90" fill="none" stroke="#F8F8FF" stroke-width="8"></circle><circle cx="100" cy="100" r="90" fill="none" id="loader" class="" stroke="#209e91" stroke-width="8" stroke-dasharray="0,20000" transform="rotate(-90,100,100)" stroke-linecap="round"></circle><text text-anchor="middle" class="loading" x="100" y="90">Loading...</text><text class="percentage" text-anchor="middle" x="100" y="130">{{progress}}%</text></svg>'),
             e.put("app/theme/components/widgets/widgets.html", '<div class="widgets"><div ng-repeat="widgetBlock in ngModel" ng-class="{\'row\': widgetBlock.widgets.length > 1}"><div ng-repeat="widgetCol in widgetBlock.widgets" ng-class="{\'col-md-6\': widgetBlock.widgets.length === 2}" ng-model="widgetCol" class="widgets-block"><div ba-panel="" ba-panel-title="{{::widget.title}}" ng-repeat="widget in widgetCol" ba-panel-class="with-scroll {{widget.panelClass}}"><div ng-include="widget.url"></div></div></div></div></div>'),
             e.put("app/theme/inputs/baSwitcher/baSwitcher.html", '<label class="switcher-container"><input type="checkbox" ng-model="switcherValue"><div class="switcher" ng-class="::switcherStyle"><div class="handle-container"><span class="handle handle-on">ON</span> <span class="handle"></span> <span class="handle handle-off">OFF</span></div></div></label>'),
@@ -8086,7 +8116,7 @@ function() {
             e.put("app/pages/dashboard/dashboardMap/dashboardMap.html", '<div id="amChartMap"></div>'),
             e.put("app/pages/dashboard/dashboardPieChart/dashboardPieChart.html", '<div class="row pie-charts"><div class="pie-chart-item-container" ng-repeat="chart in charts"><div ba-panel=""><div class="pie-chart-item"><div class="chart" rel="{{ ::chart.color }}" data-percent="60"><span class="percent"></span></div><div class="description"><div>{{ ::chart.description }}</div><div class="description-stats">{{ ::chart.stats }}</div></div><i class="chart-icon i-{{ ::chart.icon }}"></i></div></div></div></div>'),
             e.put("app/pages/dashboard/dashboardTodo/dashboardTodo.html", '<div class="task-todo-container" ng-class="{\'transparent\': transparent}"><input type="text" value="" class="form-control task-todo" placeholder="Task to do.." ng-keyup="addToDoItem($event)" ng-model="newTodoText"> <i ng-click="addToDoItem(\'\',true)" class="add-item-icon ion-plus-round"></i><div class="box-shadow-border"></div><ul class="todo-list" ui-sortable="" ng-model="todoList"><li ng-repeat="item in todoList" ng-if="!item.deleted" ng-init="activeItem=false" ng-class="{checked: isChecked, active: activeItem}" ng-mouseenter="activeItem=true" ng-mouseleave="activeItem=false"><div class="blur-container"><div class="blur-box"></div></div><i class="mark" style="background-color: {{::item.color}}"></i> <label class="todo-checkbox custom-checkbox custom-input-success"><input type="checkbox" ng-model="isChecked"> <span class="cut-with-dots">{{ item.text }}</span></label> <i class="remove-todo ion-ios-close-empty" ng-click="item.deleted = true"></i></li></ul></div>'),
-            e.put("app/pages/dashboard/popularApp/popularApp.html", '<div class="popular-app-img-container"><div class="popular-app-img"><img ng-src="{{::( \'app/my-app-logo.png\' | appImage )}}"> <span class="logo-text">Super&nbspApp</span></div></div><div class="popular-app-cost row"><div class="col-xs-9">Most Popular App</div><div class="col-xs-3 text-right">175$</div></div><div class="popular-app-info row"><div class="col-xs-4 text-left"><div class="info-label">Total Visits</div><div>47,512</div></div><div class="col-xs-4 text-center"><div class="info-label">New Visits</div><div>9,217</div></div><div class="col-xs-4 text-right"><div class="info-label">Sales</div><div>2,928</div></div></div>'),
+            // e.put("app/pages/dashboard/popularApp/popularApp.html", '<div class="popular-app-img-container"><div class="popular-app-img"><img ng-src="{{::( \'app/my-app-logo.png\' | appImage )}}"> <span class="logo-text">Super&nbspApp</span></div></div><div class="popular-app-cost row"><div class="col-xs-9">Most Popular App</div><div class="col-xs-3 text-right">175$</div></div><div class="popular-app-info row"><div class="col-xs-4 text-left"><div class="info-label">Total Visits</div><div>47,512</div></div><div class="col-xs-4 text-center"><div class="info-label">New Visits</div><div>9,217</div></div><div class="col-xs-4 text-right"><div class="info-label">Sales</div><div>2,928</div></div></div>'),
             e.put("app/pages/dashboard/trafficChart/trafficChart.html", '<div class="channels-block" ng-class="{\'transparent\': transparent}"><div class="chart-bg"></div><div class="traffic-chart" id="trafficChart"><div class="canvas-holder"><canvas id="chart-area" width="280" height="280"></canvas><div class="traffic-text">$925,000 <span style = "font-size: smaller;">TOTAL Budget (Expenses)</span></div></div></div><div class="channels-info"><div><div class="channels-info-item" ng-repeat="label in doughnutData.labels" ng-init="i = $index; data = doughnutData.datasets[0]"><div class="legend-color" style="background-color: {{::data.backgroundColor[i]}}"></div><p>{{::label}}<span class="channel-number">+{{data.percentage[i]}}%</span></p><div class="progress progress-sm channel-progress"><div class="progress-bar" role="progressbar" aria-valuenow="{{data.percentage[i]}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.percentage}}%"></div></div></div></div></div></div>'),
             e.put("app/pages/dashboard/weather/weather.html", '<div class="weather-wrapper"><div class="weather-main-info"><h5 class="city-date font-x1dot5"><div>{{geoData.geoplugin_city}} - {{geoData.geoplugin_countryName | uppercase}}</div><div>{{ weather.days[weather.current].date | date : \'EEEE h:mm\'}}</div></h5><div class="weather-description font-x1dot5"><i class="font-x3 {{weatherIcons[weather.days[weather.current].icon]}}"></i><div class="weather-info">{{weather.days[weather.current].main}} - {{weather.days[weather.current].description}}</div></div><div class="weather-temp font-x1dot5"><i class="font-x2 ion-thermometer"></i><div class="weather-info" ng-switch="" on="units"><span ng-switch-when="metric">{{weather.days[weather.current].temp}} °C | <a ng-click="switchUnits(\'imperial\')" href="">°F</a></span> <span ng-switch-when="imperial">{{weather.days[weather.current].temp}} °F | <a ng-click="switchUnits(\'metric\')" href="">°C</a></span></div></div></div><div id="tempChart" class="temp-by-time"></div><div class="select-day"><div class="day" ng-repeat="day in weather.days" ng-click="switchDay($index)"><div><span class="font-x1dot25">{{day.temp}}</span></div><div><i class="weatherIcon font-x2 {{weatherIcons[day.icon]}}"></i> <span class="select-day-info">{{day.main}}</span></div><div><span>{{day.date | date : \'EEE\'}}</span></div></div></div></div>'),
            // e.put("app/pages/form/inputs/inputs.html", '<div class="widgets"><div class="row"><div class="col-md-6"><div ba-panel="" ba-panel-title="Standard Fields" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/standardFields.html\'"></div></div><div ba-panel="" ba-panel-title="Tags Input" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/tagsInput/tagsInput.html\'"></div></div><div ba-panel="" ba-panel-title="Input Groups" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/inputGroups.html\'"></div></div><div ba-panel="" ba-panel-title="Checkboxes & Radios" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/checkboxesRadios.html\'"></div></div><div ba-panel="" ba-panel-title="On/Off Switches" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/switches/switch.html\'"></div></div><div ba-panel="" ba-panel-title="Old On/Off Switches (Deprecated)" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/oldSwitches/switch.html\'"></div></div><div ba-panel="" ba-panel-title="Datepicker" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/datePickers/datePickers.html\'"></div></div></div><div class="col-md-6"><div ba-panel="" ba-panel-title="Validation States" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/validationStates.html\'"></div></div><div ba-panel="" ba-panel-title="Selects" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/select/select.html\'"></div></div><div ba-panel="" ba-panel-title="Old selects(deprecated)" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/oldSelect/select.html\'"></div></div></div></div></div>'),
