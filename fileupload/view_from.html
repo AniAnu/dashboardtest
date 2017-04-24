@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="../styles/vendor-479457d43d.css">
+  <link rel="stylesheet" href="../styles/app-2d27e186c4.css">
+
+  <title>jQuery formBuilder/formRender Demo</title>
+</head>
+<style>
+ul.form_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+.form_list li {
+    float: left;
+}
+
+.form_list li {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 9px;
+    text-decoration: none;
+}
+.form_list li:hover{
+    background: #400c66;
+	cursor: pointer;
+}
+
+.select_list{
+	background: #455c66;
+}
+.show_select{
+	display:none;
+}
+
+body{
+/*background-color: transparent !important;*/
+
+
+background: black;
+}
+
+
+</style>
+
+
+
+<body style="height:1200px; width:50%">
+	<!-- <label>Background Color</label>
+  	<button id="frmb-0-save" class="btn-primary jscolor {valueElement:'chosen-value', onFineChange:'setbackColor(this)'}">
+		&nbsp;
+	</button>
+	<label>Font Color</label>
+	<button id="frmb-0-save" class="btn-primary jscolor {valueElement:'chosen-value', onFineChange:'setfontColor(this)'}">
+		&nbsp;
+	</button -->
+Form Name :
+<ul class="form_list">
+
+</ul>
+	<br>
+<style>
+
+	#frmb-0-stage-wrap *{
+	/*background:transparent !important;
+	color:#fff  !important;*/
+	}
+</style>
+
+  <div class="content">
+  </div>
+  
+</form>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="assets/js/jquery.min.js"></script>
+	<script>
+
+var input_radio_field_value;
+var input_chartjs_value;
+var input_textarea_field_value;
+
+function save_data_post(id) {
+	//alert(id);
+    var x = $("#from_table"+id).serializeArray();
+    $.each(x, function(i, field) {
+        if (field.name == "text-preview")
+            input_radio_field_value = field.value;
+
+        if (field.name == "number-preview")
+            input_chartjs_value = field.value;
+
+        if (field.name == "text1-preview")
+            input_textarea_field_value = field.value;
+
+
+
+    });
+    
+    $.post("../scripts/Update.php", {
+        input_radio_field: input_radio_field_value,
+        input_chartjs: input_chartjs_value,
+        input_textarea_field: input_textarea_field_value
+    }, function(result) {
+        alert("save Ok!")
+    }, 'json');
+}
+
+
+
+
+	
+	function shake(id){
+	
+	
+	$(".view_contant").addClass("show_select");
+	$(".view_from"+id).removeClass("show_select");
+	
+	$(".view_list").removeClass("select_list");
+	$(".selectview_list"+id).addClass("select_list");
+	
+	
+	}
+	$(document).ready(function(){
+		$.post("../scripts/Function.php",{table_name:'fileupload'},function(result){
+			//$(".content").html(result[0].str_con);
+			//alert(result.length);
+			for(i=0;i<result.length;i++){
+				if(i==0){
+					$(".content").append("<form id='from_table"+result[i].id+"' class='view_contant view_from"+result[i].id+"' style='width:100%'>"+result[i].str_con+"<button type='submit' title='Save' class='btn btn-danger' onclick='save_data_post("+result[i].id+")'>Save</button></form>");
+					$(".form_list").append("<li class='view_list select_list selectview_list"+result[i].id+"' onclick=shake("+result[i].id+")>"+ result[i].Form_name +"</li>");
+				}
+				
+				else{
+					$(".content").append("<form id='from_table"+result[i].id+"' class='view_contant view_from"+result[i].id+" show_select' style='width:100%'>"+result[i].str_con+"<button type='submit' title='Save' class='btn btn-danger' onclick='save_data_post("+result[i].id+")'>Save</button></form>");
+					$(".form_list").append("<li class = 'view_list selectview_list"+result[i].id+"' onclick=shake("+result[i].id+")>"+ result[i].Form_name +"</li>");
+				}
+			}			
+			
+		},'json');
+		
+		
+		
+	});
+	
+	$("#save_div").click(function(){
+	
+	var form_name = $(".New_formname").val();
+	if(form_name==""){
+	alert("error: Form name input!");
+	
+	}else{
+		//$(".New_formname").val()="";
+		$(".form_list").append("<li>"+ form_name +"</li>");
+		var str_html = $(".frmb.ui-sortable").html();
+		str_html = str_html.replace(/frmb-0-fld-/g, "frmb-0-fld-s");
+		
+		var str_contant='';
+		
+		
+		$(".frmb.ui-sortable").find(".prev-holder").each(function() {
+			str_contant = str_contant + $(this).html();
+		});
+		
+		$.post("../scripts/Update.php",{formname:form_name,s_contant:str_contant,fileupload:str_html,s_contant:str_contant},function(result){},'json');
+	}	
+	
+	});
+	
+	
+	
+	function setbackColor(picker) {
+		 $("#frmb-0-stage-wrap div").css("background-color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap li").css("background-color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap label").css("background-color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap a").css("background-color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap bottom").css("background-color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap text").css("background-color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap select").css("background-color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap input").css("background-color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap textarea").css("background-color", '#' + picker.toString()+" !important");
+	}
+	
+	function setfontColor(picker) {
+		 $("#frmb-0-stage-wrap div").css("color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap li").css("color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap label").css("color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap a").css("color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap bottom").css("color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap text").css("color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap select").css("color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap input").css("color", '#' + picker.toString()+" !important");
+		 $("#frmb-0-stage-wrap textarea").css("color", '#' + picker.toString()+" !important");
+	}
+	
+	</script>
+
+</body>
+
+
+</html>

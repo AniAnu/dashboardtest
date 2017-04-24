@@ -39,7 +39,7 @@ function showUser(str) {
 <form>
 <?php
 
-$con = mysqli_connect('localhost','root','');
+$con = mysqli_connect('localhost','root','ANMOLSHAH');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }

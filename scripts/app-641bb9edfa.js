@@ -10,11 +10,25 @@ var chartjs_mlabels = new Array();
 var Formdata_contant;
 
 
+function changeLanguage(){    
+    var languageInfo = {'country': $("#language").val()};
+    localStorage.setItem('languageInfoObject', JSON.stringify(languageInfo));
+    location.reload();
+}             
+
+$(document).ready(function(){
+
+    if (lang == 0)
+        optionStr = '<option value=0 selected>English</option><option value=1>French</option>';
+    else
+        optionStr = '<option value=0>English</option><option value=1 selected>French</option>';
+    $("#language").append(optionStr);
+
+});
+
 $(".col_count").change(function() {
     alert("The text has been changed.");
 });
-
-//smartTableData_val=[{"id":"1","firstName":"asd","lastName":"asd","username":"asd","email":"asd@asd.com","age":"12"},{"id":"2","firstName":"dfg","lastName":"dfg","username":"dfg","email":"dfg@dfg.com","age":"25"},{"id":"3","firstName":"qwe","lastName":"qwe","username":"qwe","email":"qwe@qwe.com","age":"45"}];
 
 datatest();
 
@@ -25,16 +39,16 @@ datatest();
         e.otherwise("/dashboard"),
 
             a.addStaticItem({
-                title: "LOGOUT",
+                title: words["LOGOUT"][lang],
                 icon: "ion-power",
                 subMenu: [{
-                        title: "Add Field 1",
+                        title: words["Add Field"][lang] + " 1",
                         //stateRef: "profile"
                     },
                     {
-                        title: "Add Field 2",
+                        title: words["Add Field"][lang] + " 2",
                         subMenu: [{
-                            title: "Add Field 2.1",
+                            title: words["Add Field"][lang] + " 2.1",
                             disabled: !0
                         }]
                     }
@@ -58,7 +72,7 @@ function() {
             url: "/charts",
             abstract: !0,
             template: '<div ui-view  autoscroll="true" autoscroll-body-top></div>',
-            title: "REPORTS",
+            title: words["REPORTS"][lang],
             sidebarMeta: {
                 icon: "ion-arrow-graph-up-right",
                 order: 150
@@ -67,23 +81,7 @@ function() {
     }
     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.charts", ["BlurAdmin.pages.charts.chartJs"]).config(e)
 }(),
-// function() {
-//     "use strict";
 
-//     function e(e) {
-//         e.state("components", {
-//             url: "/components",
-//             template: '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
-//             abstract: !0,
-//             title: "Components",
-//             sidebarMeta: {
-//                 icon: "ion-gear-a",
-//                 order: 100
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.components", ["BlurAdmin.pages.components.mail", "BlurAdmin.pages.components.timeline", "BlurAdmin.pages.components.tree"]).config(e)
-// }(),
 function() {
     "use strict";
 
@@ -91,7 +89,7 @@ function() {
         e.state("dashboard", {
             url: "/dashboard",
             templateUrl: "app/pages/dashboard/dashboard.html",
-            title: "DASHBOARD",
+            title: words["DASHBOARD"][lang],
             sidebarMeta: {
                 icon: "ion-log-out",
                 order: 0
@@ -108,7 +106,7 @@ function() {
         e.state("collaboration", {
             url: "/collaboration",
             templateUrl: '<div ui-view  autoscroll="true" autoscroll-body-top></div>',
-            title: "COLLABORATION",
+            title: words["COLLABORATION"][lang],
             sidebarMeta: {
                 icon: "ion-android-contacts",
                 order: 260
@@ -125,7 +123,7 @@ function() {
         e.state("contacts", {
             url: "/contacts",
             templateUrl: '<div ui-view  autoscroll="true" autoscroll-body-top></div>',
-            title: "CONTACTS",
+            title: words["CONTACTS"][lang],
             sidebarMeta: {
                 icon: "ion-social-usd",
                 order: 280
@@ -134,51 +132,6 @@ function() {
     }
     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.contacts", []).config(e)
 }(),
-
-// function() {
-//     "use strict";
-
-//     function e(e, a) {
-//         e.state("tables", {
-//                 url: "/tables",
-//                 template: '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
-//                 abstract: !0,
-//                 controller: "TablesPageCtrl",
-//                 title: "TABLES",
-//                 sidebarMeta: {
-//                     icon: "ion-grid",
-//                     order: 200
-//                 }
-//             })
-//             // .state("tables.basic", {
-//             //     url: "/basic",
-//             //     templateUrl: "app/pages/tables/basic/tables.html",
-//             //     title: "Basic Tables",
-//             //     sidebarMeta: {
-//             //         order: 0
-//             //     }
-//             // })
-//             // .state("tables.smart", {
-//             //     url: "/smart",
-//             //     templateUrl: "app/pages/tables/smart/tables.html",
-//             //     title: "SMART TABLES",
-//             //     sidebarMeta: {
-//             //         order: 100
-//             //     }
-//             // })
-//             .state("tables.custom", {
-//                 url: "/field",
-//                 templateUrl: "app/pages/tables/field/tables.html",
-//                 title: "TABLE CREATION",
-//                 sidebarMeta: {
-//                     order: 100
-//                 }
-//             }), a.when("/tables", "/tables/basic")
-//     }
-//     e.$inject = ["$stateProvider", "$urlRouterProvider"], angular.module("BlurAdmin.pages.tables", []).config(e)
-// }(),
-
-
 
 function() {
     "use strict";
@@ -189,54 +142,17 @@ function() {
                 template: '<ui-view autoscroll="true" autoscroll-body-top></ui-view>',
                 abstract: !0,
                 controller: "FormPageCtrl",
-                title: "FORMS",
+                title: words["FORMS"][lang],
                 sidebarMeta: {
                     icon: "ion-ios-list-outline",
                     order: 100
                 }
             })
-
-            // .state("form.inputs", {
-            //     url: "/inputs",
-            //     templateUrl: "app/pages/form/inputs/inputs.html",
-            //     title: "Form Inputs",
-            //     sidebarMeta: {
-            //         order: 0
-            //     }
-            // })
-            // .state("form.layouts", {
-            //     url: "/layouts",
-            //     templateUrl: "app/pages/form/layouts/layouts.html",
-            //     title: "Form Layouts",
-            //     sidebarMeta: {
-            //         order: 100
-            //     }
-            // })
-            // .state("form.wizard", {
-            //     url: "/wizard",
-            //     templateUrl: "app/pages/form/wizard/wizard.html",
-            //     controller: "WizardCtrl",
-            //     controllerAs: "vm",
-            //     title: "Form Wizard",
-            //     sidebarMeta: {
-            //         order: 200
-            //     }
-            // })
-            // .state("form.builder", {
-            //     url: "/builder",
-            //     templateUrl: "app/pages/form/builder/builder.html",
-            //     controller: "builderCtrl",
-            //     controllerAs: "vm",
-            //     title: "Form builder",
-            //     sidebarMeta: {
-            //         order: 200
-            //     }
-            // })
-
+          
             .state("form.test", {
                 url: "/test",
                 templateUrl: "app/pages/form/test/test.html",
-                title: "SAVED FORMS",
+                title: words["SAVED FORMS"][lang],
                 sidebarMeta: {
                     order: 100
                 }
@@ -245,7 +161,7 @@ function() {
             .state("form.view", {
                 url: "/View",
                 templateUrl: "app/pages/form/test/View.php",
-                title: "TABLE VIEW",
+                title: words["TABLE VIEW"][lang],
                 sidebarMeta: {
                     order: 100
                 }
@@ -253,81 +169,33 @@ function() {
             .state("form.fileupload", {
                 url: "/fileupload",
                 templateUrl: "app/pages/form/fileupload/fileupload.html",
-                title: "DRAG & DROP",
+                title: words["CREATION"][lang],
                 sidebarMeta: {
                     order: 100
                 }
             })
 
-             .state("form.smart", {
-                url: "/smart",
-                templateUrl: "app/pages/tables/smart/tables.html",
-                title: "SMART TABLES",
-                sidebarMeta: {
-                    order: 100
-                }
-            })
+            //  .state("form.smart", {
+            //     url: "/smart",
+            //     templateUrl: "app/pages/tables/smart/tables.html",
+            //     title: words["SMART TABLES"][lang],
+            //     sidebarMeta: {
+            //         order: 100
+            //     }
+            // })
 
-             .state("form.custom", {
-                url: "/field",
-                templateUrl: "app/pages/tables/field/tables.html",
-                title: "TABLE CREATION",
-                sidebarMeta: {
-                    order: 100
-                }
-            })
+            //  .state("form.custom", {
+            //     url: "/field",
+            //     templateUrl: "app/pages/tables/field/tables.html",
+            //     title: words["TABLE CREATION"][lang],
+            //     sidebarMeta: {
+            //         order: 100
+            //     }
+            // })
     }
     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.form", ["ui.select", "ngSanitize"]).config(e)
 }(),
-// function() {
-//     "use strict";
 
-//     function e(e) {
-//         e.state("maps", {
-//             url: "/maps",
-//             templateUrl: "app/pages/maps/maps.html",
-//             abstract: !0,
-//             title: "Maps",
-//             sidebarMeta: {
-//                 icon: "ion-ios-location-outline",
-//                 order: 500
-//             }
-//         }).state("maps.gmap", {
-//             url: "/gmap",
-//             templateUrl: "app/pages/maps/google-maps/google-maps.html",
-//             controller: "GmapPageCtrl",
-//             title: "Google Maps",
-//             sidebarMeta: {
-//                 order: 0
-//             }
-//         }).state("maps.leaflet", {
-//             url: "/leaflet",
-//             templateUrl: "app/pages/maps/leaflet/leaflet.html",
-//             controller: "LeafletPageCtrl",
-//             title: "Leaflet Maps",
-//             sidebarMeta: {
-//                 order: 100
-//             }
-//         }).state("maps.bubble", {
-//             url: "/bubble",
-//             templateUrl: "app/pages/maps/map-bubbles/map-bubbles.html",
-//             controller: "MapBubblePageCtrl",
-//             title: "Bubble Maps",
-//             sidebarMeta: {
-//                 order: 200
-//             }
-//         }).state("maps.line", {
-//             url: "/line",
-//             templateUrl: "app/pages/maps/map-lines/map-lines.html",
-//             controller: "MapLinesPageCtrl",
-//             title: "Line Maps",
-//             sidebarMeta: {
-//                 order: 300
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.maps", []).config(e)
-// }(),
 function() {
     "use strict";
 
@@ -335,7 +203,7 @@ function() {
         e.state("SmartLibrary", {
             url: "/SmartLibrary",
             templateUrl: "sm/plans",
-            title: "ACTION PLAN",
+            title: words["ACTION PLAN"][lang],
             sidebarMeta: {
                 icon: "ion-ios-book-outline",
                 order: 50
@@ -345,7 +213,7 @@ function() {
                .state("SmartLibrary.new", {
                 url: "",
                 templateUrl: "sm/plans/table",
-                title: "NEW PLAN",
+                title: words["NEW PLAN"][lang],
                 sidebarMeta: {
                     order: 100
                 }
@@ -355,7 +223,7 @@ function() {
              .state("SmartLibrary.comment", {
                 url: "/comment",
                 templateUrl: "sm/plans/link",
-                title: "COMMENT",
+                title: words["COMMENT"][lang],
                 sidebarMeta: {
                     order: 100
                 }
@@ -366,7 +234,7 @@ function() {
                .state("SmartLibrary.listplan", {
                 url: "/listplan",
                 templateUrl: "sm/plans",
-                title: "LIST PLAN",
+                title: words["LIST PLAN"][lang],
                 sidebarMeta: {
                     order: 100
                 }
@@ -383,7 +251,7 @@ function() {
         e.state("SmartDocument", {
             url: "/SmartDocument",
             templateUrl: "sm/documents",
-            title: "LIBRARY",
+            title: words["LIBRARY"][lang],
             sidebarMeta: {
                 icon: "ion-document",
                 order: 200
@@ -408,28 +276,6 @@ function() {
         angular.module("BlurAdmin.pages.profile", []).config(e)
 }(),
 
-
-
-
-
-
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui", {
-//             url: "/ui",
-//             template: '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
-//             abstract: !0,
-//             title: "UI Features",
-//             sidebarMeta: {
-//                 icon: "ion-android-laptop",
-//                 order: 200
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui", ["BlurAdmin.pages.ui.typography", "BlurAdmin.pages.ui.buttons", "BlurAdmin.pages.ui.icons", "BlurAdmin.pages.ui.modals", "BlurAdmin.pages.ui.grid", "BlurAdmin.pages.ui.alerts", "BlurAdmin.pages.ui.progressBars", "BlurAdmin.pages.ui.notifications", "BlurAdmin.pages.ui.tabs", "BlurAdmin.pages.ui.slider", "BlurAdmin.pages.ui.panels"]).config(e)
-// }(),
 function() {
     "use strict";
 
@@ -438,7 +284,7 @@ function() {
             url: "/administration",
             template: '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
             abstract: !0,
-            title: "ADMIN",
+            title: words["ADMIN"][lang],
             sidebarMeta: {
                 icon: "ion-ios-gear-outline",
                 order: 300
@@ -455,208 +301,7 @@ function() {
     "use strict";
     angular.module("BlurAdmin.theme.inputs", [])
 }(),
-// function() {
-//     "use strict";
 
-//     function e(e) {
-//         e.state("charts.amCharts", {
-//             url: "/amCharts",
-//             templateUrl: "app/pages/charts/amCharts/charts.html",
-//             title: "amCharts",
-//             sidebarMeta: {
-//                 order: 0
-//             }
-//         })
-//     }
-
-//     function a(e) {
-//         var a = e.colors;
-//         AmCharts.themes.blur = {
-//             themeName: "blur",
-//             AmChart: {
-//                 color: a.defaultText,
-//                 backgroundColor: "#FFFFFF"
-//             },
-//             AmCoordinateChart: {
-//                 colors: [a.primary, a.danger, a.warning, a.success, a.info, a.primaryDark, a.warningLight, a.successDark, a.successLight, a.primaryLight, a.warningDark]
-//             },
-//             AmStockChart: {
-//                 colors: [a.primary, a.danger, a.warning, a.success, a.info, a.primaryDark, a.warningLight, a.successDark, a.successLight, a.primaryLight, a.warningDark]
-//             },
-//             AmSlicedChart: {
-//                 colors: [a.primary, a.danger, a.warning, a.success, a.info, a.primaryDark, a.warningLight, a.successDark, a.successLight, a.primaryLight, a.warningDark],
-//                 labelTickColor: "#FFFFFF",
-//                 labelTickAlpha: .3
-//             },
-//             AmRectangularChart: {
-//                 zoomOutButtonColor: "#FFFFFF",
-//                 zoomOutButtonRollOverAlpha: .15,
-//                 zoomOutButtonImage: "lens.png"
-//             },
-//             AxisBase: {
-//                 axisColor: "#FFFFFF",
-//                 axisAlpha: .3,
-//                 gridAlpha: .1,
-//                 gridColor: "#FFFFFF"
-//             },
-//             ChartScrollbar: {
-//                 backgroundColor: "#FFFFFF",
-//                 backgroundAlpha: .12,
-//                 graphFillAlpha: .5,
-//                 graphLineAlpha: 0,
-//                 selectedBackgroundColor: "#FFFFFF",
-//                 selectedBackgroundAlpha: .4,
-//                 gridAlpha: .15
-//             },
-//             ChartCursor: {
-//                 cursorColor: a.primary,
-//                 color: "#FFFFFF",
-//                 cursorAlpha: .5
-//             },
-//             AmLegend: {
-//                 color: "#FFFFFF"
-//             },
-//             AmGraph: {
-//                 lineAlpha: .9
-//             },
-//             GaugeArrow: {
-//                 color: "#FFFFFF",
-//                 alpha: .8,
-//                 nailAlpha: 0,
-//                 innerRadius: "40%",
-//                 nailRadius: 15,
-//                 startWidth: 15,
-//                 borderAlpha: .8,
-//                 nailBorderAlpha: 0
-//             },
-//             GaugeAxis: {
-//                 tickColor: "#FFFFFF",
-//                 tickAlpha: 1,
-//                 tickLength: 15,
-//                 minorTickLength: 8,
-//                 axisThickness: 3,
-//                 axisColor: "#FFFFFF",
-//                 axisAlpha: 1,
-//                 bandAlpha: .8
-//             },
-//             TrendLine: {
-//                 lineColor: a.danger,
-//                 lineAlpha: .8
-//             },
-//             AreasSettings: {
-//                 alpha: .8,
-//                 color: a.info,
-//                 colorSolid: a.primaryDark,
-//                 unlistedAreasAlpha: .4,
-//                 unlistedAreasColor: "#FFFFFF",
-//                 outlineColor: "#FFFFFF",
-//                 outlineAlpha: .5,
-//                 outlineThickness: .5,
-//                 rollOverColor: a.primary,
-//                 rollOverOutlineColor: "#FFFFFF",
-//                 selectedOutlineColor: "#FFFFFF",
-//                 selectedColor: "#f15135",
-//                 unlistedAreasOutlineColor: "#FFFFFF",
-//                 unlistedAreasOutlineAlpha: .5
-//             },
-//             LinesSettings: {
-//                 color: "#FFFFFF",
-//                 alpha: .8
-//             },
-//             ImagesSettings: {
-//                 alpha: .8,
-//                 labelColor: "#FFFFFF",
-//                 color: "#FFFFFF",
-//                 labelRollOverColor: a.primaryDark
-//             },
-//             ZoomControl: {
-//                 buttonFillAlpha: .8,
-//                 buttonIconColor: a.defaultText,
-//                 buttonRollOverColor: a.danger,
-//                 buttonFillColor: a.primaryDark,
-//                 buttonBorderColor: a.primaryDark,
-//                 buttonBorderAlpha: 0,
-//                 buttonCornerRadius: 0,
-//                 gridColor: "#FFFFFF",
-//                 gridBackgroundColor: "#FFFFFF",
-//                 buttonIconAlpha: .6,
-//                 gridAlpha: .6,
-//                 buttonSize: 20
-//             },
-//             SmallMap: {
-//                 mapColor: "#000000",
-//                 rectangleColor: a.danger,
-//                 backgroundColor: "#FFFFFF",
-//                 backgroundAlpha: .7,
-//                 borderThickness: 1,
-//                 borderAlpha: .8
-//             },
-//             PeriodSelector: {
-//                 color: "#FFFFFF"
-//             },
-//             PeriodButton: {
-//                 color: "#FFFFFF",
-//                 background: "transparent",
-//                 opacity: .7,
-//                 border: "1px solid rgba(0, 0, 0, .3)",
-//                 MozBorderRadius: "5px",
-//                 borderRadius: "5px",
-//                 margin: "1px",
-//                 outline: "none",
-//                 boxSizing: "border-box"
-//             },
-//             PeriodButtonSelected: {
-//                 color: "#FFFFFF",
-//                 backgroundColor: "#b9cdf5",
-//                 border: "1px solid rgba(0, 0, 0, .3)",
-//                 MozBorderRadius: "5px",
-//                 borderRadius: "5px",
-//                 margin: "1px",
-//                 outline: "none",
-//                 opacity: 1,
-//                 boxSizing: "border-box"
-//             },
-//             PeriodInputField: {
-//                 color: "#FFFFFF",
-//                 background: "transparent",
-//                 border: "1px solid rgba(0, 0, 0, .3)",
-//                 outline: "none"
-//             },
-//             DataSetSelector: {
-//                 color: "#FFFFFF",
-//                 selectedBackgroundColor: "#b9cdf5",
-//                 rollOverBackgroundColor: "#a8b0e4"
-//             },
-//             DataSetCompareList: {
-//                 color: "#FFFFFF",
-//                 lineHeight: "100%",
-//                 boxSizing: "initial",
-//                 webkitBoxSizing: "initial",
-//                 border: "1px solid rgba(0, 0, 0, .3)"
-//             },
-//             DataSetSelect: {
-//                 border: "1px solid rgba(0, 0, 0, .3)",
-//                 outline: "none"
-//             }
-//         }
-//     }
-//     e.$inject = ["$stateProvider"], a.$inject = ["baConfigProvider"], angular.module("BlurAdmin.pages.charts.amCharts", []).config(e).config(a)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("charts.chartist", {
-//             url: "/chartist",
-//             templateUrl: "app/pages/charts/chartist/chartist.html",
-//             title: "Chartist",
-//             sidebarMeta: {
-//                 order: 100
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.charts.chartist", []).config(e)
-// }(),
 function() {
     "use strict";
 
@@ -664,11 +309,20 @@ function() {
         e.state("charts.chartJs", {
             url: "/chartJs",
             templateUrl: "app/pages/charts/chartJs/chartJs.html",
-            title: "CHARTS",
+            title: words["CHARTS"][lang],
             sidebarMeta: {
-                order: 200
+                order: 150
             }
         })
+
+         .state("charts.smart", {
+                url: "/smart",
+                templateUrl: "app/pages/tables/smart/tables.html",
+                title: words["TABLES"][lang],
+                sidebarMeta: {
+                    order: 200
+                }
+            })
     }
 
     function a(e, a) {
@@ -712,257 +366,6 @@ function() {
     }
     e.$inject = ["$stateProvider"], a.$inject = ["ChartJsProvider", "baConfigProvider"], angular.module("BlurAdmin.pages.charts.chartJs", []).config(e).config(a)
 }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("charts.morris", {
-//             url: "/morris",
-//             templateUrl: "app/pages/charts/morris/morris.html",
-//             title: "Morris",
-//             sidebarMeta: {
-//                 order: 300
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.charts.morris", []).config(e).config(["baConfigProvider", function(e) {
-//         var a = e.colors;
-//         Morris.Donut.prototype.defaults.backgroundColor = "transparent", Morris.Donut.prototype.defaults.labelColor = a.defaultText, Morris.Grid.prototype.gridDefaults.gridLineColor = a.borderDark, Morris.Grid.prototype.gridDefaults.gridTextColor = a.defaultText
-//     }])
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e, a) {
-//         e.state("components.mail", {
-//             url: "/mail",
-//             abstract: !0,
-//             templateUrl: "app/pages/components/mail/mail.html",
-//             controller: "MailTabCtrl",
-//             controllerAs: "tabCtrl",
-//             title: "Mail",
-//             sidebarMeta: {
-//                 order: 0
-//             }
-//         }).state("components.mail.label", {
-//             url: "/:label",
-//             templateUrl: "app/pages/components/mail/list/mailList.html",
-//             title: "Mail",
-//             controller: "MailListCtrl",
-//             controllerAs: "listCtrl"
-//         }).state("components.mail.detail", {
-//             url: "/:label/:id",
-//             templateUrl: "app/pages/components/mail/detail/mailDetail.html",
-//             title: "Mail",
-//             controller: "MailDetailCtrl",
-//             controllerAs: "detailCtrl"
-//         }), a.when("/components/mail", "/components/mail/inbox")
-//     }
-//     e.$inject = ["$stateProvider", "$urlRouterProvider"], angular.module("BlurAdmin.pages.components.mail", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("components.timeline", {
-//             url: "/timeline",
-//             templateUrl: "app/pages/components/timeline/timeline.html",
-//             title: "Timeline",
-//             sidebarMeta: {
-//                 icon: "ion-ios-pulse",
-//                 order: 100
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.components.timeline", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("components.tree", {
-//             url: "/tree",
-//             templateUrl: "app/pages/components/tree/tree.html",
-//             title: "Form Builder",
-//             sidebarMeta: {
-//                 order: 200
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.components.tree", []).config(e).config(function() {
-//         $.jstree.defaults.core.themes.url = !0, $.jstree.defaults.core.themes.dir = "assets/img/theme/vendor/jstree/dist/themes"
-//     })
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.alerts", {
-//             url: "/alerts",
-//             templateUrl: "app/pages/ui/alerts/alerts.html",
-//             title: "Alerts",
-//             sidebarMeta: {
-//                 order: 500
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.alerts", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.buttons", {
-//             url: "/buttons",
-//             templateUrl: "app/pages/ui/buttons/buttons.html",
-//             controller: "ButtonPageCtrl",
-//             title: "Buttons",
-//             sidebarMeta: {
-//                 order: 100
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.buttons", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.grid", {
-//             url: "/grid",
-//             templateUrl: "app/pages/ui/grid/grid.html",
-//             title: "Grid",
-//             sidebarMeta: {
-//                 order: 400
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.grid", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.icons", {
-//             url: "/icons",
-//             templateUrl: "app/pages/ui/icons/icons.html",
-//             controller: "IconsPageCtrl",
-//             title: "Icons",
-//             sidebarMeta: {
-//                 order: 200
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.icons", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.modals", {
-//             url: "/modals",
-//             templateUrl: "app/pages/ui/modals/modals.html",
-//             controller: "ModalsPageCtrl",
-//             title: "Modals",
-//             sidebarMeta: {
-//                 order: 300
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.modals", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.notifications", {
-//             url: "/notifications",
-//             templateUrl: "app/pages/ui/notifications/notifications.html",
-//             controller: "NotificationsPageCtrl",
-//             title: "Notifications",
-//             sidebarMeta: {
-//                 order: 700
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.notifications", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.panels", {
-//             url: "/panels",
-//             templateUrl: "app/pages/ui/panels/panels.html",
-//             controller: "NotificationsPageCtrl",
-//             title: "Panels",
-//             sidebarMeta: {
-//                 order: 1100
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.panels", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.progressBars", {
-//             url: "/progressBars",
-//             templateUrl: "app/pages/ui/progressBars/progressBars.html",
-//             title: "Progress Bars",
-//             sidebarMeta: {
-//                 order: 600
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.progressBars", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.slider", {
-//             url: "/slider",
-//             templateUrl: "app/pages/ui/slider/slider.html",
-//             title: "Sliders",
-//             sidebarMeta: {
-//                 order: 1e3
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.slider", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.tabs", {
-//             url: "/tabs",
-//             templateUrl: "app/pages/ui/tabs/tabs.html",
-//             title: "Tabs & Accordions",
-//             sidebarMeta: {
-//                 order: 800
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.tabs", []).config(e)
-// }(),
-// function() {
-//     "use strict";
-
-//     function e(e) {
-//         e.state("ui.typography", {
-//             url: "/typography",
-//             templateUrl: "app/pages/ui/typography/typography.html",
-//             title: "Typography",
-//             sidebarMeta: {
-//                 order: 0
-//             }
-//         })
-//     }
-//     e.$inject = ["$stateProvider"], angular.module("BlurAdmin.pages.ui.typography", []).config(e)
-// }(),
 
 function() {
     "use strict";
@@ -971,7 +374,7 @@ function() {
         e.state("administration.sector", {
             url: "/sector",
             templateUrl: "sm/sectors",
-            title: "Sectors",
+            title: words["Sectors"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -987,7 +390,7 @@ function() {
         e.state("administration.language", {
             url: "/language",
             templateUrl: "sm/languages",
-            title: "Languages",
+            title: words["Languages"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -1002,7 +405,7 @@ function() {
         e.state("administration.clientele", {
             url: "/clientele",
             templateUrl: "sm/customers",
-            title: "Clienteles",
+            title: words["Clienteles"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -1018,7 +421,7 @@ function() {
         e.state("administration.category", {
             url: "/category",
             templateUrl: "sm/categories",
-            title: "Categories",
+            title: words["Categories"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -1034,7 +437,7 @@ function() {
         e.state("administration.component", {
             url: "/component",
             templateUrl: "sm/composants",
-            title: "Components",
+            title: words["Components"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -1050,7 +453,7 @@ function() {
         e.state("administration.questionnaire", {
             url: "/questionnaire",
             templateUrl: "sm/quistionaires",
-            title: "Questionnaires",
+            title: words["Questionnaires"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -1066,7 +469,7 @@ function() {
         e.state("administration.item", {
             url: "/item",
             templateUrl: "sm/items",
-            title: "Items",
+            title: words["Items"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -1082,7 +485,7 @@ function() {
         e.state("administration.offre", {
             url: "/offre",
             templateUrl: "sm/offers",
-            title: "Offres",
+            title: words["Offers"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -1098,7 +501,7 @@ function() {
         e.state("administration.personaloffer", {
             url: "/personaloffer",
             templateUrl: "sm/personalOffers",
-            title: "Personal Offers",
+            title: words["Personal Offers"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -1114,7 +517,7 @@ function() {
         e.state("administration.permissionaccess", {
             url: "sm/permissionAccesses",
             templateUrl: "sm/permissionAccesses",
-            title: "Permission Access",
+            title: words["Permission Access"][lang],
             sidebarMeta: {
                 order: 0
             }
@@ -1925,185 +1328,7 @@ function() {
         }
         e.$inject = ["$window"], angular.module("BlurAdmin.theme").service("stopableInterval", e)
     }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t) {
-    //         function i(e, a) {
-    //             return [
-    //                 ["screen and (min-width: 1550px)", {
-    //                     chartPadding: e,
-    //                     labelOffset: a,
-    //                     labelDirection: "explode",
-    //                     labelInterpolationFnc: function(e) {
-    //                         return e
-    //                     }
-    //                 }],
-    //                 ["screen and (max-width: 1200px)", {
-    //                     chartPadding: e,
-    //                     labelOffset: a,
-    //                     labelDirection: "explode",
-    //                     labelInterpolationFnc: function(e) {
-    //                         return e
-    //                     }
-    //                 }],
-    //                 ["screen and (max-width: 600px)", {
-    //                     chartPadding: 0,
-    //                     labelOffset: 0,
-    //                     labelInterpolationFnc: function(e) {
-    //                         return e[0]
-    //                     }
-    //                 }]
-    //             ]
-    //         }
-    //         e.simpleLineOptions = {
-    //             color: t.colors.defaultText,
-    //             fullWidth: !0,
-    //             height: "300px",
-    //             chartPadding: {
-    //                 right: 40
-    //             }
-    //         }, e.simpleLineData = {
-    //             labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-    //             series: [
-    //                 [20, 20, 12, 45, 50],
-    //                 [10, 45, 30, 14, 12],
-    //                 [34, 12, 12, 40, 50],
-    //                 [10, 43, 25, 22, 16],
-    //                 [3, 6, 30, 33, 43]
-    //             ]
-    //         }, e.areaLineData = {
-    //             labels: [1, 2, 3, 4, 5, 6, 7, 8],
-    //             series: [
-    //                 [5, 9, 7, 8, 5, 3, 5, 4]
-    //             ]
-    //         }, e.areaLineOptions = {
-    //             fullWidth: !0,
-    //             height: "300px",
-    //             low: 0,
-    //             showArea: !0
-    //         }, e.biLineData = {
-    //             labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    //             series: [
-    //                 [1, 2, 3, 1, -2, 0, 1],
-    //                 [-2, -1, -2, -1, -2.5, -1, -2],
-    //                 [0, 0, 0, 1, 2, 2.5, 2],
-    //                 [2.5, 2, 1, .5, 1, .5, -1]
-    //             ]
-    //         }, e.biLineOptions = {
-    //             height: "300px",
-    //             high: 3,
-    //             low: -3,
-    //             showArea: !0,
-    //             showLine: !1,
-    //             showPoint: !1,
-    //             fullWidth: !0,
-    //             axisX: {
-    //                 showGrid: !1
-    //             }
-    //         }, e.simpleBarData = {
-    //             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    //             series: [
-    //                 [15, 24, 43, 27, 5, 10, 23, 44, 68, 50, 26, 8],
-    //                 [13, 22, 49, 22, 4, 6, 24, 46, 57, 48, 22, 4]
-    //             ]
-    //         }, e.simpleBarOptions = {
-    //             fullWidth: !0,
-    //             height: "300px"
-    //         }, e.multiBarData = {
-    //             labels: ["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"],
-    //             series: [
-    //                 [5, 4, 3, 7],
-    //                 [3, 2, 9, 5],
-    //                 [1, 5, 8, 4],
-    //                 [2, 3, 4, 6],
-    //                 [4, 1, 2, 1]
-    //             ]
-    //         }, e.multiBarOptions = {
-    //             fullWidth: !0,
-    //             height: "300px",
-    //             stackBars: !0,
-    //             axisX: {
-    //                 labelInterpolationFnc: function(e) {
-    //                     return e.split(/\s+/).map(function(e) {
-    //                         return e[0]
-    //                     }).join("")
-    //                 }
-    //             },
-    //             axisY: {
-    //                 offset: 20
-    //             }
-    //         }, e.multiBarResponsive = [
-    //             ["screen and (min-width: 400px)", {
-    //                 reverseData: !0,
-    //                 horizontalBars: !0,
-    //                 axisX: {
-    //                     labelInterpolationFnc: Chartist.noop
-    //                 },
-    //                 axisY: {
-    //                     offset: 60
-    //                 }
-    //             }],
-    //             ["screen and (min-width: 700px)", {
-    //                 stackBars: !1,
-    //                 reverseData: !1,
-    //                 horizontalBars: !1,
-    //                 seriesBarDistance: 15
-    //             }]
-    //         ], e.stackedBarData = {
-    //             labels: ["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"],
-    //             series: [
-    //                 [8e5, 12e5, 14e5, 13e5],
-    //                 [2e5, 4e5, 5e5, 3e5],
-    //                 [1e5, 2e5, 4e5, 6e5]
-    //             ]
-    //         }, e.stackedBarOptions = {
-    //             fullWidth: !0,
-    //             height: "300px",
-    //             stackBars: !0,
-    //             axisY: {
-    //                 labelInterpolationFnc: function(e) {
-    //                     return e / 1e3 + "k"
-    //                 }
-    //             }
-    //         }, e.simplePieData = {
-    //             series: [5, 3, 4]
-    //         }, e.simplePieOptions = {
-    //             fullWidth: !0,
-    //             height: "300px",
-    //             weight: "300px",
-    //             labelInterpolationFnc: function(e) {
-    //                 return Math.round(e / 12 * 100) + "%"
-    //             }
-    //         }, e.labelsPieData = {
-    //             labels: ["Bananas", "Apples", "Grapes"],
-    //             series: [20, 15, 40]
-    //         }, e.labelsPieOptions = {
-    //             fullWidth: !0,
-    //             height: "300px",
-    //             weight: "300px",
-    //             labelDirection: "explode",
-    //             labelInterpolationFnc: function(e) {
-    //                 return e[0]
-    //             }
-    //         }, e.simpleDonutData = {
-    //             labels: ["Bananas", "Apples", "Grapes"],
-    //             series: [20, 15, 40]
-    //         }, e.simpleDonutOptions = {
-    //             fullWidth: !0,
-    //             donut: !0,
-    //             height: "300px",
-    //             weight: "300px",
-    //             labelDirection: "explode",
-    //             labelInterpolationFnc: function(e) {
-    //                 return e[0]
-    //             }
-    //         }, e.donutResponsive = i(5, 40), e.pieResponsive = i(20, 80), a(function() {
-    //             new Chartist.Line("#line-chart", e.simpleLineData, e.simpleLineOptions), new Chartist.Line("#area-chart", e.areaLineData, e.areaLineOptions), new Chartist.Line("#bi-chart", e.biLineData, e.biLineOptions), new Chartist.Bar("#simple-bar", e.simpleBarData, e.simpleBarOptions), new Chartist.Bar("#multi-bar", e.multiBarData, e.multiBarOptions, e.multiBarResponsive), new Chartist.Bar("#stacked-bar", e.stackedBarData, e.stackedBarOptions), new Chartist.Pie("#simple-pie", e.simplePieData, e.simplePieOptions, e.pieResponsive), new Chartist.Pie("#label-pie", e.labelsPieData, e.labelsPieOptions), new Chartist.Pie("#donut", e.simpleDonutData, e.simpleDonutOptions, e.donutResponsive)
-    //         })
-    //     }
-    //     e.$inject = ["$scope", "$timeout", "baConfig"], angular.module("BlurAdmin.pages.charts.chartist").controller("chartistCtrl", e)
-    // }(),
+   
     function() {
         "use strict";
 
@@ -2151,7 +1376,7 @@ function() {
                 for (var a, t, i = e.length; i; a = Math.floor(Math.random() * i), t = e[--i], e[i] = e[a], e[a] = t);
                 return e
             }
-            e.labels = ["May", "Jun", "Jul", "Aug", "Sep"], e.data = [
+            e.labels = [words["May"][lang], words["Jun"][lang], words["Jul"][lang], words["Aug"][lang], words["Sep"][lang]], e.data = [
                 [65, 59, 90, 81, 56],
                 [28, 48, 40, 19, 88]
             ], e.series = ["Product A", "Product B"], e.changeData = function() {
@@ -2164,7 +1389,7 @@ function() {
         "use strict";
 
         function e(e, a, t) {
-            e.labels = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], e.data = [1, 9, 3, 4, 5, 6, 7, 8, 2].map(function(e) {
+            e.labels = [words["Apr"][lang], words["May"][lang], words["Jun"][lang], words["Jul"][lang], words["Aug"][lang], words["Sep"][lang], words["Oct"][lang], words["Nov"][lang], words["Dec"][lang]], e.data = [1, 9, 3, 4, 5, 6, 7, 8, 2].map(function(e) {
                 return 25 * Math.sin(e) + 25
             }), t.start(a, function() {
                 for (var a = [], t = e.data[e.data.length - 1], i = e.data.length - 1; i > 0; i--) a[i] = e.data[i - 1];
@@ -2173,667 +1398,7 @@ function() {
         }
         e.$inject = ["$scope", "$interval", "stopableInterval"], angular.module("BlurAdmin.pages.charts.chartJs").controller("chartJsWaveCtrl", e)
     }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t) {
-    //         var i = t.colors;
-    //         e.colors = [i.primary, i.warning, i.danger, i.info, i.success, i.primaryDark], e.lineData = [{
-    //             y: "2006",
-    //             a: 100,
-    //             b: 90
-    //         }, {
-    //             y: "2007",
-    //             a: 75,
-    //             b: 65
-    //         }, {
-    //             y: "2008",
-    //             a: 50,
-    //             b: 40
-    //         }, {
-    //             y: "2009",
-    //             a: 75,
-    //             b: 65
-    //         }, {
-    //             y: "2010",
-    //             a: 50,
-    //             b: 40
-    //         }, {
-    //             y: "2011",
-    //             a: 75,
-    //             b: 65
-    //         }, {
-    //             y: "2012",
-    //             a: 100,
-    //             b: 90
-    //         }], e.areaData = [{
-    //             y: "2006",
-    //             a: 100,
-    //             b: 90
-    //         }, {
-    //             y: "2007",
-    //             a: 75,
-    //             b: 65
-    //         }, {
-    //             y: "2008",
-    //             a: 50,
-    //             b: 40
-    //         }, {
-    //             y: "2009",
-    //             a: 75,
-    //             b: 65
-    //         }, {
-    //             y: "2010",
-    //             a: 50,
-    //             b: 40
-    //         }, {
-    //             y: "2011",
-    //             a: 75,
-    //             b: 65
-    //         }, {
-    //             y: "2012",
-    //             a: 100,
-    //             b: 90
-    //         }], e.barData = [{
-    //             y: "2006",
-    //             a: 100,
-    //             b: 90
-    //         }, {
-    //             y: "2007",
-    //             a: 75,
-    //             b: 65
-    //         }, {
-    //             y: "2008",
-    //             a: 50,
-    //             b: 40
-    //         }, {
-    //             y: "2009",
-    //             a: 75,
-    //             b: 65
-    //         }, {
-    //             y: "2010",
-    //             a: 50,
-    //             b: 40
-    //         }, {
-    //             y: "2011",
-    //             a: 75,
-    //             b: 65
-    //         }, {
-    //             y: "2012",
-    //             a: 100,
-    //             b: 90
-    //         }], e.donutData = [{
-    //             label: "Download Sales",
-    //             value: 12
-    //         }, {
-    //             label: "In-Store Sales",
-    //             value: 30
-    //         }, {
-    //             label: "Mail-Order Sales",
-    //             value: 20
-    //         }], angular.element(a).bind("resize", function() {})
-    //     }
-    //     e.$inject = ["$scope", "$window", "baConfig"], angular.module("BlurAdmin.pages.charts.morris").controller("morrisCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e) {
-    //         var a = [{
-    //                 id: "4563faass",
-    //                 name: "Nasta Linnie",
-    //                 subject: "Great text",
-    //                 date: "2015-08-28T07:57:09",
-    //                 body: e.trustAsHtml("<p>Hey John, </p><p>Check out this cool text.</p>"),
-    //                 pic: "img/Nasta.png",
-    //                 email: "petraramsey@mail.com",
-    //                 attachment: "poem.txt",
-    //                 position: "Great Employee",
-    //                 tag: "friend",
-    //                 labels: ["inbox"]
-    //             }, {
-    //                 id: "4563fdfvd",
-    //                 name: "Nasta Linnie",
-    //                 subject: "Lores ipsum",
-    //                 date: "2015-11-19T03:30:45",
-    //                 important: !1,
-    //                 body: e.trustAsHtml("<p>Hey John, </p><br><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ex mauris, ultrices vel lectus quis, scelerisque hendrerit ipsum. Suspendisse ullamcorper turpis neque, eget dapibus magna placerat ac. Suspendisse rhoncus ligula ac mi tempus varius ut sed lacus. Sed et commodo nulla, et placerat leo. Nam rhoncus vulputate sem non pharetra. Praesent fringilla massa in laoreet convallis. Aliquam lobortis dui a congue facilisis. Aenean dapibus semper semper. Quisque aliquam, nibh dapibus interdum condimentum, ex velit tempor tortor, at vestibulum magna leo quis leo. Morbi pulvinar varius erat ac rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In hac habitasse platea dictumst.</p><br><p>Cras rhoncus quam ipsum, vel dignissim nisl egestas sed. Aliquam erat volutpat. Integer eu nisl elit. Donec malesuada diam vitae tellus luctus tincidunt. Donec tempus blandit neque, rutrum egestas ipsum sagittis tempor. Curabitur volutpat ligula enim, nec vehicula purus molestie at. Sed a facilisis enim, nec molestie magna. Donec in augue non est viverra dapibus vel tempus risus. Nam porttitor purus sit amet hendrerit ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>"),
-    //                 pic: "img/Nasta.png",
-    //                 email: "petraramsey@mail.com",
-    //                 position: "Great Employee",
-    //                 tag: "study",
-    //                 labels: ["inbox"]
-    //             }, {
-    //                 id: "4563zxcss",
-    //                 name: "Nasta Linnie",
-    //                 subject: "Lores ipsum",
-    //                 date: "2015-10-19T03:30:45",
-    //                 important: !1,
-    //                 body: e.trustAsHtml("<p>Hey Nasta, </p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"),
-    //                 pic: "img/Nasta.png",
-    //                 email: "petraramsey@mail.com",
-    //                 position: "Great Employee",
-    //                 tag: "work",
-    //                 labels: ["sent", "important"]
-    //             }, {
-    //                 id: "8955sddf",
-    //                 name: "Nick Cat",
-    //                 subject: "New Design",
-    //                 date: "2015-05-05T12:59:45",
-    //                 body: e.trustAsHtml("<p>Hey John, Consectetur adipiscing elit</p><br><p>Cras rhoncus quam ipsum, vel dignissim nisl egestas sed. Aliquam erat volutpat. Integer eu nisl elit. Donec malesuada diam vitae tellus luctus tincidunt. Donec tempus blandit neque, rutrum egestas ipsum sagittis tempor. Curabitur volutpat ligula enim, nec vehicula purus molestie at. Sed a facilisis enim, nec molestie magna. Donec in augue non est viverra dapibus vel tempus risus. Nam porttitor purus sit amet hendrerit ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>"),
-    //                 pic: "img/Nick.png",
-    //                 email: "barlowshort@mail.com",
-    //                 position: "Graphical designer",
-    //                 attachment: "design.psd",
-    //                 tag: "work",
-    //                 labels: ["inbox"]
-    //             }, {
-    //                 id: "8955sdfcc",
-    //                 name: "Nick Cat",
-    //                 subject: "Gift card",
-    //                 date: "2015-07-18T10:19:01",
-    //                 body: e.trustAsHtml("<p>Hey John, </p><br><p>Consectetur adipiscing elit, Lorem ipsum dolor sit amet</p>"),
-    //                 pic: "img/Nick.png",
-    //                 email: "barlowshort@mail.com",
-    //                 position: "Graphical designer",
-    //                 tag: "study",
-    //                 labels: ["inbox"]
-    //             }, {
-    //                 id: "8955asewf",
-    //                 name: "Nick Cat",
-    //                 subject: "Some news",
-    //                 date: "2015-09-23T03:04:10",
-    //                 body: e.trustAsHtml("<p>Hey John, </p><br><p>Integer eu nisl elit. Donec malesuada diam vitae tellus luctus tincidunt. Donec tempus blandit neque, rutrum egestas ipsum sagittis tempor. Curabitur volutpat ligula enim, nec vehicula purus molestie at. Sed a facilisis enim, nec molestie magna. Donec in augue non est viverra dapibus vel tempus risus. Nam porttitor purus sit amet hendrerit ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>"),
-    //                 pic: "img/Nick.png",
-    //                 email: "barlowshort@mail.com",
-    //                 position: "Graphical designer",
-    //                 tag: "work",
-    //                 labels: ["inbox", "important"]
-    //             }, {
-    //                 id: "2334uudsa",
-    //                 name: "Kostya Danovsky",
-    //                 subject: "Street Art",
-    //                 date: "2015-11-22T10:05:09",
-    //                 body: e.trustAsHtml("<p>Hey John, </p><p>Aliquam eu facilisis eros, quis varius est.</p><p>Consectetur adipiscing elit. Aliquam sodales sem in nibh pellentesque, ac dignissim mi dapibus.</p><p>Lorem ipsum dolor sit amet! Nullam imperdiet justo a ipsum laoreet euismod.</p><br><p>Cras tincidunt fermentum lectus, quis scelerisque lorem volutpat sed.Sed quis orci sed nisl sagittis viverra id at mauris. Nam venenatis mi nibh. Sed fringilla mattis vehic</p>"),
-    //                 pic: "img/Kostya.png",
-    //                 email: "schwart@mail.com",
-    //                 position: "Technical Chef",
-    //                 attachment: "file.doc",
-    //                 tag: "family",
-    //                 labels: ["inbox", "important"]
-    //             }, {
-    //                 id: "2334aefvv",
-    //                 name: "Kostya Danovsky",
-    //                 subject: "New product",
-    //                 date: "2015-06-22T06:26:10",
-    //                 body: e.trustAsHtml("<p>Hello John, </p><p>Lorem ipsum dolor sit amet!</p><p>Consectetur adipiscing elit. Aliquam sodales sem in nibh pellentesque, ac dignissim mi dapibus.</p><p>Aliquam eu facilisis eros, quis varius est. Nullam imperdiet justo a ipsum laoreet euismod.</p><br><p>Nulla facilisi. Nulla congue, arcu eget blandit lacinia, leo ante ullamcorper lectus, vel pulvinar justo ipsum vitae justo.Cras tincidunt fermentum lectus, quis scelerisque lorem volutpat sed. Sed quis orci sed nisl sagittis viverra id at mauris. Nam venenatis mi nibh. Sed fringilla mattis vehic</p>"),
-    //                 pic: "img/Kostya.png",
-    //                 email: "schwart@mail.com",
-    //                 position: "Technical Chef",
-    //                 tag: "family",
-    //                 labels: ["inbox", "important"]
-    //             }, {
-    //                 id: "2334cvdss",
-    //                 name: "Kostya Danovsky",
-    //                 subject: "Old product",
-    //                 date: "2015-06-22T06:26:10",
-    //                 body: e.trustAsHtml("<p>Hello John, </p><p>Consectetur adipiscing elit. Aliquam sodales sem in nibh pellentesque, ac dignissim mi dapibus.</p><br><p>Cras tincidunt fermentum lectus, quis scelerisque lorem volutpat sed. Sed quis orci sed nisl sagittis viverra id at mauris. Nam venenatis mi nibh. Sed fringilla mattis vehic</p>"),
-    //                 pic: "img/Kostya.png",
-    //                 email: "schwart@mail.com",
-    //                 position: "Technical Chef",
-    //                 tag: "study",
-    //                 labels: ["trash"]
-    //             }, {
-    //                 id: "8223xzxfn",
-    //                 name: "Andrey Hrabouski",
-    //                 subject: "Skype moji",
-    //                 date: "2015-07-16T06:47:53",
-    //                 body: e.trustAsHtml("<p>Hello John, </p><p>Aliquam sodales sem in nibh pellentesque</p><p>Lorem ipsum dolor I find moji in skype sit amet!.</p>"),
-    //                 pic: "img/Andrey.png",
-    //                 email: "lakeishaphillips@mail.com",
-    //                 position: "Mobile Developer",
-    //                 tag: "family",
-    //                 labels: ["trash"]
-    //             }, {
-    //                 id: "8223sdffn",
-    //                 name: "Andrey Hrabouski",
-    //                 subject: "My App",
-    //                 date: "2015-06-20T07:05:02",
-    //                 body: e.trustAsHtml("<p>Hey Vlad. </p><p>Lorem ipsum dolor sit amet!</p><p>Consectetur My Falasson App elit. Aliquam sodales sem in nibh pellentesque, ac dignissim mi dapibus.</p>"),
-    //                 pic: "img/Andrey.png",
-    //                 email: "lakeishaphillips@mail.com",
-    //                 position: "Mobile Developer",
-    //                 tag: "family",
-    //                 labels: ["spam"]
-    //             }, {
-    //                 id: "9391xdsff",
-    //                 name: "Vlad Lugovsky",
-    //                 subject: "Cool",
-    //                 date: "2015-03-31T11:52:58",
-    //                 body: e.trustAsHtml("<p>Hey Vlad. </p><p>Aliquam sodales sem in nibh pellentesque</p><p>Cras tincidunt fermentum lectus, quis scelerisque lorem volutpat sed.</p>"),
-    //                 pic: "img/Vlad.png",
-    //                 email: "carlsongoodman@mail.com",
-    //                 position: "Fullstack man",
-    //                 tag: "study",
-    //                 labels: ["draft"]
-    //             }, {
-    //                 id: "8223xsdaa",
-    //                 name: "Andrey Hrabouski",
-    //                 subject: "Car rent",
-    //                 date: "2015-02-25T10:58:58",
-    //                 body: e.trustAsHtml("<p>Hey Andrey. </p><p>Cras tincidunt fermentum lectus, quis scelerisque lorem volutpat sed. Sed quis orci sed nisl sagittis viverra id at mauris. Nam venenatis mi nibh. Sed fringilla mattis vehic</p>"),
-    //                 pic: "img/Andrey.png",
-    //                 email: "lakeishaphillips@mail.com",
-    //                 position: "Mobile Developer",
-    //                 tag: "family",
-    //                 labels: ["draft"]
-    //             }, {
-    //                 id: "9391xdsff",
-    //                 name: "Vlad Lugovsky",
-    //                 subject: "What next",
-    //                 date: "2015-03-31T11:52:58",
-    //                 body: e.trustAsHtml("<p>Hey Vlad. </p><p>Lorem ipsum dolor sit amet!</p><p>Esse esse labore tempor ullamco ullamco. Id veniam laborum c.</p>"),
-    //                 pic: "img/Vlad.png",
-    //                 email: "carlsongoodman@mail.com",
-    //                 position: "Fullstack man",
-    //                 tag: "study",
-    //                 labels: ["sent"]
-    //             }].sort(function(e, a) {
-    //                 return e.date > a.date ? 1 : e.date < a.date ? -1 : void 0
-    //             }).reverse(),
-    //             t = [{
-    //                 label: "inbox",
-    //                 name: "Inbox",
-    //                 newMails: 7
-    //             }, {
-    //                 label: "sent",
-    //                 name: "Sent Mail"
-    //             }, {
-    //                 label: "important",
-    //                 name: "Important"
-    //             }, {
-    //                 label: "draft",
-    //                 name: "Draft",
-    //                 newMails: 2
-    //             }, {
-    //                 label: "spam",
-    //                 name: "Spam"
-    //             }, {
-    //                 label: "trash",
-    //                 name: "Trash"
-    //             }];
-    //         return {
-    //             getTabs: function() {
-    //                 return t
-    //             },
-    //             getMessagesByLabel: function(e) {
-    //                 return a.filter(function(a) {
-    //                     return a.labels.indexOf(e) != -1
-    //                 })
-    //             },
-    //             getMessageById: function(e) {
-    //                 return a.filter(function(a) {
-    //                     return a.id == e
-    //                 })[0]
-    //             }
-    //         }
-    //     }
-    //     e.$inject = ["$sce"], angular.module("BlurAdmin.pages.components.mail").service("mailMessages", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a) {
-    //         var t = this;
-    //         t.navigationCollapsed = !0, t.showCompose = function(a, t, i) {
-    //             e.open({
-    //                 subject: a,
-    //                 to: t,
-    //                 text: i
-    //             })
-    //         }, t.tabs = a.getTabs()
-    //     }
-    //     e.$inject = ["composeModal", "mailMessages"], angular.module("BlurAdmin.pages.components.mail").controller("MailTabCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e() {
-    //         function e(e, a) {
-    //             e.each(function() {
-    //                 $(this).offset().top > $(window).scrollTop() + $(window).height() * a && $(this).find(".cd-timeline-img, .cd-timeline-content").addClass("is-hidden")
-    //             })
-    //         }
-
-    //         function a(e, a) {
-    //             e.each(function() {
-    //                 $(this).offset().top <= $(window).scrollTop() + $(window).height() * a && $(this).find(".cd-timeline-img").hasClass("is-hidden") && $(this).find(".cd-timeline-img, .cd-timeline-content").removeClass("is-hidden").addClass("bounce-in")
-    //             })
-    //         }
-    //         var t = $(".cd-timeline-block"),
-    //             i = .8;
-    //         e(t, i), $(window).on("scroll", function() {
-    //             window.requestAnimationFrame ? window.requestAnimationFrame(function() {
-    //                 a(t, i)
-    //             }) : setTimeout(function() {
-    //                 a(t, i)
-    //             }, 100)
-    //         })
-    //     }
-    //     angular.module("BlurAdmin.pages.components.timeline").controller("TimelineCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a) {
-    //         function t() {
-    //             return [{
-    //                 id: "n1",
-    //                 parent: "#",
-    //                 type: "folder",
-    //                 text: "Node 1",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n2",
-    //                 parent: "#",
-    //                 type: "folder",
-    //                 text: "Node 2",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n3",
-    //                 parent: "#",
-    //                 type: "folder",
-    //                 text: "Node 3",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n5",
-    //                 parent: "n1",
-    //                 text: "Node 1.1",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n6",
-    //                 parent: "n1",
-    //                 text: "Node 1.2",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n7",
-    //                 parent: "n1",
-    //                 text: "Node 1.3",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n8",
-    //                 parent: "n1",
-    //                 text: "Node 1.4",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n9",
-    //                 parent: "n2",
-    //                 text: "Node 2.1",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n10",
-    //                 parent: "n2",
-    //                 text: "Node 2.2 (Custom icon)",
-    //                 icon: "ion-help-buoy",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n12",
-    //                 parent: "n3",
-    //                 text: "Node 3.1",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n13",
-    //                 parent: "n3",
-    //                 type: "folder",
-    //                 text: "Node 3.2",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n14",
-    //                 parent: "n13",
-    //                 text: "Node 3.2.1",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n15",
-    //                 parent: "n13",
-    //                 text: "Node 3.2.2",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n16",
-    //                 parent: "n3",
-    //                 text: "Node 3.3",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n17",
-    //                 parent: "n3",
-    //                 text: "Node 3.4",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n18",
-    //                 parent: "n3",
-    //                 text: "Node 3.5",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }, {
-    //                 id: "n19",
-    //                 parent: "n3",
-    //                 text: "Node 3.6",
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }]
-    //         }
-    //         e.ignoreChanges = !1;
-    //         var i = 0;
-    //         e.ignoreChanges = !1, e.newNode = {}, e.basicConfig = {
-    //             core: {
-    //                 multiple: !1,
-    //                 check_callback: !0,
-    //                 worker: !0
-    //             },
-    //             types: {
-    //                 folder: {
-    //                     icon: "ion-ios-folder"
-    //                 },
-    //                 default: {
-    //                     icon: "ion-document-text"
-    //                 }
-    //             },
-    //             plugins: ["types"],
-    //             version: 1
-    //         }, e.dragConfig = {
-    //             core: {
-    //                 check_callback: !0,
-    //                 themes: {
-    //                     responsive: !1
-    //                 }
-    //             },
-    //             types: {
-    //                 folder: {
-    //                     icon: "ion-ios-folder"
-    //                 },
-    //                 default: {
-    //                     icon: "ion-document-text"
-    //                 }
-    //             },
-    //             plugins: ["dnd", "types"]
-    //         }, e.addNewNode = function() {
-    //             e.ignoreChanges = !0;
-    //             var a = this.basicTree.jstree(!0).get_selected()[0];
-    //             a && e.treeData.push({
-    //                 id: (i++).toString(),
-    //                 parent: a,
-    //                 text: "New node " + i,
-    //                 state: {
-    //                     opened: !0
-    //                 }
-    //             }), e.basicConfig.version++
-    //         }, e.refresh = function() {
-    //             e.ignoreChanges = !0, i = 0, e.treeData = t(), e.basicConfig.version++
-    //         }, e.expand = function() {
-    //             e.ignoreChanges = !0, e.treeData.forEach(function(e) {
-    //                 e.state.opened = !0
-    //             }), e.basicConfig.version++
-    //         }, e.collapse = function() {
-    //             e.ignoreChanges = !0, e.treeData.forEach(function(e) {
-    //                 e.state.opened = !1
-    //             }), e.basicConfig.version++
-    //         }, e.readyCB = function() {
-    //             a(function() {
-    //                 e.ignoreChanges = !1
-    //             })
-    //         }, e.applyModelChanges = function() {
-    //             return !e.ignoreChanges
-    //         }, e.treeData = t(), e.dragData = [{
-    //             id: "nd1",
-    //             parent: "#",
-    //             type: "folder",
-    //             text: "Node 1",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd2",
-    //             parent: "#",
-    //             type: "folder",
-    //             text: "Node 2",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd3",
-    //             parent: "#",
-    //             type: "folder",
-    //             text: "Node 3",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd4",
-    //             parent: "#",
-    //             type: "folder",
-    //             text: "Node 4",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd5",
-    //             parent: "nd1",
-    //             text: "Node 1.1",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd6",
-    //             parent: "nd1",
-    //             text: "Node 1.2",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd7",
-    //             parent: "nd1",
-    //             text: "Node 1.3",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd8",
-    //             parent: "nd2",
-    //             text: "Node 2.1",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd9",
-    //             parent: "nd2",
-    //             text: "Node 2.2",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd10",
-    //             parent: "nd2",
-    //             text: "Node 2.3",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd11",
-    //             parent: "nd3",
-    //             text: "Node 3.1",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd12",
-    //             parent: "nd3",
-    //             text: "Node 3.2",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd13",
-    //             parent: "nd3",
-    //             text: "Node 3.3",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd14",
-    //             parent: "nd4",
-    //             text: "Node 4.1",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd15",
-    //             parent: "nd4",
-    //             text: "Node 4.2",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }, {
-    //             id: "nd16",
-    //             parent: "nd4",
-    //             text: "Node 4.3",
-    //             state: {
-    //                 opened: !0
-    //             }
-    //         }]
-    //     }
-    //     e.$inject = ["$scope", "$timeout"], angular.module("BlurAdmin.pages.components.tree").controller("treeCtrl", e)
-    // }(),
+    
     function() {
         "use strict";
 
@@ -2996,7 +1561,7 @@ function() {
                     selectable: !0,
                     selectHelper: !0,
                     select: function(e, a) {
-                        var i, s = prompt("Event Title:");
+                        var i, s = prompt(words["Event Title:"][lang]);
                         s && (i = {
                             title: s,
                             start: e,
@@ -3517,17 +2082,17 @@ function() {
 
             e.charts = [{
                     color: n,
-                    description: "Forms (to date)",
+                    description: words["Forms (to date)"][lang],
                     stats: "1378",
                     icon: "person"
                 }, {
                     color: n,
-                    description: "Number of projects",
+                    description: words["Number of projects"][lang],
                     stats: "37",
                     icon: "money"
                 }, {
                     color: n,
-                    description: "Partners",
+                    description: words["Partners"][lang],
                     stats: "22",
                     icon: "face"
                 }, {
@@ -3537,14 +2102,14 @@ function() {
                     icon: "refresh"
                 }, {
                     color: n,
-                    description: "Forms (to date)",
+                    description: words["Forms (to date)"][lang],
                     stats: "1378",
                     icon: "person"
                 } , {
 
 
                     color: n,
-                    description: "Number of projects",
+                    description: words["Number of projects"][lang],
                     stats: "37",
                     icon: "money"
 
@@ -3554,7 +2119,7 @@ function() {
 
 
                     color: n,
-                    description: "Partners",
+                    description: words["Partners"][lang],
                     stats: "22",
                     icon: "face" 
                 }, {
@@ -3636,17 +2201,7 @@ function() {
         function e() {}
         angular.module("BlurAdmin.pages.dashboard").service("dashboardPieChart", e)
     }(),
-    // function() {
-    //     "use strict";
-
-    //     function e() {
-    //         return {
-    //             restrict: "E",
-    //             templateUrl: "app/pages/dashboard/popularApp/popularApp.html"
-    //         }
-    //     }
-    //     angular.module("BlurAdmin.pages.dashboard").directive("popularApp", e)
-    // }(),
+   
     function() {
         "use strict";
 
@@ -3666,7 +2221,7 @@ function() {
             e.transparent = a.theme.blur;
             var i = a.colors.dashboard;
             e.doughnutData = {
-                labels: ["Other", "Projects", "Infrastructure", "Roads", "Salaries"],
+                labels: [words["Other"][lang], words["Projects"][lang], words["Infrastructure"][lang], words["Roads"][lang], words["Salaries"][lang]],
                 datasets: [{
                     data: [2e3, 1500, 1e3, 1200, 400],
                     backgroundColor: [i.white, i.blueStone, i.surfieGreen, i.silverTree, i.gossip],
@@ -3825,2178 +2380,7 @@ function() {
         }
         e.$inject = ["$scope"], angular.module("BlurAdmin.pages.form").controller("WizardCtrl", e)
     }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e) {
-    //         function a() {
-    //             var e = document.getElementById("google-maps"),
-    //                 a = {
-    //                     center: new google.maps.LatLng(44.5403, -78.5463),
-    //                     zoom: 8,
-    //                     mapTypeId: google.maps.MapTypeId.ROADMAP
-    //                 };
-    //             new google.maps.Map(e, a)
-    //         }
-    //         e(function() {
-    //             a()
-    //         }, 100)
-    //     }
-    //     e.$inject = ["$timeout"], angular.module("BlurAdmin.pages.maps").controller("GmapPageCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e) {
-    //         function a() {
-    //             L.Icon.Default.imagePath = "assets/img/theme/vendor/leaflet/dist/images";
-    //             var e = L.map(document.getElementById("leaflet-map")).setView([51.505, -.09], 13);
-    //             L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-    //                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    //             }).addTo(e), L.marker([51.5, -.09]).addTo(e).bindPopup("A pretty CSS3 popup.<br> Easily customizable.").openPopup()
-    //         }
-    //         e(function() {
-    //             a()
-    //         }, 100)
-    //     }
-    //     e.$inject = ["$timeout"], angular.module("BlurAdmin.pages.maps").controller("LeafletPageCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t) {
-    //         var i = e.colors,
-    //             s = {};
-    //         s.AD = {
-    //             latitude: 42.5,
-    //             longitude: 1.5
-    //         }, s.AE = {
-    //             latitude: 24,
-    //             longitude: 54
-    //         }, s.AF = {
-    //             latitude: 33,
-    //             longitude: 65
-    //         }, s.AG = {
-    //             latitude: 17.05,
-    //             longitude: -61.8
-    //         }, s.AI = {
-    //             latitude: 18.25,
-    //             longitude: -63.1667
-    //         }, s.AL = {
-    //             latitude: 41,
-    //             longitude: 20
-    //         }, s.AM = {
-    //             latitude: 40,
-    //             longitude: 45
-    //         }, s.AN = {
-    //             latitude: 12.25,
-    //             longitude: -68.75
-    //         }, s.AO = {
-    //             latitude: -12.5,
-    //             longitude: 18.5
-    //         }, s.AP = {
-    //             latitude: 35,
-    //             longitude: 105
-    //         }, s.AQ = {
-    //             latitude: -90,
-    //             longitude: 0
-    //         }, s.AR = {
-    //             latitude: -34,
-    //             longitude: -64
-    //         }, s.AS = {
-    //             latitude: -14.3333,
-    //             longitude: -170
-    //         }, s.AT = {
-    //             latitude: 47.3333,
-    //             longitude: 13.3333
-    //         }, s.AU = {
-    //             latitude: -27,
-    //             longitude: 133
-    //         }, s.AW = {
-    //             latitude: 12.5,
-    //             longitude: -69.9667
-    //         }, s.AZ = {
-    //             latitude: 40.5,
-    //             longitude: 47.5
-    //         }, s.BA = {
-    //             latitude: 44,
-    //             longitude: 18
-    //         }, s.BB = {
-    //             latitude: 13.1667,
-    //             longitude: -59.5333
-    //         }, s.BD = {
-    //             latitude: 24,
-    //             longitude: 90
-    //         }, s.BE = {
-    //             latitude: 50.8333,
-    //             longitude: 4
-    //         }, s.BF = {
-    //             latitude: 13,
-    //             longitude: -2
-    //         }, s.BG = {
-    //             latitude: 43,
-    //             longitude: 25
-    //         }, s.BH = {
-    //             latitude: 26,
-    //             longitude: 50.55
-    //         }, s.BI = {
-    //             latitude: -3.5,
-    //             longitude: 30
-    //         }, s.BJ = {
-    //             latitude: 9.5,
-    //             longitude: 2.25
-    //         }, s.BM = {
-    //             latitude: 32.3333,
-    //             longitude: -64.75
-    //         }, s.BN = {
-    //             latitude: 4.5,
-    //             longitude: 114.6667
-    //         }, s.BO = {
-    //             latitude: -17,
-    //             longitude: -65
-    //         }, s.BR = {
-    //             latitude: -10,
-    //             longitude: -55
-    //         }, s.BS = {
-    //             latitude: 24.25,
-    //             longitude: -76
-    //         }, s.BT = {
-    //             latitude: 27.5,
-    //             longitude: 90.5
-    //         }, s.BV = {
-    //             latitude: -54.4333,
-    //             longitude: 3.4
-    //         }, s.BW = {
-    //             latitude: -22,
-    //             longitude: 24
-    //         }, s.BY = {
-    //             latitude: 53,
-    //             longitude: 28
-    //         }, s.BZ = {
-    //             latitude: 17.25,
-    //             longitude: -88.75
-    //         }, s.CA = {
-    //             latitude: 54,
-    //             longitude: -100
-    //         }, s.CC = {
-    //             latitude: -12.5,
-    //             longitude: 96.8333
-    //         }, s.CD = {
-    //             latitude: 0,
-    //             longitude: 25
-    //         }, s.CF = {
-    //             latitude: 7,
-    //             longitude: 21
-    //         }, s.CG = {
-    //             latitude: -1,
-    //             longitude: 15
-    //         }, s.CH = {
-    //             latitude: 47,
-    //             longitude: 8
-    //         }, s.CI = {
-    //             latitude: 8,
-    //             longitude: -5
-    //         }, s.CK = {
-    //             latitude: -21.2333,
-    //             longitude: -159.7667
-    //         }, s.CL = {
-    //             latitude: -30,
-    //             longitude: -71
-    //         }, s.CM = {
-    //             latitude: 6,
-    //             longitude: 12
-    //         }, s.CN = {
-    //             latitude: 35,
-    //             longitude: 105
-    //         }, s.CO = {
-    //             latitude: 4,
-    //             longitude: -72
-    //         }, s.CR = {
-    //             latitude: 10,
-    //             longitude: -84
-    //         }, s.CU = {
-    //             latitude: 21.5,
-    //             longitude: -80
-    //         }, s.CV = {
-    //             latitude: 16,
-    //             longitude: -24
-    //         }, s.CX = {
-    //             latitude: -10.5,
-    //             longitude: 105.6667
-    //         }, s.CY = {
-    //             latitude: 35,
-    //             longitude: 33
-    //         }, s.CZ = {
-    //             latitude: 49.75,
-    //             longitude: 15.5
-    //         }, s.DE = {
-    //             latitude: 51,
-    //             longitude: 9
-    //         }, s.DJ = {
-    //             latitude: 11.5,
-    //             longitude: 43
-    //         }, s.DK = {
-    //             latitude: 56,
-    //             longitude: 10
-    //         }, s.DM = {
-    //             latitude: 15.4167,
-    //             longitude: -61.3333
-    //         }, s.DO = {
-    //             latitude: 19,
-    //             longitude: -70.6667
-    //         }, s.DZ = {
-    //             latitude: 28,
-    //             longitude: 3
-    //         }, s.EC = {
-    //             latitude: -2,
-    //             longitude: -77.5
-    //         }, s.EE = {
-    //             latitude: 59,
-    //             longitude: 26
-    //         }, s.EG = {
-    //             latitude: 27,
-    //             longitude: 30
-    //         }, s.EH = {
-    //             latitude: 24.5,
-    //             longitude: -13
-    //         }, s.ER = {
-    //             latitude: 15,
-    //             longitude: 39
-    //         }, s.ES = {
-    //             latitude: 40,
-    //             longitude: -4
-    //         }, s.ET = {
-    //             latitude: 8,
-    //             longitude: 38
-    //         }, s.EU = {
-    //             latitude: 47,
-    //             longitude: 8
-    //         }, s.FI = {
-    //             latitude: 62,
-    //             longitude: 26
-    //         }, s.FJ = {
-    //             latitude: -18,
-    //             longitude: 175
-    //         }, s.FK = {
-    //             latitude: -51.75,
-    //             longitude: -59
-    //         }, s.FM = {
-    //             latitude: 6.9167,
-    //             longitude: 158.25
-    //         }, s.FO = {
-    //             latitude: 62,
-    //             longitude: -7
-    //         }, s.FR = {
-    //             latitude: 46,
-    //             longitude: 2
-    //         }, s.GA = {
-    //             latitude: -1,
-    //             longitude: 11.75
-    //         }, s.GB = {
-    //             latitude: 54,
-    //             longitude: -2
-    //         }, s.GD = {
-    //             latitude: 12.1167,
-    //             longitude: -61.6667
-    //         }, s.GE = {
-    //             latitude: 42,
-    //             longitude: 43.5
-    //         }, s.GF = {
-    //             latitude: 4,
-    //             longitude: -53
-    //         }, s.GH = {
-    //             latitude: 8,
-    //             longitude: -2
-    //         }, s.GI = {
-    //             latitude: 36.1833,
-    //             longitude: -5.3667
-    //         }, s.GL = {
-    //             latitude: 72,
-    //             longitude: -40
-    //         }, s.GM = {
-    //             latitude: 13.4667,
-    //             longitude: -16.5667
-    //         }, s.GN = {
-    //             latitude: 11,
-    //             longitude: -10
-    //         }, s.GP = {
-    //             latitude: 16.25,
-    //             longitude: -61.5833
-    //         }, s.GQ = {
-    //             latitude: 2,
-    //             longitude: 10
-    //         }, s.GR = {
-    //             latitude: 39,
-    //             longitude: 22
-    //         }, s.GS = {
-    //             latitude: -54.5,
-    //             longitude: -37
-    //         }, s.GT = {
-    //             latitude: 15.5,
-    //             longitude: -90.25
-    //         }, s.GU = {
-    //             latitude: 13.4667,
-    //             longitude: 144.7833
-    //         }, s.GW = {
-    //             latitude: 12,
-    //             longitude: -15
-    //         }, s.GY = {
-    //             latitude: 5,
-    //             longitude: -59
-    //         }, s.HK = {
-    //             latitude: 22.25,
-    //             longitude: 114.1667
-    //         }, s.HM = {
-    //             latitude: -53.1,
-    //             longitude: 72.5167
-    //         }, s.HN = {
-    //             latitude: 15,
-    //             longitude: -86.5
-    //         }, s.HR = {
-    //             latitude: 45.1667,
-    //             longitude: 15.5
-    //         }, s.HT = {
-    //             latitude: 19,
-    //             longitude: -72.4167
-    //         }, s.HU = {
-    //             latitude: 47,
-    //             longitude: 20
-    //         }, s.ID = {
-    //             latitude: -5,
-    //             longitude: 120
-    //         }, s.IE = {
-    //             latitude: 53,
-    //             longitude: -8
-    //         }, s.IL = {
-    //             latitude: 31.5,
-    //             longitude: 34.75
-    //         }, s.IN = {
-    //             latitude: 20,
-    //             longitude: 77
-    //         }, s.IO = {
-    //             latitude: -6,
-    //             longitude: 71.5
-    //         }, s.IQ = {
-    //             latitude: 33,
-    //             longitude: 44
-    //         }, s.IR = {
-    //             latitude: 32,
-    //             longitude: 53
-    //         }, s.IS = {
-    //             latitude: 65,
-    //             longitude: -18
-    //         }, s.IT = {
-    //             latitude: 42.8333,
-    //             longitude: 12.8333
-    //         }, s.JM = {
-    //             latitude: 18.25,
-    //             longitude: -77.5
-    //         }, s.JO = {
-    //             latitude: 31,
-    //             longitude: 36
-    //         }, s.JP = {
-    //             latitude: 36,
-    //             longitude: 138
-    //         }, s.KE = {
-    //             latitude: 1,
-    //             longitude: 38
-    //         }, s.KG = {
-    //             latitude: 41,
-    //             longitude: 75
-    //         }, s.KH = {
-    //             latitude: 13,
-    //             longitude: 105
-    //         }, s.KI = {
-    //             latitude: 1.4167,
-    //             longitude: 173
-    //         }, s.KM = {
-    //             latitude: -12.1667,
-    //             longitude: 44.25
-    //         }, s.KN = {
-    //             latitude: 17.3333,
-    //             longitude: -62.75
-    //         }, s.KP = {
-    //             latitude: 40,
-    //             longitude: 127
-    //         }, s.KR = {
-    //             latitude: 37,
-    //             longitude: 127.5
-    //         }, s.KW = {
-    //             latitude: 29.3375,
-    //             longitude: 47.6581
-    //         }, s.KY = {
-    //             latitude: 19.5,
-    //             longitude: -80.5
-    //         }, s.KZ = {
-    //             latitude: 48,
-    //             longitude: 68
-    //         }, s.LA = {
-    //             latitude: 18,
-    //             longitude: 105
-    //         }, s.LB = {
-    //             latitude: 33.8333,
-    //             longitude: 35.8333
-    //         }, s.LC = {
-    //             latitude: 13.8833,
-    //             longitude: -61.1333
-    //         }, s.LI = {
-    //             latitude: 47.1667,
-    //             longitude: 9.5333
-    //         }, s.LK = {
-    //             latitude: 7,
-    //             longitude: 81
-    //         }, s.LR = {
-    //             latitude: 6.5,
-    //             longitude: -9.5
-    //         }, s.LS = {
-    //             latitude: -29.5,
-    //             longitude: 28.5
-    //         }, s.LT = {
-    //             latitude: 55,
-    //             longitude: 24
-    //         }, s.LU = {
-    //             latitude: 49.75,
-    //             longitude: 6
-    //         }, s.LV = {
-    //             latitude: 57,
-    //             longitude: 25
-    //         }, s.LY = {
-    //             latitude: 25,
-    //             longitude: 17
-    //         }, s.MA = {
-    //             latitude: 32,
-    //             longitude: -5
-    //         }, s.MC = {
-    //             latitude: 43.7333,
-    //             longitude: 7.4
-    //         }, s.MD = {
-    //             latitude: 47,
-    //             longitude: 29
-    //         }, s.ME = {
-    //             latitude: 42.5,
-    //             longitude: 19.4
-    //         }, s.MG = {
-    //             latitude: -20,
-    //             longitude: 47
-    //         }, s.MH = {
-    //             latitude: 9,
-    //             longitude: 168
-    //         }, s.MK = {
-    //             latitude: 41.8333,
-    //             longitude: 22
-    //         }, s.ML = {
-    //             latitude: 17,
-    //             longitude: -4
-    //         }, s.MM = {
-    //             latitude: 22,
-    //             longitude: 98
-    //         }, s.MN = {
-    //             latitude: 46,
-    //             longitude: 105
-    //         }, s.MO = {
-    //             latitude: 22.1667,
-    //             longitude: 113.55
-    //         }, s.MP = {
-    //             latitude: 15.2,
-    //             longitude: 145.75
-    //         }, s.MQ = {
-    //             latitude: 14.6667,
-    //             longitude: -61
-    //         }, s.MR = {
-    //             latitude: 20,
-    //             longitude: -12
-    //         }, s.MS = {
-    //             latitude: 16.75,
-    //             longitude: -62.2
-    //         }, s.MT = {
-    //             latitude: 35.8333,
-    //             longitude: 14.5833
-    //         }, s.MU = {
-    //             latitude: -20.2833,
-    //             longitude: 57.55
-    //         }, s.MV = {
-    //             latitude: 3.25,
-    //             longitude: 73
-    //         }, s.MW = {
-    //             latitude: -13.5,
-    //             longitude: 34
-    //         }, s.MX = {
-    //             latitude: 23,
-    //             longitude: -102
-    //         }, s.MY = {
-    //             latitude: 2.5,
-    //             longitude: 112.5
-    //         }, s.MZ = {
-    //             latitude: -18.25,
-    //             longitude: 35
-    //         }, s.NA = {
-    //             latitude: -22,
-    //             longitude: 17
-    //         }, s.NC = {
-    //             latitude: -21.5,
-    //             longitude: 165.5
-    //         }, s.NE = {
-    //             latitude: 16,
-    //             longitude: 8
-    //         }, s.NF = {
-    //             latitude: -29.0333,
-    //             longitude: 167.95
-    //         }, s.NG = {
-    //             latitude: 10,
-    //             longitude: 8
-    //         }, s.NI = {
-    //             latitude: 13,
-    //             longitude: -85
-    //         }, s.NL = {
-    //             latitude: 52.5,
-    //             longitude: 5.75
-    //         }, s.NO = {
-    //             latitude: 62,
-    //             longitude: 10
-    //         }, s.NP = {
-    //             latitude: 28,
-    //             longitude: 84
-    //         }, s.NR = {
-    //             latitude: -.5333,
-    //             longitude: 166.9167
-    //         }, s.NU = {
-    //             latitude: -19.0333,
-    //             longitude: -169.8667
-    //         }, s.NZ = {
-    //             latitude: -41,
-    //             longitude: 174
-    //         }, s.OM = {
-    //             latitude: 21,
-    //             longitude: 57
-    //         }, s.PA = {
-    //             latitude: 9,
-    //             longitude: -80
-    //         }, s.PE = {
-    //             latitude: -10,
-    //             longitude: -76
-    //         }, s.PF = {
-    //             latitude: -15,
-    //             longitude: -140
-    //         }, s.PG = {
-    //             latitude: -6,
-    //             longitude: 147
-    //         }, s.PH = {
-    //             latitude: 13,
-    //             longitude: 122
-    //         }, s.PK = {
-    //             latitude: 30,
-    //             longitude: 70
-    //         }, s.PL = {
-    //             latitude: 52,
-    //             longitude: 20
-    //         }, s.PM = {
-    //             latitude: 46.8333,
-    //             longitude: -56.3333
-    //         }, s.PR = {
-    //             latitude: 18.25,
-    //             longitude: -66.5
-    //         }, s.PS = {
-    //             latitude: 32,
-    //             longitude: 35.25
-    //         }, s.PT = {
-    //             latitude: 39.5,
-    //             longitude: -8
-    //         }, s.PW = {
-    //             latitude: 7.5,
-    //             longitude: 134.5
-    //         }, s.PY = {
-    //             latitude: -23,
-    //             longitude: -58
-    //         }, s.QA = {
-    //             latitude: 25.5,
-    //             longitude: 51.25
-    //         }, s.RE = {
-    //             latitude: -21.1,
-    //             longitude: 55.6
-    //         }, s.RO = {
-    //             latitude: 46,
-    //             longitude: 25
-    //         }, s.RS = {
-    //             latitude: 44,
-    //             longitude: 21
-    //         }, s.RU = {
-    //             latitude: 60,
-    //             longitude: 100
-    //         }, s.RW = {
-    //             latitude: -2,
-    //             longitude: 30
-    //         }, s.SA = {
-    //             latitude: 25,
-    //             longitude: 45
-    //         }, s.SB = {
-    //             latitude: -8,
-    //             longitude: 159
-    //         }, s.SC = {
-    //             latitude: -4.5833,
-    //             longitude: 55.6667
-    //         }, s.SD = {
-    //             latitude: 15,
-    //             longitude: 30
-    //         }, s.SE = {
-    //             latitude: 62,
-    //             longitude: 15
-    //         }, s.SG = {
-    //             latitude: 1.3667,
-    //             longitude: 103.8
-    //         }, s.SH = {
-    //             latitude: -15.9333,
-    //             longitude: -5.7
-    //         }, s.SI = {
-    //             latitude: 46,
-    //             longitude: 15
-    //         }, s.SJ = {
-    //             latitude: 78,
-    //             longitude: 20
-    //         }, s.SK = {
-    //             latitude: 48.6667,
-    //             longitude: 19.5
-    //         }, s.SL = {
-    //             latitude: 8.5,
-    //             longitude: -11.5
-    //         }, s.SM = {
-    //             latitude: 43.7667,
-    //             longitude: 12.4167
-    //         }, s.SN = {
-    //             latitude: 14,
-    //             longitude: -14
-    //         }, s.SO = {
-    //             latitude: 10,
-    //             longitude: 49
-    //         };
-    //         s.SR = {
-    //             latitude: 4,
-    //             longitude: -56
-    //         };
-    //         s.ST = {
-    //             latitude: 1,
-    //             longitude: 7
-    //         }, s.SV = {
-    //             latitude: 13.8333,
-    //             longitude: -88.9167
-    //         }, s.SY = {
-    //             latitude: 35,
-    //             longitude: 38
-    //         }, s.SZ = {
-    //             latitude: -26.5,
-    //             longitude: 31.5
-    //         }, s.TC = {
-    //             latitude: 21.75,
-    //             longitude: -71.5833
-    //         }, s.TD = {
-    //             latitude: 15,
-    //             longitude: 19
-    //         }, s.TF = {
-    //             latitude: -43,
-    //             longitude: 67
-    //         }, s.TG = {
-    //             latitude: 8,
-    //             longitude: 1.1667
-    //         }, s.TH = {
-    //             latitude: 15,
-    //             longitude: 100
-    //         }, s.TJ = {
-    //             latitude: 39,
-    //             longitude: 71
-    //         }, s.TK = {
-    //             latitude: -9,
-    //             longitude: -172
-    //         }, s.TM = {
-    //             latitude: 40,
-    //             longitude: 60
-    //         }, s.TN = {
-    //             latitude: 34,
-    //             longitude: 9
-    //         }, s.TO = {
-    //             latitude: -20,
-    //             longitude: -175
-    //         }, s.TR = {
-    //             latitude: 39,
-    //             longitude: 35
-    //         }, s.TT = {
-    //             latitude: 11,
-    //             longitude: -61
-    //         }, s.TV = {
-    //             latitude: -8,
-    //             longitude: 178
-    //         }, s.TW = {
-    //             latitude: 23.5,
-    //             longitude: 121
-    //         }, s.TZ = {
-    //             latitude: -6,
-    //             longitude: 35
-    //         }, s.UA = {
-    //             latitude: 49,
-    //             longitude: 32
-    //         }, s.UG = {
-    //             latitude: 1,
-    //             longitude: 32
-    //         }, s.UM = {
-    //             latitude: 19.2833,
-    //             longitude: 166.6
-    //         }, s.US = {
-    //             latitude: 38,
-    //             longitude: -97
-    //         }, s.UY = {
-    //             latitude: -33,
-    //             longitude: -56
-    //         }, s.UZ = {
-    //             latitude: 41,
-    //             longitude: 64
-    //         }, s.VA = {
-    //             latitude: 41.9,
-    //             longitude: 12.45
-    //         }, s.VC = {
-    //             latitude: 13.25,
-    //             longitude: -61.2
-    //         }, s.VE = {
-    //             latitude: 8,
-    //             longitude: -66
-    //         }, s.VG = {
-    //             latitude: 18.5,
-    //             longitude: -64.5
-    //         }, s.VI = {
-    //             latitude: 18.3333,
-    //             longitude: -64.8333
-    //         }, s.VN = {
-    //             latitude: 16,
-    //             longitude: 106
-    //         }, s.VU = {
-    //             latitude: -16,
-    //             longitude: 167
-    //         }, s.WF = {
-    //             latitude: -13.3,
-    //             longitude: -176.2
-    //         }, s.WS = {
-    //             latitude: -13.5833,
-    //             longitude: -172.3333
-    //         }, s.YE = {
-    //             latitude: 15,
-    //             longitude: 48
-    //         }, s.YT = {
-    //             latitude: -12.8333,
-    //             longitude: 45.1667
-    //         }, s.ZA = {
-    //             latitude: -29,
-    //             longitude: 24
-    //         }, s.ZM = {
-    //             latitude: -15,
-    //             longitude: 30
-    //         }, s.ZW = {
-    //             latitude: -20,
-    //             longitude: 30
-    //         };
-    //         for (var l, o = [{
-    //                 code: "AF",
-    //                 name: "Afghanistan",
-    //                 value: 32358260,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "AL",
-    //                 name: "Albania",
-    //                 value: 3215988,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "DZ",
-    //                 name: "Algeria",
-    //                 value: 35980193,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "AO",
-    //                 name: "Angola",
-    //                 value: 19618432,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "AR",
-    //                 name: "Argentina",
-    //                 value: 40764561,
-    //                 color: i.success
-    //             }, {
-    //                 code: "AM",
-    //                 name: "Armenia",
-    //                 value: 3100236,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "AU",
-    //                 name: "Australia",
-    //                 value: 22605732,
-    //                 color: i.warningDark
-    //             }, {
-    //                 code: "AT",
-    //                 name: "Austria",
-    //                 value: 8413429,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "AZ",
-    //                 name: "Azerbaijan",
-    //                 value: 9306023,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "BH",
-    //                 name: "Bahrain",
-    //                 value: 1323535,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "BD",
-    //                 name: "Bangladesh",
-    //                 value: 150493658,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "BY",
-    //                 name: "Belarus",
-    //                 value: 9559441,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "BE",
-    //                 name: "Belgium",
-    //                 value: 10754056,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "BJ",
-    //                 name: "Benin",
-    //                 value: 9099922,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "BT",
-    //                 name: "Bhutan",
-    //                 value: 738267,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "BO",
-    //                 name: "Bolivia",
-    //                 value: 10088108,
-    //                 color: i.success
-    //             }, {
-    //                 code: "BA",
-    //                 name: "Bosnia and Herzegovina",
-    //                 value: 3752228,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "BW",
-    //                 name: "Botswana",
-    //                 value: 2030738,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "BR",
-    //                 name: "Brazil",
-    //                 value: 196655014,
-    //                 color: i.success
-    //             }, {
-    //                 code: "BN",
-    //                 name: "Brunei",
-    //                 value: 405938,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "BG",
-    //                 name: "Bulgaria",
-    //                 value: 7446135,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "BF",
-    //                 name: "Burkina Faso",
-    //                 value: 16967845,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "BI",
-    //                 name: "Burundi",
-    //                 value: 8575172,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "KH",
-    //                 name: "Cambodia",
-    //                 value: 14305183,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "CM",
-    //                 name: "Cameroon",
-    //                 value: 20030362,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "CA",
-    //                 name: "Canada",
-    //                 value: 34349561,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "CV",
-    //                 name: "Cape Verde",
-    //                 value: 500585,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "CF",
-    //                 name: "Central African Rep.",
-    //                 value: 4486837,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "TD",
-    //                 name: "Chad",
-    //                 value: 11525496,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "CL",
-    //                 name: "Chile",
-    //                 value: 17269525,
-    //                 color: i.success
-    //             }, {
-    //                 code: "CN",
-    //                 name: "China",
-    //                 value: 1347565324,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "CO",
-    //                 name: "Colombia",
-    //                 value: 46927125,
-    //                 color: i.success
-    //             }, {
-    //                 code: "KM",
-    //                 name: "Comoros",
-    //                 value: 753943,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "CD",
-    //                 name: "Congo, Dem. Rep.",
-    //                 value: 67757577,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "CG",
-    //                 name: "Congo, Rep.",
-    //                 value: 4139748,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "CR",
-    //                 name: "Costa Rica",
-    //                 value: 4726575,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "CI",
-    //                 name: "Cote d'Ivoire",
-    //                 value: 20152894,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "HR",
-    //                 name: "Croatia",
-    //                 value: 4395560,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "CU",
-    //                 name: "Cuba",
-    //                 value: 11253665,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "CY",
-    //                 name: "Cyprus",
-    //                 value: 1116564,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "CZ",
-    //                 name: "Czech Rep.",
-    //                 value: 10534293,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "DK",
-    //                 name: "Denmark",
-    //                 value: 5572594,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "DJ",
-    //                 name: "Djibouti",
-    //                 value: 905564,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "DO",
-    //                 name: "Dominican Rep.",
-    //                 value: 10056181,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "EC",
-    //                 name: "Ecuador",
-    //                 value: 14666055,
-    //                 color: i.success
-    //             }, {
-    //                 code: "EG",
-    //                 name: "Egypt",
-    //                 value: 82536770,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "SV",
-    //                 name: "El Salvador",
-    //                 value: 6227491,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "GQ",
-    //                 name: "Equatorial Guinea",
-    //                 value: 720213,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "ER",
-    //                 name: "Eritrea",
-    //                 value: 5415280,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "EE",
-    //                 name: "Estonia",
-    //                 value: 1340537,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "ET",
-    //                 name: "Ethiopia",
-    //                 value: 84734262,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "FJ",
-    //                 name: "Fiji",
-    //                 value: 868406,
-    //                 color: i.warningDark
-    //             }, {
-    //                 code: "FI",
-    //                 name: "Finland",
-    //                 value: 5384770,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "FR",
-    //                 name: "France",
-    //                 value: 63125894,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "GA",
-    //                 name: "Gabon",
-    //                 value: 1534262,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "GM",
-    //                 name: "Gambia",
-    //                 value: 1776103,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "GE",
-    //                 name: "Georgia",
-    //                 value: 4329026,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "DE",
-    //                 name: "Germany",
-    //                 value: 82162512,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "GH",
-    //                 name: "Ghana",
-    //                 value: 24965816,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "GR",
-    //                 name: "Greece",
-    //                 value: 11390031,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "GT",
-    //                 name: "Guatemala",
-    //                 value: 14757316,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "GN",
-    //                 name: "Guinea",
-    //                 value: 10221808,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "GW",
-    //                 name: "Guinea-Bissau",
-    //                 value: 1547061,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "GY",
-    //                 name: "Guyana",
-    //                 value: 756040,
-    //                 color: i.success
-    //             }, {
-    //                 code: "HT",
-    //                 name: "Haiti",
-    //                 value: 10123787,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "HN",
-    //                 name: "Honduras",
-    //                 value: 7754687,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "HK",
-    //                 name: "Hong Kong, China",
-    //                 value: 7122187,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "HU",
-    //                 name: "Hungary",
-    //                 value: 9966116,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "IS",
-    //                 name: "Iceland",
-    //                 value: 324366,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "IN",
-    //                 name: "India",
-    //                 value: 1241491960,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "ID",
-    //                 name: "Indonesia",
-    //                 value: 242325638,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "IR",
-    //                 name: "Iran",
-    //                 value: 74798599,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "IQ",
-    //                 name: "Iraq",
-    //                 value: 32664942,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "IE",
-    //                 name: "Ireland",
-    //                 value: 4525802,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "IL",
-    //                 name: "Israel",
-    //                 value: 7562194,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "IT",
-    //                 name: "Italy",
-    //                 value: 60788694,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "JM",
-    //                 name: "Jamaica",
-    //                 value: 2751273,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "JP",
-    //                 name: "Japan",
-    //                 value: 126497241,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "JO",
-    //                 name: "Jordan",
-    //                 value: 6330169,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "KZ",
-    //                 name: "Kazakhstan",
-    //                 value: 16206750,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "KE",
-    //                 name: "Kenya",
-    //                 value: 41609728,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "KP",
-    //                 name: "Korea, Dem. Rep.",
-    //                 value: 24451285,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "KR",
-    //                 name: "Korea, Rep.",
-    //                 value: 48391343,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "KW",
-    //                 name: "Kuwait",
-    //                 value: 2818042,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "KG",
-    //                 name: "Kyrgyzstan",
-    //                 value: 5392580,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "LA",
-    //                 name: "Laos",
-    //                 value: 6288037,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "LV",
-    //                 name: "Latvia",
-    //                 value: 2243142,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "LB",
-    //                 name: "Lebanon",
-    //                 value: 4259405,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "LS",
-    //                 name: "Lesotho",
-    //                 value: 2193843,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "LR",
-    //                 name: "Liberia",
-    //                 value: 4128572,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "LY",
-    //                 name: "Libya",
-    //                 value: 6422772,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "LT",
-    //                 name: "Lithuania",
-    //                 value: 3307481,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "LU",
-    //                 name: "Luxembourg",
-    //                 value: 515941,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "MK",
-    //                 name: "Macedonia, FYR",
-    //                 value: 2063893,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "MG",
-    //                 name: "Madagascar",
-    //                 value: 21315135,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "MW",
-    //                 name: "Malawi",
-    //                 value: 15380888,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "MY",
-    //                 name: "Malaysia",
-    //                 value: 28859154,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "ML",
-    //                 name: "Mali",
-    //                 value: 15839538,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "MR",
-    //                 name: "Mauritania",
-    //                 value: 3541540,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "MU",
-    //                 name: "Mauritius",
-    //                 value: 1306593,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "MX",
-    //                 name: "Mexico",
-    //                 value: 114793341,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "MD",
-    //                 name: "Moldova",
-    //                 value: 3544864,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "MN",
-    //                 name: "Mongolia",
-    //                 value: 2800114,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "ME",
-    //                 name: "Montenegro",
-    //                 value: 632261,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "MA",
-    //                 name: "Morocco",
-    //                 value: 32272974,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "MZ",
-    //                 name: "Mozambique",
-    //                 value: 23929708,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "MM",
-    //                 name: "Myanmar",
-    //                 value: 48336763,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "NA",
-    //                 name: "Namibia",
-    //                 value: 2324004,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "NP",
-    //                 name: "Nepal",
-    //                 value: 30485798,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "NL",
-    //                 name: "Netherlands",
-    //                 value: 16664746,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "NZ",
-    //                 name: "New Zealand",
-    //                 value: 4414509,
-    //                 color: i.warningDark
-    //             }, {
-    //                 code: "NI",
-    //                 name: "Nicaragua",
-    //                 value: 5869859,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "NE",
-    //                 name: "Niger",
-    //                 value: 16068994,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "NG",
-    //                 name: "Nigeria",
-    //                 value: 162470737,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "NO",
-    //                 name: "Norway",
-    //                 value: 4924848,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "OM",
-    //                 name: "Oman",
-    //                 value: 2846145,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "PK",
-    //                 name: "Pakistan",
-    //                 value: 176745364,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "PA",
-    //                 name: "Panama",
-    //                 value: 3571185,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "PG",
-    //                 name: "Papua New Guinea",
-    //                 value: 7013829,
-    //                 color: i.warningDark
-    //             }, {
-    //                 code: "PY",
-    //                 name: "Paraguay",
-    //                 value: 6568290,
-    //                 color: i.success
-    //             }, {
-    //                 code: "PE",
-    //                 name: "Peru",
-    //                 value: 29399817,
-    //                 color: i.success
-    //             }, {
-    //                 code: "PH",
-    //                 name: "Philippines",
-    //                 value: 94852030,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "PL",
-    //                 name: "Poland",
-    //                 value: 38298949,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "PT",
-    //                 name: "Portugal",
-    //                 value: 10689663,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "PR",
-    //                 name: "Puerto Rico",
-    //                 value: 3745526,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "QA",
-    //                 name: "Qatar",
-    //                 value: 1870041,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "RO",
-    //                 name: "Romania",
-    //                 value: 21436495,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "RU",
-    //                 name: "Russia",
-    //                 value: 142835555,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "RW",
-    //                 name: "Rwanda",
-    //                 value: 10942950,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "SA",
-    //                 name: "Saudi Arabia",
-    //                 value: 28082541,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "SN",
-    //                 name: "Senegal",
-    //                 value: 12767556,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "RS",
-    //                 name: "Serbia",
-    //                 value: 9853969,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "SL",
-    //                 name: "Sierra Leone",
-    //                 value: 5997486,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "SG",
-    //                 name: "Singapore",
-    //                 value: 5187933,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "SK",
-    //                 name: "Slovak Republic",
-    //                 value: 5471502,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "SI",
-    //                 name: "Slovenia",
-    //                 value: 2035012,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "SB",
-    //                 name: "Solomon Islands",
-    //                 value: 552267,
-    //                 color: i.warningDark
-    //             }, {
-    //                 code: "SO",
-    //                 name: "Somalia",
-    //                 value: 9556873,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "ZA",
-    //                 name: "South Africa",
-    //                 value: 50459978,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "ES",
-    //                 name: "Spain",
-    //                 value: 46454895,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "LK",
-    //                 name: "Sri Lanka",
-    //                 value: 21045394,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "SD",
-    //                 name: "Sudan",
-    //                 value: 34735288,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "SR",
-    //                 name: "Suriname",
-    //                 value: 529419,
-    //                 color: i.success
-    //             }, {
-    //                 code: "SZ",
-    //                 name: "Swaziland",
-    //                 value: 1203330,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "SE",
-    //                 name: "Sweden",
-    //                 value: 9440747,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "CH",
-    //                 name: "Switzerland",
-    //                 value: 7701690,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "SY",
-    //                 name: "Syria",
-    //                 value: 20766037,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "TW",
-    //                 name: "Taiwan",
-    //                 value: 23072e3,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "TJ",
-    //                 name: "Tajikistan",
-    //                 value: 6976958,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "TZ",
-    //                 name: "Tanzania",
-    //                 value: 46218486,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "TH",
-    //                 name: "Thailand",
-    //                 value: 69518555,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "TG",
-    //                 name: "Togo",
-    //                 value: 6154813,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "TT",
-    //                 name: "Trinidad and Tobago",
-    //                 value: 1346350,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "TN",
-    //                 name: "Tunisia",
-    //                 value: 10594057,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "TR",
-    //                 name: "Turkey",
-    //                 value: 73639596,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "TM",
-    //                 name: "Turkmenistan",
-    //                 value: 5105301,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "UG",
-    //                 name: "Uganda",
-    //                 value: 34509205,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "UA",
-    //                 name: "Ukraine",
-    //                 value: 45190180,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "AE",
-    //                 name: "United Arab Emirates",
-    //                 value: 7890924,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "GB",
-    //                 name: "United Kingdom",
-    //                 value: 62417431,
-    //                 color: i.warning
-    //             }, {
-    //                 code: "US",
-    //                 name: "United States",
-    //                 value: 313085380,
-    //                 color: i.primary
-    //             }, {
-    //                 code: "UY",
-    //                 name: "Uruguay",
-    //                 value: 3380008,
-    //                 color: i.success
-    //             }, {
-    //                 code: "UZ",
-    //                 name: "Uzbekistan",
-    //                 value: 27760267,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "VE",
-    //                 name: "Venezuela",
-    //                 value: 29436891,
-    //                 color: i.success
-    //             }, {
-    //                 code: "PS",
-    //                 name: "West Bank and Gaza",
-    //                 value: 4152369,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "VN",
-    //                 name: "Vietnam",
-    //                 value: 88791996,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "YE",
-    //                 name: "Yemen, Rep.",
-    //                 value: 24799880,
-    //                 color: i.primaryDark
-    //             }, {
-    //                 code: "ZM",
-    //                 name: "Zambia",
-    //                 value: 13474959,
-    //                 color: i.danger
-    //             }, {
-    //                 code: "ZW",
-    //                 name: "Zimbabwe",
-    //                 value: 12754378,
-    //                 color: i.danger
-    //             }], n = 3, r = 70, d = 1 / 0, c = -(1 / 0), u = 0; u < o.length; u++) {
-    //             var p = o[u].value;
-    //             p < d && (d = p), p > c && (c = p)
-    //         }
-    //         AmCharts.theme = AmCharts.themes.blur, l = new AmCharts.AmMap, l.addTitle("Population of the World in 2011", 14), l.addTitle("source: Gapminder", 11), l.areasSettings = {
-    //             unlistedAreasColor: "#000000",
-    //             unlistedAreasAlpha: .1
-    //         }, l.imagesSettings.balloonText = '<span style="font-size:14px;"><b>[[title]]</b>: [[value]]</span>', l.pathToImages = t.images.amMap;
-    //         for (var m = {
-    //                 mapVar: AmCharts.maps.worldLow,
-    //                 images: []
-    //             }, g = r * r * 2 * Math.PI, b = n * n * 2 * Math.PI, u = 0; u < o.length; u++) {
-    //             var h = o[u],
-    //                 p = h.value,
-    //                 v = (p - d) / (c - d) * (g - b) + b;
-    //             v < b && (v = b);
-    //             var f = Math.sqrt(v / (2 * Math.PI)),
-    //                 w = h.code;
-    //             m.images.push({
-    //                 type: "circle",
-    //                 width: f,
-    //                 height: f,
-    //                 color: h.color,
-    //                 longitude: s[w].longitude,
-    //                 latitude: s[w].latitude,
-    //                 title: h.name,
-    //                 value: p
-    //             })
-    //         }
-    //         l.dataProvider = m, l.export = {
-    //             enabled: !0
-    //         }, a(function() {
-    //             l.write("map-bubbles")
-    //         }, 100)
-    //     }
-    //     e.$inject = ["baConfig", "$timeout", "layoutPaths"], angular.module("BlurAdmin.pages.maps").controller("MapBubblePageCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t) {
-    //         var i = e.colors,
-    //             s = "M9,0C4.029,0,0,4.029,0,9s4.029,9,9,9s9-4.029,9-9S13.971,0,9,0z M9,15.93 c-3.83,0-6.93-3.1-6.93-6.93S5.17,2.07,9,2.07s6.93,3.1,6.93,6.93S12.83,15.93,9,15.93 M12.5,9c0,1.933-1.567,3.5-3.5,3.5S5.5,10.933,5.5,9S7.067,5.5,9,5.5 S12.5,7.067,12.5,9z",
-    //             l = "M19.671,8.11l-2.777,2.777l-3.837-0.861c0.362-0.505,0.916-1.683,0.464-2.135c-0.518-0.517-1.979,0.278-2.305,0.604l-0.913,0.913L7.614,8.804l-2.021,2.021l2.232,1.061l-0.082,0.082l1.701,1.701l0.688-0.687l3.164,1.504L9.571,18.21H6.413l-1.137,1.138l3.6,0.948l1.83,1.83l0.947,3.598l1.137-1.137V21.43l3.725-3.725l1.504,3.164l-0.687,0.687l1.702,1.701l0.081-0.081l1.062,2.231l2.02-2.02l-0.604-2.689l0.912-0.912c0.326-0.326,1.121-1.789,0.604-2.306c-0.452-0.452-1.63,0.101-2.135,0.464l-0.861-3.838l2.777-2.777c0.947-0.947,3.599-4.862,2.62-5.839C24.533,4.512,20.618,7.163,19.671,8.11z";
-    //         a(function() {
-    //             AmCharts.makeChart("map-lines", {
-    //                 type: "map",
-    //                 theme: "blur",
-    //                 dataProvider: {
-    //                     map: "worldLow",
-    //                     linkToObject: "london",
-    //                     images: [{
-    //                         id: "london",
-    //                         svgPath: s,
-    //                         title: "London",
-    //                         latitude: 51.5002,
-    //                         longitude: -.1262,
-    //                         scale: 1.5,
-    //                         zoomLevel: 2.74,
-    //                         zoomLongitude: -20.1341,
-    //                         zoomLatitude: 49.1712,
-    //                         lines: [{
-    //                             latitudes: [51.5002, 50.4422],
-    //                             longitudes: [-.1262, 30.5367]
-    //                         }, {
-    //                             latitudes: [51.5002, 46.948],
-    //                             longitudes: [-.1262, 7.4481]
-    //                         }, {
-    //                             latitudes: [51.5002, 59.3328],
-    //                             longitudes: [-.1262, 18.0645]
-    //                         }, {
-    //                             latitudes: [51.5002, 40.4167],
-    //                             longitudes: [-.1262, -3.7033]
-    //                         }, {
-    //                             latitudes: [51.5002, 46.0514],
-    //                             longitudes: [-.1262, 14.506]
-    //                         }, {
-    //                             latitudes: [51.5002, 48.2116],
-    //                             longitudes: [-.1262, 17.1547]
-    //                         }, {
-    //                             latitudes: [51.5002, 44.8048],
-    //                             longitudes: [-.1262, 20.4781]
-    //                         }, {
-    //                             latitudes: [51.5002, 55.7558],
-    //                             longitudes: [-.1262, 37.6176]
-    //                         }, {
-    //                             latitudes: [51.5002, 38.7072],
-    //                             longitudes: [-.1262, -9.1355]
-    //                         }, {
-    //                             latitudes: [51.5002, 54.6896],
-    //                             longitudes: [-.1262, 25.2799]
-    //                         }, {
-    //                             latitudes: [51.5002, 64.1353],
-    //                             longitudes: [-.1262, -21.8952]
-    //                         }, {
-    //                             latitudes: [51.5002, 40.43],
-    //                             longitudes: [-.1262, -74]
-    //                         }],
-    //                         images: [{
-    //                             label: "Flights from London",
-    //                             svgPath: l,
-    //                             left: 100,
-    //                             top: 45,
-    //                             labelShiftY: 5,
-    //                             labelShiftX: 5,
-    //                             color: i.defaultText,
-    //                             labelColor: i.defaultText,
-    //                             labelRollOverColor: i.defaultText,
-    //                             labelFontSize: 20
-    //                         }, {
-    //                             label: "show flights from Vilnius",
-    //                             left: 106,
-    //                             top: 70,
-    //                             labelColor: i.defaultText,
-    //                             labelRollOverColor: i.defaultText,
-    //                             labelFontSize: 11,
-    //                             linkToObject: "vilnius"
-    //                         }]
-    //                     }, {
-    //                         id: "vilnius",
-    //                         svgPath: s,
-    //                         title: "Vilnius",
-    //                         latitude: 54.6896,
-    //                         longitude: 25.2799,
-    //                         scale: 1.5,
-    //                         zoomLevel: 4.92,
-    //                         zoomLongitude: 15.4492,
-    //                         zoomLatitude: 50.2631,
-    //                         lines: [{
-    //                             latitudes: [54.6896, 50.8371],
-    //                             longitudes: [25.2799, 4.3676]
-    //                         }, {
-    //                             latitudes: [54.6896, 59.9138],
-    //                             longitudes: [25.2799, 10.7387]
-    //                         }, {
-    //                             latitudes: [54.6896, 40.4167],
-    //                             longitudes: [25.2799, -3.7033]
-    //                         }, {
-    //                             latitudes: [54.6896, 50.0878],
-    //                             longitudes: [25.2799, 14.4205]
-    //                         }, {
-    //                             latitudes: [54.6896, 48.2116],
-    //                             longitudes: [25.2799, 17.1547]
-    //                         }, {
-    //                             latitudes: [54.6896, 44.8048],
-    //                             longitudes: [25.2799, 20.4781]
-    //                         }, {
-    //                             latitudes: [54.6896, 55.7558],
-    //                             longitudes: [25.2799, 37.6176]
-    //                         }, {
-    //                             latitudes: [54.6896, 37.9792],
-    //                             longitudes: [25.2799, 23.7166]
-    //                         }, {
-    //                             latitudes: [54.6896, 54.6896],
-    //                             longitudes: [25.2799, 25.2799]
-    //                         }, {
-    //                             latitudes: [54.6896, 51.5002],
-    //                             longitudes: [25.2799, -.1262]
-    //                         }, {
-    //                             latitudes: [54.6896, 53.3441],
-    //                             longitudes: [25.2799, -6.2675]
-    //                         }],
-    //                         images: [{
-    //                             label: "Flights from Vilnius",
-    //                             svgPath: l,
-    //                             left: 100,
-    //                             top: 45,
-    //                             labelShiftY: 5,
-    //                             labelShiftX: 5,
-    //                             color: i.defaultText,
-    //                             labelColor: i.defaultText,
-    //                             labelRollOverColor: i.defaultText,
-    //                             labelFontSize: 20
-    //                         }, {
-    //                             label: "show flights from London",
-    //                             left: 106,
-    //                             top: 70,
-    //                             labelColor: i.defaultText,
-    //                             labelRollOverColor: i.defaultText,
-    //                             labelFontSize: 11,
-    //                             linkToObject: "london"
-    //                         }]
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Brussels",
-    //                         latitude: 50.8371,
-    //                         longitude: 4.3676
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Prague",
-    //                         latitude: 50.0878,
-    //                         longitude: 14.4205
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Athens",
-    //                         latitude: 37.9792,
-    //                         longitude: 23.7166
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Reykjavik",
-    //                         latitude: 64.1353,
-    //                         longitude: -21.8952
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Dublin",
-    //                         latitude: 53.3441,
-    //                         longitude: -6.2675
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Oslo",
-    //                         latitude: 59.9138,
-    //                         longitude: 10.7387
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Lisbon",
-    //                         latitude: 38.7072,
-    //                         longitude: -9.1355
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Moscow",
-    //                         latitude: 55.7558,
-    //                         longitude: 37.6176
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Belgrade",
-    //                         latitude: 44.8048,
-    //                         longitude: 20.4781
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Bratislava",
-    //                         latitude: 48.2116,
-    //                         longitude: 17.1547
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Ljubljana",
-    //                         latitude: 46.0514,
-    //                         longitude: 14.506
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Madrid",
-    //                         latitude: 40.4167,
-    //                         longitude: -3.7033
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Stockholm",
-    //                         latitude: 59.3328,
-    //                         longitude: 18.0645
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Bern",
-    //                         latitude: 46.948,
-    //                         longitude: 7.4481
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Kiev",
-    //                         latitude: 50.4422,
-    //                         longitude: 30.5367
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "Paris",
-    //                         latitude: 48.8567,
-    //                         longitude: 2.351
-    //                     }, {
-    //                         svgPath: s,
-    //                         title: "New York",
-    //                         latitude: 40.43,
-    //                         longitude: -74
-    //                     }]
-    //                 },
-    //                 areasSettings: {
-    //                     unlistedAreasColor: i.info
-    //                 },
-    //                 imagesSettings: {
-    //                     color: i.warningLight,
-    //                     selectedColor: i.warning
-    //                 },
-    //                 linesSettings: {
-    //                     color: i.warningLight,
-    //                     alpha: .8
-    //                 },
-    //                 backgroundZoomsToTop: !0,
-    //                 linesAboveImages: !0,
-    //                 export: {
-    //                     enabled: !0
-    //                 },
-    //                 pathToImages: t.images.amMap
-    //             })
-    //         }, 100)
-    //     }
-    //     e.$inject = ["baConfig", "$timeout", "layoutPaths"], angular.module("BlurAdmin.pages.maps").controller("MapLinesPageCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a) {
-    //         e.progressFunction = function() {
-    //             return a(function() {}, 3e3)
-    //         }
-    //     }
-    //     e.$inject = ["$scope", "$timeout"], angular.module("BlurAdmin.pages.ui.buttons").controller("ButtonPageCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e) {
-    //         e.icons = {
-    //             kameleonIcons: [{
-    //                 name: "Beach",
-    //                 img: "Beach"
-    //             }, {
-    //                 name: "Bus",
-    //                 img: "Bus"
-    //             }, {
-    //                 name: "Cheese",
-    //                 img: "Cheese"
-    //             }, {
-    //                 name: "Desert",
-    //                 img: "Desert"
-    //             }, {
-    //                 name: "Images",
-    //                 img: "Images"
-    //             }, {
-    //                 name: "Magician",
-    //                 img: "Magician"
-    //             }, {
-    //                 name: "Makeup",
-    //                 img: "Makeup"
-    //             }, {
-    //                 name: "Programming",
-    //                 img: "Programming"
-    //             }, {
-    //                 name: "Shop",
-    //                 img: "Shop"
-    //             }, {
-    //                 name: "Surfer",
-    //                 img: "Surfer"
-    //             }, {
-    //                 name: "Phone Booth",
-    //                 img: "Phone-Booth"
-    //             }, {
-    //                 name: "Ninja",
-    //                 img: "Ninja"
-    //             }, {
-    //                 name: "Apartment",
-    //                 img: "Apartment"
-    //             }, {
-    //                 name: "Batman",
-    //                 img: "Batman"
-    //             }, {
-    //                 name: "Medal",
-    //                 img: "Medal-2"
-    //             }, {
-    //                 name: "Money",
-    //                 img: "Money-Increase"
-    //             }, {
-    //                 name: "Street View",
-    //                 img: "Street-View"
-    //             }, {
-    //                 name: "Student",
-    //                 img: "Student-3"
-    //             }, {
-    //                 name: "Bell",
-    //                 img: "Bell"
-    //             }, {
-    //                 name: "Woman",
-    //                 img: "Boss-5"
-    //             }, {
-    //                 name: "Euro",
-    //                 img: "Euro-Coin"
-    //             }, {
-    //                 name: "Chessboard",
-    //                 img: "Chessboard"
-    //             }, {
-    //                 name: "Burglar",
-    //                 img: "Burglar"
-    //             }, {
-    //                 name: "Dna",
-    //                 img: "Dna"
-    //             }, {
-    //                 name: "Clipboard Plan",
-    //                 img: "Clipboard-Plan"
-    //             }, {
-    //                 name: "Boss",
-    //                 img: "Boss-3"
-    //             }, {
-    //                 name: "Key",
-    //                 img: "Key"
-    //             }, {
-    //                 name: "Surgeon",
-    //                 img: "Surgeon"
-    //             }, {
-    //                 name: "Hacker",
-    //                 img: "Hacker"
-    //             }, {
-    //                 name: "Santa",
-    //                 img: "Santa"
-    //             }],
-    //             kameleonRoundedIcons: [{
-    //                 color: "success",
-    //                 img: "Apartment",
-    //                 name: "Apartment"
-    //             }, {
-    //                 color: "warning",
-    //                 img: "Bus",
-    //                 name: "Bus"
-    //             }, {
-    //                 color: "primary",
-    //                 img: "Checklist",
-    //                 name: "Checklist"
-    //             }, {
-    //                 color: "warning",
-    //                 img: "Desert",
-    //                 name: "Desert"
-    //             }, {
-    //                 color: "danger",
-    //                 img: "Laptop-Signal",
-    //                 name: "Laptop Signal"
-    //             }, {
-    //                 color: "info",
-    //                 img: "Love-Letter",
-    //                 name: "Love Letter"
-    //             }, {
-    //                 color: "success",
-    //                 img: "Makeup",
-    //                 name: "Makeup"
-    //             }, {
-    //                 color: "primary",
-    //                 img: "Santa",
-    //                 name: "Santa"
-    //             }, {
-    //                 color: "success",
-    //                 img: "Surfer",
-    //                 name: "Surfer"
-    //             }, {
-    //                 color: "info",
-    //                 img: "Vector",
-    //                 name: "Vector"
-    //             }, {
-    //                 color: "warning",
-    //                 img: "Money-Increase",
-    //                 name: "Money Increase"
-    //             }, {
-    //                 color: "info",
-    //                 img: "Alien",
-    //                 name: "Alien"
-    //             }, {
-    //                 color: "danger",
-    //                 img: "Online-Shopping",
-    //                 name: "Online Shopping"
-    //             }, {
-    //                 color: "warning",
-    //                 img: "Euro-Coin",
-    //                 name: "Euro"
-    //             }, {
-    //                 color: "info",
-    //                 img: "Boss-3",
-    //                 name: "Boss"
-    //             }],
-    //             ionicons: ["ion-ionic", "ion-arrow-right-b", "ion-arrow-down-b", "ion-arrow-left-b", "ion-arrow-up-c", "ion-arrow-right-c", "ion-arrow-down-c", "ion-arrow-left-c", "ion-arrow-return-right", "ion-arrow-return-left", "ion-arrow-swap", "ion-arrow-shrink", "ion-arrow-expand", "ion-arrow-move", "ion-arrow-resize", "ion-chevron-up", "ion-chevron-right", "ion-chevron-down", "ion-chevron-left", "ion-navicon-round", "ion-navicon", "ion-drag", "ion-log-in", "ion-log-out", "ion-checkmark-round", "ion-checkmark", "ion-checkmark-circled", "ion-close-round", "ion-plus-round", "ion-minus-round", "ion-information", "ion-help", "ion-backspace-outline", "ion-help-buoy", "ion-asterisk", "ion-alert", "ion-alert-circled", "ion-refresh", "ion-loop", "ion-shuffle", "ion-home", "ion-search", "ion-flag", "ion-star", "ion-heart", "ion-heart-broken", "ion-gear-a", "ion-gear-b", "ion-toggle-filled", "ion-toggle", "ion-settings", "ion-wrench", "ion-hammer", "ion-edit", "ion-trash-a", "ion-trash-b", "ion-document", "ion-document-text", "ion-clipboard", "ion-scissors", "ion-funnel", "ion-bookmark", "ion-email", "ion-email-unread", "ion-folder", "ion-filing", "ion-archive", "ion-reply", "ion-reply-all", "ion-forward"],
-    //             fontAwesomeIcons: ["fa fa-adjust", "fa fa-anchor", "fa fa-archive", "fa fa-area-chart", "fa fa-arrows", "fa fa-arrows-h", "fa fa-arrows-v", "fa fa-asterisk", "fa fa-at", "fa fa-automobile", "fa fa-ban", "fa fa-bank", "fa fa-bar-chart", "fa fa-bar-chart-o", "fa fa-barcode", "fa fa-bars", "fa fa-bed", "fa fa-beer", "fa fa-bell", "fa fa-bell-o", "fa fa-bell-slash", "fa fa-bell-slash-o", "fa fa-bicycle", "fa fa-binoculars", "fa fa-birthday-cake", "fa fa-bolt", "fa fa-bomb", "fa fa-book", "fa fa-bookmark", "fa fa-bookmark-o", "fa fa-briefcase", "fa fa-bug", "fa fa-building", "fa fa-building-o", "fa fa-bullhorn"],
-    //             socicon: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", ",", ";", ":", "+", "@", "=", "-", "^", "?", "$", "*", "&", "(", "#", ".", "_", "]", ")", "'", '"', "}", "{"]
-    //         }
-    //     }
-    //     e.$inject = ["$scope"], angular.module("BlurAdmin.pages.ui.icons").controller("IconsPageCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t) {
-    //         e.open = function(t, i) {
-    //             a.open({
-    //                 animation: !0,
-    //                 templateUrl: t,
-    //                 size: i,
-    //                 resolve: {
-    //                     items: function() {
-    //                         return e.items
-    //                     }
-    //                 }
-    //             })
-    //         }, e.openProgressDialog = t.open
-    //     }
-    //     e.$inject = ["$scope", "$uibModal", "baProgressModal"], angular.module("BlurAdmin.pages.ui.notifications").controller("ModalsPageCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t) {
-    //         var i = angular.copy(t);
-    //         e.types = ["success", "error", "info", "warning"], e.quotes = [{
-    //             title: "Come to Freenode",
-    //             message: "We rock at <em>#angularjs</em>",
-    //             options: {
-    //                 allowHtml: !0
-    //             }
-    //         }, {
-    //             title: "Looking for bootstrap?",
-    //             message: "Try ui-bootstrap out!"
-    //         }, {
-    //             title: "Wants a better router?",
-    //             message: "We have you covered with ui-router"
-    //         }, {
-    //             title: "Angular 2",
-    //             message: "Is gonna rock the world"
-    //         }, {
-    //             title: null,
-    //             message: "Titles are not always needed"
-    //         }, {
-    //             title: null,
-    //             message: "Toastr rock!"
-    //         }, {
-    //             title: "What about nice html?",
-    //             message: "<strong>Sure you <em>can!</em></strong>",
-    //             options: {
-    //                 allowHtml: !0
-    //             }
-    //         }, {
-    //             title: "Ionic is <em>cool</em>",
-    //             message: "Best mobile framework ever",
-    //             options: {
-    //                 allowHtml: !0
-    //             }
-    //         }];
-    //         var s = [];
-    //         e.options = {
-    //             autoDismiss: !1,
-    //             positionClass: "toast-top-right",
-    //             type: "info",
-    //             timeOut: "5000",
-    //             extendedTimeOut: "2000",
-    //             allowHtml: !1,
-    //             closeButton: !1,
-    //             tapToDismiss: !0,
-    //             progressBar: !1,
-    //             newestOnTop: !0,
-    //             maxOpened: 0,
-    //             preventDuplicates: !1,
-    //             preventOpenDuplicates: !1,
-    //             title: "Some title here",
-    //             msg: "Type your message here"
-    //         }, e.clearLastToast = function() {
-    //             var e = s.pop();
-    //             a.clear(e)
-    //         }, e.clearToasts = function() {
-    //             a.clear()
-    //         }, e.openRandomToast = function() {
-    //             var t = Math.floor(Math.random() * e.types.length),
-    //                 i = Math.floor(Math.random() * e.quotes.length),
-    //                 l = e.types[t],
-    //                 o = e.quotes[i];
-    //             s.push(a[l](o.message, o.title, o.options)), e.optionsStr = "toastr." + l + "('" + o.message + "', '" + o.title + "', " + JSON.stringify(o.options || {}, null, 2) + ")"
-    //         }, e.openToast = function() {
-    //             angular.extend(t, e.options), s.push(a[e.options.type](e.options.msg, e.options.title));
-    //             var i = {};
-    //             for (var l in e.options) "msg" != l && "title" != l && (i[l] = e.options[l]);
-    //             e.optionsStr = "toastr." + e.options.type + "('" + e.options.msg + "', '" + e.options.title + "', " + JSON.stringify(i, null, 2) + ")"
-    //         }, e.$on("$destroy", function() {
-    //             angular.extend(t, i)
-    //         })
-    //     }
-    //     e.$inject = ["$scope", "toastr", "toastrConfig"], angular.module("BlurAdmin.pages.ui.notifications").controller("NotificationsPageCtrl", e)
-    // }(),
+    
     function() {
         "use strict";
 
@@ -6464,59 +2848,59 @@ function() {
             }, e.notifications = [{
                 userId: 0,
                 template: "&name posted a new article.",
-                time: "1 min ago"
+                time: "1 " + words["min"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 1,
                 template: "&name changed his contact information.",
-                time: "2 hrs ago"
+                time: "2 " + words["hrs"][lang] + " " + words["ago"][lang]
             }, {
                 image: "assets/img/shopping-cart.svg",
                 template: "New orders received.",
-                time: "5 hrs ago"
+                time: "5 " + words["hrs"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 2,
                 template: "&name replied to your comment.",
-                time: "1 day ago"
+                time: "1 " + words["day"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 3,
                 template: "Today is &name's birthday.",
-                time: "2 days ago"
+                time: "2 " + words["days"][lang] + " " + words["ago"][lang]
             }, {
                 image: "assets/img/comments.svg",
                 template: "New comments on your post.",
-                time: "3 days ago"
+                time: "3 " + words["days"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 1,
                 template: "&name invited you to join the event.",
-                time: "1 week ago"
+                time: "1 " + words["week"][lang] + " " + words["ago"][lang]
             }], e.messages = [{
                 userId: 3,
                 text: "After you get up and running, you can place Font Awesome icons just about...",
-                time: "1 min ago"
+                time: "1 " + words["min"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 0,
                 text: "You asked, Font Awesome delivers with 40 shiny new icons in version 4.2.",
-                time: "2 hrs ago"
+                time: "2 " + words["hrs"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 1,
                 text: "Want to request new icons? Here's how. Need vectors or want to use on the...",
-                time: "10 hrs ago"
+                time: "10 " + words["hrs"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 2,
                 text: "Explore your passions and discover new ones by getting involved. Stretch your...",
-                time: "1 day ago"
+                time: "1 " + words["day"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 3,
                 text: "Get to know who we are - from the inside out. From our history and culture, to the...",
-                time: "1 day ago"
+                time: "1 " + words["day"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 1,
                 text: "Need some support to reach your goals? Apply for scholarships across a variety of...",
-                time: "2 days ago"
+                time: "2 " + words["days"][lang] + " " + words["ago"][lang]
             }, {
                 userId: 0,
                 text: "Wrap the dropdown's trigger and the dropdown menu within .dropdown, or...",
-                time: "1 week ago"
+                time: "1 " + words["week"][lang] + " " + words["ago"][lang]
             }], e.getMessage = function(t) {
                 var i = t.template;
                 return (t.userId || 0 === t.userId) && (i = i.replace("&name", "<strong>" + e.users[t.userId].name + "</strong>")), a.trustAsHtml(i)
@@ -6624,1110 +3008,7 @@ function() {
         }
         angular.module("BlurAdmin.theme.inputs").directive("baSwitcher", e)
     }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t, i) {
-    //         var s = a.colors,
-    //             l = t[0].getAttribute("id");
-
-
-    //         AmCharts.makeChart(l, {
-    //             type: "serial",
-    //             theme: "blur",
-    //             color: s.defaultText,
-
-    //             dataProvider: [{
-    //                 country: "USA",
-    //                 visits: 3025,
-    //                 color: s.primary
-    //             }, {
-    //                 country: "China",
-    //                 visits: 1882,
-    //                 color: s.danger
-    //             }, {
-    //                 country: "Japan",
-    //                 visits: 1809,
-    //                 color: s.info
-    //             }, {
-    //                 country: "Germany",
-    //                 visits: 1322,
-    //                 color: s.success
-    //             }, {
-    //                 country: "UK",
-    //                 visits: 1122,
-    //                 color: s.warning
-    //             }, {
-    //                 country: "France",
-    //                 visits: 1114,
-    //                 color: s.primaryLight
-    //             }],
-    //             valueAxes: [{
-    //                 axisAlpha: 0,
-    //                 position: "left",
-    //                 title: "Visitors from country",
-    //                 gridAlpha: .5,
-    //                 gridColor: s.border
-    //             }],
-    //             startDuration: 1,
-    //             graphs: [{
-    //                 balloonText: "<b>[[category]]: [[value]]</b>",
-    //                 fillColorsField: "color",
-    //                 fillAlphas: .7,
-    //                 lineAlpha: .2,
-    //                 type: "column",
-    //                 valueField: "visits"
-    //             }],
-    //             chartCursor: {
-    //                 categoryBalloonEnabled: !1,
-    //                 cursorAlpha: 0,
-    //                 zoomable: !1
-    //             },
-    //             categoryField: "country",
-    //             categoryAxis: {
-    //                 gridPosition: "start",
-    //                 labelRotation: 45,
-    //                 gridAlpha: .5,
-    //                 gridColor: s.border
-    //             },
-    //             export: {
-    //                 enabled: !0
-    //             },
-    //             creditsPosition: "top-right",
-    //             pathToImages: i.images.amChart
-    //         })
-    //     }
-
-
-    //     e.$inject = ["$scope", "baConfig", "$element", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("BarChartCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t, i) {
-    //         function s() {
-    //             n.zoomToDates(new Date(2012, 0, 3), new Date(2012, 0, 11))
-    //         }
-    //         var l = a.colors,
-    //             o = t[0].getAttribute("id"),
-    //             n = AmCharts.makeChart(o, {
-    //                 type: "serial",
-    //                 theme: "blur",
-    //                 color: l.defaultText,
-
-
-
-
-    //                 dataProvider: [{
-    //                     lineColor: l.info,
-    //                     date: "2012-01-01",
-    //                     duration: 408
-    //                 }, {
-    //                     date: "2012-01-02",
-    //                     duration: 482
-    //                 }, {
-    //                     date: "2012-01-03",
-    //                     duration: 562
-    //                 }, {
-    //                     date: "2012-01-04",
-    //                     duration: 379
-    //                 }, {
-    //                     lineColor: l.warning,
-    //                     date: "2012-01-05",
-    //                     duration: 501
-    //                 }, {
-    //                     date: "2012-01-06",
-    //                     duration: 443
-    //                 }, {
-    //                     date: "2012-01-07",
-    //                     duration: 405
-    //                 }, {
-    //                     date: "2012-01-08",
-    //                     duration: 309,
-    //                     lineColor: l.danger
-    //                 }, {
-    //                     date: "2012-01-09",
-    //                     duration: 287
-    //                 }, {
-    //                     date: "2012-01-10",
-    //                     duration: 485
-    //                 }, {
-    //                     date: "2012-01-11",
-    //                     duration: 890
-    //                 }, {
-    //                     date: "2012-01-12",
-    //                     duration: 810
-    //                 }],
-    //                 balloon: {
-    //                     cornerRadius: 6,
-    //                     horizontalPadding: 15,
-    //                     verticalPadding: 10
-    //                 },
-    //                 valueAxes: [{
-    //                     duration: "mm",
-    //                     durationUnits: {
-    //                         hh: "h ",
-    //                         mm: "min"
-    //                     },
-    //                     gridAlpha: .5,
-    //                     gridColor: l.border
-    //                 }],
-    //                 graphs: [{
-    //                     bullet: "square",
-    //                     bulletBorderAlpha: 1,
-    //                     bulletBorderThickness: 1,
-    //                     fillAlphas: .5,
-    //                     fillColorsField: "lineColor",
-    //                     legendValueText: "[[value]]",
-    //                     lineColorField: "lineColor",
-    //                     title: "duration",
-    //                     valueField: "duration"
-    //                 }],
-    //                 chartCursor: {
-    //                     categoryBalloonDateFormat: "YYYY MMM DD",
-    //                     cursorAlpha: 0,
-    //                     fullWidth: !0
-    //                 },
-    //                 dataDateFormat: "YYYY-MM-DD",
-    //                 categoryField: "date",
-    //                 categoryAxis: {
-    //                     dateFormats: [{
-    //                         period: "DD",
-    //                         format: "DD"
-    //                     }, {
-    //                         period: "WW",
-    //                         format: "MMM DD"
-    //                     }, {
-    //                         period: "MM",
-    //                         format: "MMM"
-    //                     }, {
-    //                         period: "YYYY",
-    //                         format: "YYYY"
-    //                     }],
-    //                     parseDates: !0,
-    //                     autoGridCount: !1,
-    //                     gridCount: 50,
-    //                     gridAlpha: .5,
-    //                     gridColor: l.border
-    //                 },
-    //                 export: {
-    //                     enabled: !0
-    //                 },
-    //                 pathToImages: i.images.amChart
-    //             });
-    //         n.addListener("dataUpdated", s)
-    //     }
-    //     e.$inject = ["$scope", "baConfig", "$element", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("AreaChartCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t) {
-    //         var i = a.colors,
-    //             s = e[0].getAttribute("id");
-    //         AmCharts.makeChart(s, {
-    //             type: "serial",
-    //             theme: "none",
-    //             color: i.defaultText,
-    //             dataDateFormat: "YYYY-MM-DD",
-    //             precision: 2,
-    //             valueAxes: [{
-    //                 color: i.defaultText,
-    //                 axisColor: i.defaultText,
-    //                 gridColor: i.defaultText,
-    //                 id: "v1",
-    //                 title: "Sales",
-    //                 position: "left",
-    //                 autoGridCount: !1,
-    //                 labelFunction: function(e) {
-    //                     return "$" + Math.round(e) + "M"
-    //                 }
-    //             }, {
-    //                 color: i.defaultText,
-    //                 axisColor: i.defaultText,
-    //                 gridColor: i.defaultText,
-    //                 id: "v2",
-    //                 title: "Market Days",
-    //                 gridAlpha: 0,
-    //                 position: "right",
-    //                 autoGridCount: !1
-    //             }],
-    //             graphs: [{
-    //                 id: "g3",
-    //                 color: i.defaultText,
-    //                 valueAxis: "v1",
-    //                 lineColor: i.primaryLight,
-    //                 fillColors: i.primaryLight,
-    //                 fillAlphas: .8,
-    //                 lineAlpha: .8,
-    //                 type: "column",
-    //                 title: "Actual Sales",
-    //                 valueField: "sales2",
-    //                 clustered: !1,
-    //                 columnWidth: .5,
-    //                 lineColorField: i.defaultText,
-    //                 legendValueText: "$[[value]]M",
-    //                 balloonText: "[[title]]<br/><b style='font-size: 130%'>$[[value]]M</b>"
-    //             }, {
-    //                 id: "g4",
-    //                 valueAxis: "v1",
-    //                 color: i.defaultText,
-    //                 lineColor: i.primary,
-    //                 fillColors: i.primary,
-    //                 fillAlphas: .9,
-    //                 lineAlpha: .9,
-    //                 type: "column",
-    //                 title: "Target Sales",
-    //                 valueField: "sales1",
-    //                 clustered: !1,
-    //                 columnWidth: .3,
-    //                 legendValueText: "$[[value]]M",
-    //                 balloonText: "[[title]]<br/><b style='font-size: 130%'>$[[value]]M</b>"
-    //             }, {
-    //                 id: "g1",
-    //                 valueAxis: "v2",
-    //                 bullet: "round",
-    //                 bulletBorderAlpha: 1,
-    //                 bulletColor: i.defaultText,
-    //                 color: i.defaultText,
-    //                 bulletSize: 5,
-    //                 hideBulletsCount: 50,
-    //                 lineThickness: 2,
-    //                 lineColor: i.danger,
-    //                 type: "smoothedLine",
-    //                 title: "Market Days",
-    //                 useLineColorForBulletBorder: !0,
-    //                 valueField: "market1",
-    //                 balloonText: "[[title]]<br/><b style='font-size: 130%'>[[value]]</b>"
-    //             }, {
-    //                 id: "g2",
-    //                 valueAxis: "v2",
-    //                 color: i.defaultText,
-    //                 bullet: "round",
-    //                 bulletBorderAlpha: 1,
-    //                 bulletColor: i.defaultText,
-    //                 bulletSize: 5,
-    //                 hideBulletsCount: 50,
-    //                 lineThickness: 2,
-    //                 lineColor: i.warning,
-    //                 type: "smoothedLine",
-    //                 dashLength: 5,
-    //                 title: "Market Days ALL",
-    //                 useLineColorForBulletBorder: !0,
-    //                 valueField: "market2",
-    //                 balloonText: "[[title]]<br/><b style='font-size: 130%'>[[value]]</b>"
-    //             }],
-    //             chartScrollbar: {
-    //                 graph: "g1",
-    //                 oppositeAxis: !1,
-    //                 offset: 30,
-    //                 gridAlpha: 0,
-    //                 color: i.defaultText,
-    //                 scrollbarHeight: 50,
-    //                 backgroundAlpha: 0,
-    //                 selectedBackgroundAlpha: .05,
-    //                 selectedBackgroundColor: i.defaultText,
-    //                 graphFillAlpha: 0,
-    //                 autoGridCount: !0,
-    //                 selectedGraphFillAlpha: 0,
-    //                 graphLineAlpha: .2,
-    //                 selectedGraphLineColor: i.defaultText,
-    //                 selectedGraphLineAlpha: 1
-    //             },
-    //             chartCursor: {
-    //                 pan: !0,
-    //                 cursorColor: i.danger,
-    //                 valueLineEnabled: !0,
-    //                 valueLineBalloonEnabled: !0,
-    //                 cursorAlpha: 0,
-    //                 valueLineAlpha: .2
-    //             },
-    //             categoryField: "date",
-    //             categoryAxis: {
-    //                 axisColor: i.defaultText,
-    //                 color: i.defaultText,
-    //                 gridColor: i.defaultText,
-    //                 parseDates: !0,
-    //                 dashLength: 1,
-    //                 minorGridEnabled: !0
-    //             },
-    //             legend: {
-    //                 useGraphSettings: !0,
-    //                 position: "top",
-    //                 color: i.defaultText
-    //             },
-    //             balloon: {
-    //                 borderThickness: 1,
-    //                 shadowAlpha: 0
-    //             },
-    //             export: {
-    //                 enabled: !0
-    //             },
-    //             dataProvider: [{
-    //                 date: "2013-01-16",
-    //                 market1: 71,
-    //                 market2: 75,
-    //                 sales1: 5,
-    //                 sales2: 8
-    //             }, {
-    //                 date: "2013-01-17",
-    //                 market1: 74,
-    //                 market2: 78,
-    //                 sales1: 4,
-    //                 sales2: 6
-    //             }, {
-    //                 date: "2013-01-18",
-    //                 market1: 78,
-    //                 market2: 88,
-    //                 sales1: 5,
-    //                 sales2: 2
-    //             }, {
-    //                 date: "2013-01-19",
-    //                 market1: 85,
-    //                 market2: 89,
-    //                 sales1: 8,
-    //                 sales2: 9
-    //             }, {
-    //                 date: "2013-01-20",
-    //                 market1: 82,
-    //                 market2: 89,
-    //                 sales1: 9,
-    //                 sales2: 6
-    //             }, {
-    //                 date: "2013-01-21",
-    //                 market1: 83,
-    //                 market2: 85,
-    //                 sales1: 3,
-    //                 sales2: 5
-    //             }, {
-    //                 date: "2013-01-22",
-    //                 market1: 88,
-    //                 market2: 92,
-    //                 sales1: 5,
-    //                 sales2: 7
-    //             }, {
-    //                 date: "2013-01-23",
-    //                 market1: 85,
-    //                 market2: 90,
-    //                 sales1: 7,
-    //                 sales2: 6
-    //             }, {
-    //                 date: "2013-01-24",
-    //                 market1: 85,
-    //                 market2: 91,
-    //                 sales1: 9,
-    //                 sales2: 5
-    //             }, {
-    //                 date: "2013-01-25",
-    //                 market1: 80,
-    //                 market2: 84,
-    //                 sales1: 5,
-    //                 sales2: 8
-    //             }, {
-    //                 date: "2013-01-26",
-    //                 market1: 87,
-    //                 market2: 92,
-    //                 sales1: 4,
-    //                 sales2: 8
-    //             }, {
-    //                 date: "2013-01-27",
-    //                 market1: 84,
-    //                 market2: 87,
-    //                 sales1: 3,
-    //                 sales2: 4
-    //             }, {
-    //                 date: "2013-01-28",
-    //                 market1: 83,
-    //                 market2: 88,
-    //                 sales1: 5,
-    //                 sales2: 7
-    //             }, {
-    //                 date: "2013-01-29",
-    //                 market1: 84,
-    //                 market2: 87,
-    //                 sales1: 5,
-    //                 sales2: 8
-    //             }, {
-    //                 date: "2013-01-30",
-    //                 market1: 81,
-    //                 market2: 85,
-    //                 sales1: 4,
-    //                 sales2: 7
-    //             }],
-    //             pathToImages: t.images.amChart
-    //         })
-    //     }
-    //     e.$inject = ["$element", "baConfig", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("combinedChartCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t, i) {
-    //         var s = i.colors,
-    //             l = a[0].getAttribute("id");
-    //         AmCharts.makeChart(l, {
-    //             type: "funnel",
-    //             theme: "blur",
-    //             color: s.defaultText,
-    //             labelTickColor: s.borderDark,
-    //             dataProvider: [{
-    //                 title: "Website visits",
-    //                 value: 300
-    //             }, {
-    //                 title: "Downloads",
-    //                 value: 123
-    //             }, {
-    //                 title: "Requested prices",
-    //                 value: 98
-    //             }, {
-    //                 title: "Contaced",
-    //                 value: 72
-    //             }, {
-    //                 title: "Purchased",
-    //                 value: 35
-    //             }, {
-    //                 title: "Asked for support",
-    //                 value: 25
-    //             }, {
-    //                 title: "Purchased more",
-    //                 value: 18
-    //             }],
-    //             titleField: "title",
-    //             marginRight: 160,
-    //             marginLeft: 15,
-    //             labelPosition: "right",
-    //             funnelAlpha: .9,
-    //             valueField: "value",
-    //             startX: 0,
-    //             alpha: .8,
-    //             neckWidth: "0%",
-    //             startAlpha: 0,
-    //             outlineThickness: 1,
-    //             neckHeight: "0%",
-    //             balloonText: "[[title]]:<b>[[value]]</b>",
-    //             export: {
-    //                 enabled: !0
-    //             },
-    //             creditsPosition: "bottom-left",
-    //             pathToImages: t
-    //         })
-    //     }
-    //     e.$inject = ["$scope", "$element", "layoutPaths", "baConfig"], angular.module("BlurAdmin.pages.charts.amCharts").controller("FunnelChartCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e) {
-    //         var a = e[0].getAttribute("id");
-    //         AmCharts.makeChart(a, {
-    //             type: "gantt",
-    //             theme: "light",
-    //             marginRight: 70,
-    //             period: "hh",
-    //             dataDateFormat: "YYYY-MM-DD",
-    //             balloonDateFormat: "JJ:NN",
-    //             columnWidth: .5,
-    //             valueAxis: {
-    //                 type: "date",
-    //                 minimum: 7,
-    //                 maximum: 31
-    //             },
-    //             brightnessStep: 10,
-    //             graph: {
-    //                 fillAlphas: 1,
-    //                 balloonText: "<b>[[task]]</b>: [[open]] [[value]]"
-    //             },
-    //             rotate: !0,
-    //             categoryField: "category",
-    //             segmentsField: "segments",
-    //             colorField: "color",
-    //             startDate: "2015-01-01",
-    //             startField: "start",
-    //             endField: "end",
-    //             durationField: "duration",
-    //             dataProvider: [{
-    //                 category: "John",
-    //                 segments: [{
-    //                     start: 7,
-    //                     duration: 2,
-    //                     color: "#46615e",
-    //                     task: "Task #1"
-    //                 }, {
-    //                     duration: 2,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     duration: 2,
-    //                     color: "#8dc49f",
-    //                     task: "Task #3"
-    //                 }]
-    //             }, {
-    //                 category: "Smith",
-    //                 segments: [{
-    //                     start: 10,
-    //                     duration: 2,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     duration: 1,
-    //                     color: "#8dc49f",
-    //                     task: "Task #3"
-    //                 }, {
-    //                     duration: 4,
-    //                     color: "#46615e",
-    //                     task: "Task #1"
-    //                 }]
-    //             }, {
-    //                 category: "Ben",
-    //                 segments: [{
-    //                     start: 12,
-    //                     duration: 2,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     start: 16,
-    //                     duration: 2,
-    //                     color: "#FFE4C4",
-    //                     task: "Task #4"
-    //                 }]
-    //             }, {
-    //                 category: "Mike",
-    //                 segments: [{
-    //                     start: 9,
-    //                     duration: 6,
-    //                     color: "#46615e",
-    //                     task: "Task #1"
-    //                 }, {
-    //                     duration: 4,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }]
-    //             }, {
-    //                 category: "Lenny",
-    //                 segments: [{
-    //                     start: 8,
-    //                     duration: 1,
-    //                     color: "#8dc49f",
-    //                     task: "Task #3"
-    //                 }, {
-    //                     duration: 4,
-    //                     color: "#46615e",
-    //                     task: "Task #1"
-    //                 }]
-    //             }, {
-    //                 category: "Scott",
-    //                 segments: [{
-    //                     start: 15,
-    //                     duration: 3,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }]
-    //             }, {
-    //                 category: "Julia",
-    //                 segments: [{
-    //                     start: 9,
-    //                     duration: 2,
-    //                     color: "#46615e",
-    //                     task: "Task #1"
-    //                 }, {
-    //                     duration: 1,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     duration: 8,
-    //                     color: "#8dc49f",
-    //                     task: "Task #3"
-    //                 }]
-    //             }, {
-    //                 category: "Bob",
-    //                 segments: [{
-    //                     start: 9,
-    //                     duration: 8,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     duration: 7,
-    //                     color: "#8dc49f",
-    //                     task: "Task #3"
-    //                 }]
-    //             }, {
-    //                 category: "Kendra",
-    //                 segments: [{
-    //                     start: 11,
-    //                     duration: 8,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     start: 16,
-    //                     duration: 2,
-    //                     color: "#FFE4C4",
-    //                     task: "Task #4"
-    //                 }]
-    //             }, {
-    //                 category: "Tom",
-    //                 segments: [{
-    //                     start: 9,
-    //                     duration: 4,
-    //                     color: "#46615e",
-    //                     task: "Task #1"
-    //                 }, {
-    //                     duration: 3,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     duration: 5,
-    //                     color: "#8dc49f",
-    //                     task: "Task #3"
-    //                 }]
-    //             }, {
-    //                 category: "Kyle",
-    //                 segments: [{
-    //                     start: 6,
-    //                     duration: 3,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }]
-    //             }, {
-    //                 category: "Anita",
-    //                 segments: [{
-    //                     start: 12,
-    //                     duration: 2,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     start: 16,
-    //                     duration: 2,
-    //                     color: "#FFE4C4",
-    //                     task: "Task #4"
-    //                 }]
-    //             }, {
-    //                 category: "Jack",
-    //                 segments: [{
-    //                     start: 8,
-    //                     duration: 10,
-    //                     color: "#46615e",
-    //                     task: "Task #1"
-    //                 }, {
-    //                     duration: 2,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }]
-    //             }, {
-    //                 category: "Kim",
-    //                 segments: [{
-    //                     start: 12,
-    //                     duration: 2,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     duration: 3,
-    //                     color: "#8dc49f",
-    //                     task: "Task #3"
-    //                 }]
-    //             }, {
-    //                 category: "Aaron",
-    //                 segments: [{
-    //                     start: 18,
-    //                     duration: 2,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     duration: 2,
-    //                     color: "#FFE4C4",
-    //                     task: "Task #4"
-    //                 }]
-    //             }, {
-    //                 category: "Alan",
-    //                 segments: [{
-    //                     start: 17,
-    //                     duration: 2,
-    //                     color: "#46615e",
-    //                     task: "Task #1"
-    //                 }, {
-    //                     duration: 2,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     duration: 2,
-    //                     color: "#8dc49f",
-    //                     task: "Task #3"
-    //                 }]
-    //             }, {
-    //                 category: "Ruth",
-    //                 segments: [{
-    //                     start: 13,
-    //                     duration: 2,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     duration: 1,
-    //                     color: "#8dc49f",
-    //                     task: "Task #3"
-    //                 }, {
-    //                     duration: 4,
-    //                     color: "#46615e",
-    //                     task: "Task #1"
-    //                 }]
-    //             }, {
-    //                 category: "Simon",
-    //                 segments: [{
-    //                     start: 10,
-    //                     duration: 3,
-    //                     color: "#727d6f",
-    //                     task: "Task #2"
-    //                 }, {
-    //                     start: 17,
-    //                     duration: 4,
-    //                     color: "#FFE4C4",
-    //                     task: "Task #4"
-    //                 }]
-    //             }],
-    //             valueScrollbar: {
-    //                 autoGridCount: !0
-    //             },
-    //             chartCursor: {
-    //                 cursorColor: "#55bb76",
-    //                 valueBalloonsEnabled: !1,
-    //                 cursorAlpha: 0,
-    //                 valueLineAlpha: .5,
-    //                 valueLineBalloonEnabled: !0,
-    //                 valueLineEnabled: !0,
-    //                 zoomable: !1,
-    //                 valueZoomable: !0
-    //             },
-    //             export: {
-    //                 enabled: !0
-    //             }
-    //         })
-    //     }
-    //     e.$inject = ["$element"], angular.module("BlurAdmin.pages.charts.amCharts").controller("ganttChartCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t, i) {
-    //         function s() {
-    //             n.zoomToIndexes(Math.round(.4 * n.dataProvider.length), Math.round(.55 * n.dataProvider.length))
-    //         }
-    //         var l = a.colors,
-    //             o = t[0].getAttribute("id"),
-    //             n = AmCharts.makeChart(o, {
-    //                 type: "serial",
-    //                 theme: "blur",
-    //                 color: l.defaultText,
-    //                 marginTop: 0,
-    //                 marginRight: 15,
-    //                 dataProvider: [{
-    //                     year: "1990",
-    //                     value: -.17
-    //                 }, {
-    //                     year: "1991",
-    //                     value: -.254
-    //                 }, {
-    //                     year: "1992",
-    //                     value: .019
-    //                 }, {
-    //                     year: "1993",
-    //                     value: -.063
-    //                 }, {
-    //                     year: "1994",
-    //                     value: .005
-    //                 }, {
-    //                     year: "1995",
-    //                     value: .077
-    //                 }, {
-    //                     year: "1996",
-    //                     value: .12
-    //                 }, {
-    //                     year: "1997",
-    //                     value: .011
-    //                 }, {
-    //                     year: "1998",
-    //                     value: .177
-    //                 }, {
-    //                     year: "1999",
-    //                     value: -.021
-    //                 }, {
-    //                     year: "2000",
-    //                     value: -.037
-    //                 }, {
-    //                     year: "2001",
-    //                     value: .03
-    //                 }, {
-    //                     year: "2002",
-    //                     value: .179
-    //                 }, {
-    //                     year: "2003",
-    //                     value: .2
-    //                 }, {
-    //                     year: "2004",
-    //                     value: .18
-    //                 }, {
-    //                     year: "2005",
-    //                     value: .21
-    //                 }],
-    //                 valueAxes: [{
-    //                     axisAlpha: 0,
-    //                     position: "left",
-    //                     gridAlpha: .5,
-    //                     gridColor: l.border
-    //                 }],
-    //                 graphs: [{
-    //                     id: "g1",
-    //                     balloonText: "[[value]]",
-    //                     bullet: "round",
-    //                     bulletSize: 8,
-    //                     lineColor: l.danger,
-    //                     lineThickness: 1,
-    //                     negativeLineColor: l.warning,
-    //                     type: "smoothedLine",
-    //                     valueField: "value"
-    //                 }],
-    //                 chartScrollbar: {
-    //                     graph: "g1",
-    //                     gridAlpha: 0,
-    //                     color: l.defaultText,
-    //                     scrollbarHeight: 55,
-    //                     backgroundAlpha: 0,
-    //                     selectedBackgroundAlpha: .05,
-    //                     selectedBackgroundColor: l.defaultText,
-    //                     graphFillAlpha: 0,
-    //                     autoGridCount: !0,
-    //                     selectedGraphFillAlpha: 0,
-    //                     graphLineAlpha: .2,
-    //                     selectedGraphLineColor: l.defaultText,
-    //                     selectedGraphLineAlpha: 1
-    //                 },
-    //                 chartCursor: {
-    //                     categoryBalloonDateFormat: "YYYY",
-    //                     cursorAlpha: 0,
-    //                     valueLineEnabled: !0,
-    //                     valueLineBalloonEnabled: !0,
-    //                     valueLineAlpha: .5,
-    //                     fullWidth: !0
-    //                 },
-    //                 dataDateFormat: "YYYY",
-    //                 categoryField: "year",
-    //                 categoryAxis: {
-    //                     minPeriod: "YYYY",
-    //                     parseDates: !0,
-    //                     minorGridAlpha: .1,
-    //                     minorGridEnabled: !0,
-    //                     gridAlpha: .5,
-    //                     gridColor: l.border
-    //                 },
-    //                 export: {
-    //                     enabled: !0
-    //                 },
-    //                 creditsPosition: "bottom-right",
-    //                 pathToImages: i.images.amChart
-    //             });
-
-
-
-    //         n.addListener("rendered", s), n.zoomChart && n.zoomChart()
-    //     }
-    //     e.$inject = ["$scope", "baConfig", "$element", "layoutPaths"], angular.module("BlurAdmin.pages.charts.amCharts").controller("LineChartCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t) {
-    //         function i() {
-    //             n.legend.addListener("rollOverItem", s)
-    //         }
-
-    //         function s(e) {
-    //             var a = e.dataItem.wedge.node;
-    //             a.parentNode.appendChild(a)
-    //         }
-    //         var l = t.colors,
-    //             o = e[0].getAttribute("id"),
-    //             n = AmCharts.makeChart(o, {
-    //                 type: "pie",
-    //                 startDuration: 0,
-    //                 theme: "blur",
-    //                 addClassNames: !0,
-    //                 color: l.defaultText,
-    //                 labelTickColor: l.borderDark,
-    //                 legend: {
-    //                     position: "right",
-    //                     marginRight: 100,
-    //                     autoMargins: !1
-    //                 },
-    //                 innerRadius: "40%",
-    //                 defs: {
-    //                     filter: [{
-    //                         id: "shadow",
-    //                         width: "200%",
-    //                         height: "200%",
-    //                         feOffset: {
-    //                             result: "offOut",
-    //                             in: "SourceAlpha",
-    //                             dx: 0,
-    //                             dy: 0
-    //                         },
-    //                         feGaussianBlur: {
-    //                             result: "blurOut",
-    //                             in: "offOut",
-    //                             stdDeviation: 5
-    //                         },
-    //                         feBlend: { in: "SourceGraphic",
-    //                             in2: "blurOut",
-    //                             mode: "normal"
-    //                         }
-    //                     }]
-    //                 },
-
-    //                 dataProvider: [{
-    //                     country: "Lithuania",
-    //                     litres: 501.9
-    //                 }, {
-    //                     country: "Czech Republic",
-    //                     litres: 301.9
-    //                 }, {
-    //                     country: "Ireland",
-    //                     litres: 201.1
-    //                 }, {
-    //                     country: "Germany",
-    //                     litres: 165.8
-    //                 }, {
-    //                     country: "Australia",
-    //                     litres: 139.9
-    //                 }, {
-    //                     country: "Austria",
-    //                     litres: 128.3
-    //                 }, {
-    //                     country: "UK",
-    //                     litres: 99
-    //                 }, {
-    //                     country: "Belgium",
-    //                     litres: 60
-    //                 }],
-    //                 valueField: "litres",
-    //                 titleField: "country",
-    //                 export: {
-    //                     enabled: !0
-    //                 },
-    //                 creditsPosition: "bottom-left",
-    //                 autoMargins: !1,
-    //                 marginTop: 10,
-    //                 alpha: .8,
-    //                 marginBottom: 0,
-    //                 marginLeft: 0,
-    //                 marginRight: 0,
-    //                 pullOutRadius: 0,
-    //                 pathToImages: a.images.amChart,
-    //                 responsive: {
-    //                     enabled: !0,
-    //                     rules: [{
-    //                         maxWidth: 900,
-    //                         overrides: {
-    //                             legend: {
-    //                                 enabled: !1
-    //                             }
-    //                         }
-    //                     }, {
-    //                         maxWidth: 200,
-    //                         overrides: {
-    //                             valueAxes: {
-    //                                 labelsEnabled: !1
-    //                             },
-    //                             marginTop: 30,
-    //                             marginBottom: 30,
-    //                             marginLeft: 30,
-    //                             marginRight: 30
-    //                         }
-    //                     }]
-    //                 }
-    //             });
-    //         n.addListener("init", i), n.addListener("rollOverSlice", function(e) {
-    //             s(e)
-    //         })
-    //     }
-    //     e.$inject = ["$element", "layoutPaths", "baConfig"], angular.module("BlurAdmin.pages.charts.amCharts").controller("PieChartCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a, t) {
-    //         var i = this;
-    //         i.subject = e, i.to = a, i.text = t
-    //     }
-    //     e.$inject = ["subject", "to", "text"], angular.module("BlurAdmin.pages.components.mail").controller("composeBoxCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e) {
-    //         this.open = function(a) {
-    //             return e.open({
-    //                 animation: !1,
-    //                 templateUrl: "app/pages/components/mail/composeBox/compose.html",
-    //                 controller: "composeBoxCtrl",
-    //                 controllerAs: "boxCtrl",
-    //                 size: "compose",
-    //                 resolve: {
-    //                     subject: function() {
-    //                         return a.subject
-    //                     },
-    //                     to: function() {
-    //                         return a.to
-    //                     },
-    //                     text: function() {
-    //                         return a.text
-    //                     }
-    //                 }
-    //             })
-    //         }
-    //     }
-    //     e.$inject = ["$uibModal"], angular.module("BlurAdmin.pages.components.mail").service("composeModal", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a) {
-    //         var t = this;
-    //         t.mail = a.getMessageById(e.id), t.label = e.label
-    //     }
-    //     e.$inject = ["$stateParams", "mailMessages"], angular.module("BlurAdmin.pages.components.mail").controller("MailDetailCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a) {
-    //         var t = this;
-    //         t.messages = a.getMessagesByLabel(e.label), t.label = e.label
-    //     }
-    //     e.$inject = ["$stateParams", "mailMessages"], angular.module("BlurAdmin.pages.components.mail").controller("MailListCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a) {
-    //         a.setProgress(0),
-    //             function t() {
-    //                 a.getProgress() >= 100 ? a.close() : (a.setProgress(a.getProgress() + 10), e(t, 300))
-    //             }()
-    //     }
-    //     e.$inject = ["$timeout", "baProgressModal"], angular.module("BlurAdmin.pages.ui.modals").controller("ProgressModalCtrl", e)
-    // }(),
-    // function() {
-    //     "use strict";
-
-    //     function e(e, a) {
-    //         e.showSuccessMsg = function() {
-    //             a.success("Your information has been saved successfully!")
-    //         }, e.showInfoMsg = function() {
-    //             a.info("You've got a new email!", "Information")
-    //         }, e.showErrorMsg = function() {
-    //             a.error("Your information hasn't been saved!", "Error")
-    //         }, e.showWarningMsg = function() {
-    //             a.warning("Your computer is about to explode!", "Warning")
-    //         }
-    //     }
-    //     e.$inject = ["$scope", "toastr"], angular.module("BlurAdmin.pages.ui.modals").controller("NotificationsCtrl", e)
-    // }(), 
+    
     ! function(e) {
         e.fn.backTop = function(a) {
             var t = this,
@@ -8081,7 +3362,7 @@ function() {
 
 
 
-        e.put("app/pages/dashboard/dashboard.html", '<dashboard-pie-chart></dashboard-pie-chart><div class="row"><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="MUNICIPAL BUDGET" ba-panel-class="medium-panel traffic-panel"><traffic-chart></traffic-chart></div><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="To Do List Tasks" ba-panel-class="medium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div></div><div class="row"><div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="row"><div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12" ba-panel="" ba-panel-title="Revenue" ba-panel-class="medium-panel"><dashboard-line-chart></dashboard-line-chart></div><div class="col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12" ba-panel="" ba-panel-title="My Forms" ba-panel-class="medium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div></div></div><div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12" ba-panel="" ba-panel-title="My Templates" ba-panel-class="medium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div></div><div class="row"><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="Calender" ba-panel-class="xmedium-panel feed-comply-panel with-scroll calendar-panel"><dashboard-calendar></dashboard-calendar></div><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="Feed" ba-panel-class="large-panel with-scroll feed-panel"><blur-feed></blur-feed></div></div>'),
+        e.put("app/pages/dashboard/dashboard.html", '<dashboard-pie-chart></dashboard-pie-chart><div class="row"><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="' + words["MUNICIPAL BUDGET"][lang] + '" ba-panel-class="medium-panel traffic-panel"><traffic-chart></traffic-chart></div><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="' + words["TO DO LIST TASKS"][lang] + '" ba-panel-class="medium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div></div><div class="row"><div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class="row"><div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12" ba-panel="" ba-panel-title="' + words["REVENUE"][lang] + '" ba-panel-class="medium-panel"><dashboard-line-chart></dashboard-line-chart></div><div class="col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12" ba-panel="" ba-panel-title="' + words["MY FORMS"][lang] + '" ba-panel-class="medium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div></div></div><div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12" ba-panel="" ba-panel-title="' + words["MY TEMPLATES"][lang] +'" ba-panel-class="medium-panel feed-comply-panel with-scroll todo-panel"><dashboard-todo></dashboard-todo></div></div><div class="row"><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="' + words["CALENDER"][lang] + '" ba-panel-class="xmedium-panel feed-comply-panel with-scroll calendar-panel"><dashboard-calendar></dashboard-calendar></div><div class="col-lg-6 col-md-12 col-sm-12" ba-panel="" ba-panel-title="' + words["FEED"][lang] + '" ba-panel-class="large-panel with-scroll feed-panel"><blur-feed></blur-feed></div></div>'),
 
 
 
@@ -8091,51 +3372,45 @@ function() {
             e.put("app/pages/form/test/View.php", '<div style="height:1200px; width:80%"><iframe scrolling="No" height="100%" width="80%" id="myFrame1" src="fileupload/View.php"></iframe></div>'),
 
             e.put("app/pages/form/test/test.html", '<style> #contant_form * {background: transparent !important; color:#fff !important;}</style><div class="widgets"><div class="row"><div class="col-md-6"><div ba-panel="" ba-panel-title="Form Collection" ba-panel-class="with-scroll" style="width: 1300px;"><form id="from_table"><div id="contant_form">' + Formdata_contant + '</div><button type="submit" title="Save" class="btn btn-danger" onclick="save_data_post()">Save</button></form></div></div></div>'),
-            e.put("app/pages/profile/profile.html", '<div ba-panel="" ba-panel-class="profile-page"><div class="panel-content"><div class="progress-info">Your profile is 70% Complete</div><div class="progress"><div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div></div><h3 class="with-line">General Information</h3><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputFirstName" class="col-sm-3 control-label">Picture</label><div class="col-sm-9"><div class="userpic"><div class="userpic-wrapper"><img ng-src="{{ picture }}" ng-click="uploadPicture()"></div><i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!noPicture"></i> <a href="" class="change-userpic" ng-click="uploadPicture()">Change Profile Picture</a> <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)"></div></div></div></div><div class="col-md-6"></div></div><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputFirstName" class="col-sm-3 control-label">First Name</label><div class="col-sm-9"><input type="text" class="form-control" id="inputFirstName" placeholder="" value="Anastasiya"></div></div><div class="form-group row clearfix"><label for="inputLastName" class="col-sm-3 control-label">Last Name</label><div class="col-sm-9"><input type="text" class="form-control" id="inputLastName" placeholder="" value=""></div></div></div><div class="col-md-6"><div class="form-group row clearfix"><label class="col-sm-3 control-label">Department</label><div class="col-sm-9"><select class="form-control" selectpicker=""><option>Web Development</option><option>System Development</option><option>Sales</option><option>Human Resources</option></select></div></div><div class="form-group row clearfix"><label for="inputOccupation" class="col-sm-3 control-label">Occupation</label><div class="col-sm-9"><input type="text" class="form-control" id="inputOccupation" placeholder="" value="Front End Web Developer"></div></div></div></div><h3 class="with-line">Change Password</h3><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputPassword" class="col-sm-3 control-label">Password</label><div class="col-sm-9"><input type="password" class="form-control" id="inputPassword" placeholder="" value="12345678"></div></div></div><div class="col-md-6"><div class="form-group row clearfix"><label for="inputConfirmPassword" class="col-sm-3 control-label">Confirm Password</label><div class="col-sm-9"><input type="password" class="form-control" id="inputConfirmPassword" placeholder=""></div></div></div></div><h3 class="with-line">Contact Information</h3><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputEmail3" class="col-sm-3 control-label">Email</label><div class="col-sm-9"><input type="email" class="form-control" id="inputEmail3" placeholder="" value="contact@akveo.com"></div></div><div class="form-group row clearfix"><label for="inputPhone" class="col-sm-3 control-label">Phone</label><div class="col-sm-9"><input type="text" class="form-control" id="inputPhone" placeholder="" value="+1 (23) 456 7890"></div></div></div><div class="col-md-6"><div class="form-group row clearfix"><label class="col-sm-3 control-label">Office Location</label><div class="col-sm-9"><select class="form-control" title="Standard Select" selectpicker=""><option>San Francisco</option><option>London</option><option>Minsk</option><option>Tokio</option></select></div></div><div class="form-group row clearfix"><label for="inputRoom" class="col-sm-3 control-label">Room</label><div class="col-sm-9"><input type="text" class="form-control" id="inputRoom" placeholder="" value="303"></div></div></div></div><h3 class="with-line">Social Profiles</h3><div class="social-profiles row clearfix"><div class="col-md-3 col-sm-4" ng-repeat="item in socialProfiles"><a class="sn-link" href="" ng-click="showModal(item)" ng-if="!item.href"><i class="socicon {{ item.icon }}"></i> <span>{{ item.name }}</span></a> <a class="sn-link connected" href="{{ item.href }}" target="_blank" ng-if="item.href"><i class="socicon {{ item.icon }}"></i> <span>{{ item.name }}</span> <em class="ion-ios-close-empty sn-link-close" ng-mousedown="unconnect(item)"></em></a></div></div><h3 class="with-line">Send Email Notifications</h3><div class="notification row clearfix"><div class="col-sm-6"><div class="form-group row clearfix"><label class="col-xs-8">When I receive a message</label><div class="col-xs-4"><switch color="primary" ng-model="switches[0]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">When Someone sends me an invitation</label><div class="col-xs-4"><switch color="primary" ng-model="switches[1]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">When profile information changes</label><div class="col-xs-4"><switch color="primary" ng-model="switches[2]"></switch></div></div></div><div class="col-sm-6"><div class="form-group row clearfix"><label class="col-xs-8">When anyone logs into your account from a new device or browser</label><div class="col-xs-4"><switch color="primary" ng-model="switches[3]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">Weekly Reports</label><div class="col-xs-4"><switch color="primary" ng-model="switches[4]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">Daily Reports</label><div class="col-xs-4"><switch color="primary" ng-model="switches[5]"></switch></div></div></div></div><button type="button" class="btn btn-primary btn-with-icon save-profile"><i class="ion-android-checkmark-circle"></i>Update Profile</button></div></div>'),
+            e.put("app/pages/profile/profile.html", '<div ba-panel="" ba-panel-class="profile-page"><div class="panel-content"><div class="progress-info">' + words["Your profile is 70% Complete"][lang] + '</div><div class="progress"><div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div></div><h3 class="with-line">' + words["General Information"][lang] + '</h3><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputFirstName" class="col-sm-3 control-label">' + words["Picture"][lang] + '</label><div class="col-sm-9"><div class="userpic"><div class="userpic-wrapper"><img ng-src="{{ picture }}" ng-click="uploadPicture()"></div><i class="ion-ios-close-outline" ng-click="removePicture()" ng-if="!noPicture"></i> <a href="" class="change-userpic" ng-click="uploadPicture()">Change Profile Picture</a> <input type="file" ng-show="false" id="uploadFile" ng-file-select="onFileSelect($files)"></div></div></div></div><div class="col-md-6"></div></div><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputFirstName" class="col-sm-3 control-label">' + words["First Name"][lang] + '</label><div class="col-sm-9"><input type="text" class="form-control" id="inputFirstName" placeholder="" value="Anastasiya"></div></div><div class="form-group row clearfix"><label for="inputLastName" class="col-sm-3 control-label">' + words["Last Name"][lang] + '</label><div class="col-sm-9"><input type="text" class="form-control" id="inputLastName" placeholder="" value=""></div></div></div><div class="col-md-6"><div class="form-group row clearfix"><label class="col-sm-3 control-label">' + words["Department"][lang] + '</label><div class="col-sm-9"><select class="form-control" selectpicker=""><option>' + words["Web Development"][lang] + '</option><option>' + words["System Development"][lang] + '</option><option>' + words["Sales"][lang] + '</option><option>' + words["Human Resources"][lang] + '</option></select></div></div><div class="form-group row clearfix"><label for="inputOccupation" class="col-sm-3 control-label">' + words["Occupation"][lang] + '</label><div class="col-sm-9"><input type="text" class="form-control" id="inputOccupation" placeholder="" value="' + words["Front End Web Developer"][lang] + '"></div></div></div></div><h3 class="with-line">' + words["Change Password"][lang] + '</h3><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputPassword" class="col-sm-3 control-label">' + words["Password"][lang] + '</label><div class="col-sm-9"><input type="password" class="form-control" id="inputPassword" placeholder="" value="12345678"></div></div></div><div class="col-md-6"><div class="form-group row clearfix"><label for="inputConfirmPassword" class="col-sm-3 control-label">' + words["Confirm Password"][lang] + '</label><div class="col-sm-9"><input type="password" class="form-control" id="inputConfirmPassword" placeholder=""></div></div></div></div><h3 class="with-line">' + words["Contact Information"][lang] + '</h3><div class="row"><div class="col-md-6"><div class="form-group row clearfix"><label for="inputEmail3" class="col-sm-3 control-label">' + words['Email'][lang] + '</label><div class="col-sm-9"><input type="email" class="form-control" id="inputEmail3" placeholder="" value="contact@akveo.com"></div></div><div class="form-group row clearfix"><label for="inputPhone" class="col-sm-3 control-label">' + words['Phone'][lang] + '</label><div class="col-sm-9"><input type="text" class="form-control" id="inputPhone" placeholder="" value="+1 (23) 456 7890"></div></div></div><div class="col-md-6"><div class="form-group row clearfix"><label class="col-sm-3 control-label">' + words['Office Location'][lang] + '</label><div class="col-sm-9"><select class="form-control" title="Standard Select" selectpicker=""><option>San Francisco</option><option>London</option><option>Minsk</option><option>Tokio</option></select></div></div><div class="form-group row clearfix"><label for="inputRoom" class="col-sm-3 control-label">' + words['Room'][lang] + '</label><div class="col-sm-9"><input type="text" class="form-control" id="inputRoom" placeholder="" value="303"></div></div></div></div><h3 class="with-line">' + words['Social Profiles'][lang] + '</h3><div class="social-profiles row clearfix"><div class="col-md-3 col-sm-4" ng-repeat="item in socialProfiles"><a class="sn-link" href="" ng-click="showModal(item)" ng-if="!item.href"><i class="socicon {{ item.icon }}"></i> <span>{{ item.name }}</span></a> <a class="sn-link connected" href="{{ item.href }}" target="_blank" ng-if="item.href"><i class="socicon {{ item.icon }}"></i> <span>{{ item.name }}</span> <em class="ion-ios-close-empty sn-link-close" ng-mousedown="unconnect(item)"></em></a></div></div><h3 class="with-line">' + words['Send Email Notifications'][lang] + '</h3><div class="notification row clearfix"><div class="col-sm-6"><div class="form-group row clearfix"><label class="col-xs-8">' + words['When I receive a message'][lang] + '</label><div class="col-xs-4"><switch color="primary" ng-model="switches[0]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">' + words['When Someone sends me an invitation'][lang] + '</label><div class="col-xs-4"><switch color="primary" ng-model="switches[1]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">' + words['When profile information changes'][lang] + '</label><div class="col-xs-4"><switch color="primary" ng-model="switches[2]"></switch></div></div></div><div class="col-sm-6"><div class="form-group row clearfix"><label class="col-xs-8">' + words['When anyone logs into your account from a new device or browser'][lang] + '</label><div class="col-xs-4"><switch color="primary" ng-model="switches[3]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">' + words['Weekly Reports'][lang] + '</label><div class="col-xs-4"><switch color="primary" ng-model="switches[4]"></switch></div></div><div class="form-group row clearfix"><label class="col-xs-8">' + words['Daily Reports'][lang] + '</label><div class="col-xs-4"><switch color="primary" ng-model="switches[5]"></switch></div></div></div></div><button type="button" class="btn btn-primary btn-with-icon save-profile"><i class="ion-android-checkmark-circle"></i>' + words['Update Profile'][lang] + '</button></div></div>'),
             e.put("app/pages/profile/profileModal.html", '<div class="modal-content"><div class="modal-header"><button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><em class="ion-ios-close-empty sn-link-close"></em></button><h4 class="modal-title" id="myModalLabel">Add Account</h4></div><form name="linkForm"><div class="modal-body"><p>Paste a link to your profile into the box below</p><div class="form-group"><input type="text" class="form-control" placeholder="Link to Profile" ng-model="link"></div></div><div class="modal-footer"><button type="button" class="btn btn-primary" ng-click="ok(link)">Save changes</button></div></form></div>'),
             e.put("app/theme/components/backTop/backTop.html", '<i class="fa fa-angle-up back-top" id="backTop" title="Back to Top"></i>'),
             e.put("app/theme/components/baSidebar/ba-sidebar.html", '<aside class="al-sidebar" ng-swipe-right="$baSidebarService.setMenuCollapsed(false)" ng-swipe-left="$baSidebarService.setMenuCollapsed(true)" ng-mouseleave="hoverElemTop=selectElemTop"><ul class="al-sidebar-list" slimscroll="{height: \'{{menuHeight}}px\'}" slimscroll-watch="menuHeight"><li ng-repeat="item in ::menuItems" class="al-sidebar-list-item" ng-class="::{\'with-sub-menu\': item.subMenu}" ui-sref-active="selected" ba-sidebar-toggling-item="item"><a ng-mouseenter="hoverItem($event, item)" ui-state="item.stateRef || \'\'" ng-href="{{::(item.fixedHref ? item.fixedHref: \'\')}}" ng-if="::!item.subMenu" class="al-sidebar-list-link"><i class="{{ ::item.icon }}"></i><span>{{ ::item.title }}</span></a> <a ng-mouseenter="hoverItem($event, item)" ng-if="::item.subMenu" class="al-sidebar-list-link" ba-ui-sref-toggler=""><i class="{{ ::item.icon }}"></i><span>{{ ::item.title }}</span> <b class="fa fa-angle-down" ui-sref-active="fa-angle-up" ng-if="::item.subMenu"></b></a><ul ng-if="::item.subMenu" class="al-sidebar-sublist" ng-class="{\'slide-right\': item.slideRight}" ba-ui-sref-toggling-submenu=""><li ng-repeat="subitem in ::item.subMenu" ng-class="::{\'with-sub-menu\': subitem.subMenu}" ui-sref-active="selected" ba-sidebar-toggling-item="subitem" class="ba-sidebar-sublist-item"><a ng-mouseenter="hoverItem($event, item)" ng-if="::subitem.subMenu" ba-ui-sref-toggler="" class="al-sidebar-list-link subitem-submenu-link"><span>{{ ::subitem.title }}</span> <b class="fa" ng-class="{\'fa-angle-up\': subitem.expanded, \'fa-angle-down\': !subitem.expanded}" ng-if="::subitem.subMenu"></b></a><ul ng-if="::subitem.subMenu" class="al-sidebar-sublist subitem-submenu-list" ng-class="{expanded: subitem.expanded, \'slide-right\': subitem.slideRight}" ba-ui-sref-toggling-submenu=""><li ng-mouseenter="hoverItem($event, item)" ng-repeat="subSubitem in ::subitem.subMenu" ui-sref-active="selected"><a ng-mouseenter="hoverItem($event, item)" href="" ng-if="::subSubitem.disabled" class="al-sidebar-list-link">{{ ::subSubitem.title }}</a> <a ng-mouseenter="hoverItem($event, item)" ui-state="subSubitem.stateRef || \'\'" ng-if="::!subSubitem.disabled" ng-href="{{::(subSubitem.fixedHref ? subSubitem.fixedHref: \'\')}}">{{::subSubitem.title }}</a></li></ul><a ng-mouseenter="hoverItem($event, item)" href="" ng-if="::(!subitem.subMenu && subitem.disabled)" class="al-sidebar-list-link">{{ ::subitem.title }}</a> <a ng-mouseenter="hoverItem($event, item)" target="{{::(subitem.blank ? \'_blank\' : \'_self\')}}" ng-if="::(!subitem.subMenu && !subitem.disabled)" ui-state="subitem.stateRef || \'\'" ng-href="{{::(subitem.fixedHref ? subitem.fixedHref: \'\')}}">{{ ::subitem.title}}</a></li></ul></li></ul><div class="sidebar-hover-elem" ng-style="{top: hoverElemTop + \'px\', height: hoverElemHeight + \'px\'}" ng-class="{\'show-hover-elem\': showHoverElem }"></div></aside>'),
             e.put("app/theme/components/baWizard/baWizard.html", '<div class="ba-wizard"><div class="ba-wizard-navigation-container"><div ng-repeat="t in $baWizardController.tabs" class="ba-wizard-navigation {{$baWizardController.tabNum == $index ? \'active\' : \'\'}}" ng-click="$baWizardController.selectTab($index)">{{t.title}}</div></div><div class="progress ba-wizard-progress"><div class="progress-bar progress-bar-danger active" role="progressbar" aria-valuemin="0" aria-valuemax="100" ng-style="{width: $baWizardController.progress + \'%\'}"></div></div><div class="steps" ng-transclude=""></div><nav><ul class="pager ba-wizard-pager"><li class="previous"><button ng-disabled="$baWizardController.isFirstTab()" ng-click="$baWizardController.previousTab()" type="button" class="btn btn-primary"><span aria-hidden="true">&larr;</span> previous</button></li><li class="next"><button ng-disabled="$baWizardController.isLastTab()" ng-click="$baWizardController.nextTab()" type="button" class="btn btn-primary">next <span aria-hidden="true">&rarr;</span></button></li></ul></nav></div>'),
             e.put("app/theme/components/baWizard/baWizardStep.html", '<section ng-show="selected" class="step" ng-transclude=""></section>'),
-            e.put("app/theme/components/contentTop/contentTop.html", '<div class="content-top clearfix"><h1 class="al-title">{{ activePageTitle }}</h1><ul class="breadcrumb al-breadcrumb"><li><a href="#/dashboard">Home</a></li><li>{{ activePageTitle }}</li></ul></div>'),
-            e.put("app/theme/components/msgCenter/msgCenter.html", '<ul class="al-msg-center clearfix"><li uib-dropdown=""><a href="" uib-dropdown-toggle=""><i class="fa fa-bell-o"></i><span>5</span><div class="notification-ring"></div></a><div uib-dropdown-menu="" class="top-dropdown-menu"><i class="dropdown-arr"></i><div class="header clearfix"><strong>Notifications</strong> <a href="">Mark All as Read</a> <a href="">Settings</a></div><div class="msg-list"><a href="" class="clearfix" ng-repeat="msg in notifications"><div class="img-area"><img ng-class="{\'photo-msg-item\' : !msg.image}" ng-src="{{::( msg.image || (users[msg.userId].name | profilePicture) )}}"></div><div class="msg-area"><div ng-bind-html="getMessage(msg)"></div><span>{{ msg.time }}</span></div></a></div><a href="">See all notifications</a></div></li><li uib-dropdown=""><a href="" class="msg" uib-dropdown-toggle=""><i class="fa fa-envelope-o"></i><span>5</span><div class="notification-ring"></div></a><div uib-dropdown-menu="" class="top-dropdown-menu"><i class="dropdown-arr"></i><div class="header clearfix"><strong>Messages</strong> <a href="">Mark All as Read</a> <a href="">Settings</a></div><div class="msg-list"><a href="" class="clearfix" ng-repeat="msg in messages"><div class="img-area"><img class="photo-msg-item" ng-src="{{::( users[msg.userId].name | profilePicture )}}"></div><div class="msg-area"><div>{{ msg.text }}</div><span>{{ msg.time }}</span></div></a></div><a href="">See all messages</a></div></li></ul>'),
-            e.put("app/theme/components/pageTop/pageTop.html", '<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{\'scrolled\': scrolled}"><a href="#/dashboard" class="al-logo clearfix"><div><img style="max-width:100px;" ng-src="{{::( \'garago\' | profilePicture )}}"></div></a> <a href="" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu=""></a><div class="search"><i class="ion-ios-search-strong" ng-click="startSearch()"></i> <input id="searchInput" type="text" placeholder="Search for..."></div><div class="user-profile clearfix"><div class="al-user-profile" uib-dropdown=""><a uib-dropdown-toggle="" class="profile-toggle-link"><img ng-src="{{::( \'anmol\' | profilePicture )}}"></a><ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu=""><li><i class="dropdown-arr"></i></li><li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li><li><a href=""><i class="fa fa-cog"></i>Settings</a></li><li><a href="" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li></ul></div><msg-center></msg-center></div></div>'),
+            e.put("app/theme/components/contentTop/contentTop.html", '<div class="content-top clearfix"><h1 class="al-title">{{ activePageTitle }}</h1><ul class="breadcrumb al-breadcrumb"><li><a href="#/dashboard">' + words["HOME"][lang] + '</a></li><li>{{ activePageTitle }}</li></ul></div>'),
+            e.put("app/theme/components/msgCenter/msgCenter.html", '<ul class="al-msg-center clearfix"><li uib-dropdown=""><a href="" uib-dropdown-toggle=""><i class="fa fa-bell-o"></i><span>5</span><div class="notification-ring"></div></a><div uib-dropdown-menu="" class="top-dropdown-menu"><i class="dropdown-arr"></i><div class="header clearfix"><strong>' + words["Notifications"][lang] + '</strong> <a href="">' + words["Mark All as Read"][lang] + '</a> <a href="">' + words["Settings"][lang] + '</a></div><div class="msg-list"><a href="" class="clearfix" ng-repeat="msg in notifications"><div class="img-area"><img ng-class="{\'photo-msg-item\' : !msg.image}" ng-src="{{::( msg.image || (users[msg.userId].name | profilePicture) )}}"></div><div class="msg-area"><div ng-bind-html="getMessage(msg)"></div><span>{{ msg.time }}</span></div></a></div><a href="">' + words["See all notifications"][lang] + '</a></div></li><li uib-dropdown=""><a href="" class="msg" uib-dropdown-toggle=""><i class="fa fa-envelope-o"></i><span>5</span><div class="notification-ring"></div></a><div uib-dropdown-menu="" class="top-dropdown-menu"><i class="dropdown-arr"></i><div class="header clearfix"><strong>' + words["Messages"][lang] + '</strong> <a href="">' + words["Mark All as Read"][lang] + '</a> <a href="">' + words["Settings"][lang] + '</a></div><div class="msg-list"><a href="" class="clearfix" ng-repeat="msg in messages"><div class="img-area"><img class="photo-msg-item" ng-src="{{::( users[msg.userId].name | profilePicture )}}"></div><div class="msg-area"><div>{{ msg.text }}</div><span>{{ msg.time }}</span></div></a></div><a href="">' + words["See all messages"][lang] + '</a></div></li></ul>'),
+            
+            e.put("app/theme/components/pageTop/pageTop.html", '<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{\'scrolled\': scrolled}"><a href="#/dashboard" class="al-logo clearfix"><div><img style="max-width:100px;" ng-src="{{::( \'garago\' | profilePicture )}}"></div></a> <a href="" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu=""></a><div class="search"><i class="ion-ios-search-strong" ng-click="startSearch()"></i> <input id="searchInput" type="text" placeholder="' + words["Search for"][lang] + '..."></div><div class="user-profile clearfix"><select id="language" onChange="changeLanguage()"></select><div class="al-user-profile" uib-dropdown=""><a uib-dropdown-toggle="" class="profile-toggle-link"><img ng-src="{{::( \'anmol\' | profilePicture )}}"></a><ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu=""><li><i class="dropdown-arr"></i></li><li><a href="#/profile"><i class="fa fa-user"></i>' + words['Profile'][lang] + '</a></li><li><a href=""><i class="fa fa-cog"></i>' + words['Settings'][lang] + '</a></li><li><a href="" class="signout"><i class="fa fa-power-off"></i>' + words['Sign out'][lang] + '</a></li></ul></div><msg-center></msg-center></div></div>'),
             e.put("app/theme/components/progressBarRound/progressBarRound.html", '<svg class="center-block progress-bar-round" width="200" height="200"><circle cx="100" cy="100" r="90" fill="none" stroke="#F8F8FF" stroke-width="8"></circle><circle cx="100" cy="100" r="90" fill="none" id="loader" class="" stroke="#209e91" stroke-width="8" stroke-dasharray="0,20000" transform="rotate(-90,100,100)" stroke-linecap="round"></circle><text text-anchor="middle" class="loading" x="100" y="90">Loading...</text><text class="percentage" text-anchor="middle" x="100" y="130">{{progress}}%</text></svg>'),
             e.put("app/theme/components/widgets/widgets.html", '<div class="widgets"><div ng-repeat="widgetBlock in ngModel" ng-class="{\'row\': widgetBlock.widgets.length > 1}"><div ng-repeat="widgetCol in widgetBlock.widgets" ng-class="{\'col-md-6\': widgetBlock.widgets.length === 2}" ng-model="widgetCol" class="widgets-block"><div ba-panel="" ba-panel-title="{{::widget.title}}" ng-repeat="widget in widgetCol" ba-panel-class="with-scroll {{widget.panelClass}}"><div ng-include="widget.url"></div></div></div></div></div>'),
             e.put("app/theme/inputs/baSwitcher/baSwitcher.html", '<label class="switcher-container"><input type="checkbox" ng-model="switcherValue"><div class="switcher" ng-class="::switcherStyle"><div class="handle-container"><span class="handle handle-on">ON</span> <span class="handle"></span> <span class="handle handle-off">OFF</span></div></div></label>'),
             e.put("app/pages/charts/amCharts/charts.html", '<div class="widgets"><div class="row"><div class="col-lg-4 col-md-6" ba-panel="" ba-panel-title="Bar Chart" ba-panel-class="with-scroll"><div ng-include="\'app/pages/charts/amCharts/barChart/barChart.html\'"></div></div><div class="col-lg-4 col-md-6" ba-panel="" ba-panel-title="Area Chart" ba-panel-class="with-scroll"><div ng-include="\'app/pages/charts/amCharts/areaChart/areaChart.html\'"></div></div><div class="col-lg-4 col-md-12" ba-panel="" ba-panel-title="Line Chart" ba-panel-class="with-scroll"><div ng-include="\'app/pages/charts/amCharts/lineChart/lineChart.html\'"></div></div></div><div class="row"><div class="col-md-6" ba-panel="" ba-panel-title="Pie Chart" ba-panel-class="with-scroll"><div ng-include="\'app/pages/charts/amCharts/pieChart/pieChart.html\'"></div></div><div class="col-md-6" ba-panel="" ba-panel-title="Funnel Chart" ba-panel-class="with-scroll"><div ng-include="\'app/pages/charts/amCharts/funnelChart/funnelChart.html\'"></div></div></div><div class="row"><div class="col-md-12" ba-panel="" ba-panel-title="Combined bullet/column and line graphs with multiple value axes" ba-panel-class="with-scroll"><div ng-include="\'app/pages/charts/amCharts/combinedChart/combinedChart.html\'"></div></div></div></div>'),
             e.put("app/pages/charts/chartist/chartist.html", '<section ng-controller="chartistCtrl" class="chartist"><div class="row"><div class="col-md-6"><div ba-panel="" ba-panel-title="Lines" ba-panel-class="with-scroll"><h5>Simple line chart</h5><div id="line-chart" class="ct-chart"></div><h5>Line chart with area</h5><div id="area-chart" class="ct-chart"></div><h5>Bi-polar line chart with area only</h5><div id="bi-chart" class="ct-chart"></div></div></div><div class="col-md-6"><div ba-panel="" ba-panel-title="Bars" ba-panel-class="with-scroll"><h5>Simple bar chart</h5><div id="simple-bar" class="ct-chart"></div><h5>Multi-line labels bar chart</h5><div id="multi-bar" class="ct-chart"></div><h5>Stacked bar chart</h5><div id="stacked-bar" class="ct-chart stacked-bar"></div></div></div></div><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Pies & Donuts" ba-panel-class="with-scroll"><div class="row"><div class="col-md-12 col-lg-4"><h5>Simple Pie</h5><div id="simple-pie" class="ct-chart"></div></div><div class="col-md-12 col-lg-4"><h5>Pie with labels</h5><div id="label-pie" class="ct-chart"></div></div><div class="col-md-12 col-lg-4"><h5>Donut</h5><div id="donut" class="ct-chart"></div></div></div></div></div></div></section>'),
-            e.put("app/pages/charts/chartJs/chartJs.html", '<div class="row"><div class="col-md-4" ng-controller="chartJs1DCtrl"><div ba-panel="" ba-panel-title="Pie" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-first-row"><canvas id="pie" class="chart chart-pie" chart-options="options" chart-data="data" chart-labels="labels" chart-click="changeData"></canvas></div></div></div><div class="col-md-4" ng-controller="chartJs1DCtrl"><div ba-panel="" ba-panel-title="Doughnut" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-first-row"><canvas id="doughnut" chart-options="options" class="chart chart-doughnut" chart-data="data" chart-labels="labels" chart-click="changeData"></canvas></div></div></div><div class="col-md-4" ng-controller="chartJs1DCtrl"><div ba-panel="" ba-panel-title="Polar" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-first-row"><canvas id="polar-area" class="chart chart-polar-area" chart-data="data" chart-options="options" chart-labels="labels" chart-click="changeData"></canvas></div></div></div></div><div class="row"><div class="col-md-6" ng-controller="chartJsWaveCtrl"><div ba-panel="" ba-panel-title="Animated Radar" ba-panel-class="col-eq-height"><div class="chartjs-canvas-holder-second-row"><canvas id="waveLine" class="chart chart-radar" chart-data="[data]" chart-labels="labels"></canvas></div></div></div><div class="col-md-6" ng-controller="chartJsWaveCtrl"><div ba-panel="" ba-panel-title="Animated Bars" ba-panel-class="col-eq-height"><div class="chartjs-canvas-holder-second-row"><canvas id="waveBars" class="chart chart-bar" chart-data="[data]" chart-labels="labels"></canvas></div></div></div></div><div class="row"><div class="col-lg-4 col-md-6" ng-controller="chartJs2DCtrl"><div ba-panel="" ba-panel-title="Radar" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-third-row"><canvas id="radar" class="chart chart-radar" chart-series="series" chart-data="data" chart-labels="labels" chart-click="changeData"></canvas></div></div></div><div class="col-lg-4 col-md-6" ng-controller="chartJs2DCtrl"><div ba-panel="" ba-panel-title="Line" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-third-row"><canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-click="changeData"></canvas></div></div></div><div class="col-lg-4 col-md-12" ng-controller="chartJs2DCtrl"><div ba-panel="" ba-panel-title="Bars" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-third-row"><canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-click="changeData" chart-update="updateC"></canvas></div></div></div></div>'),
+            e.put("app/pages/charts/chartJs/chartJs.html", '<div class="row"><div class="col-md-4" ng-controller="chartJs1DCtrl"><div ba-panel="" ba-panel-title="' + words["PIE"][lang] + '" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-first-row"><canvas id="pie" class="chart chart-pie" chart-options="options" chart-data="data" chart-labels="labels" chart-click="changeData"></canvas></div></div></div><div class="col-md-4" ng-controller="chartJs1DCtrl"><div ba-panel="" ba-panel-title="' + words["DOUGHNUT"][lang] + '" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-first-row"><canvas id="doughnut" chart-options="options" class="chart chart-doughnut" chart-data="data" chart-labels="labels" chart-click="changeData"></canvas></div></div></div><div class="col-md-4" ng-controller="chartJs1DCtrl"><div ba-panel="" ba-panel-title="' + words["POLAR"][lang] + '" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-first-row"><canvas id="polar-area" class="chart chart-polar-area" chart-data="data" chart-options="options" chart-labels="labels" chart-click="changeData"></canvas></div></div></div></div><div class="row"><div class="col-md-6" ng-controller="chartJsWaveCtrl"><div ba-panel="" ba-panel-title="' + words["ANIMATED RADAR"][lang] + '" ba-panel-class="col-eq-height"><div class="chartjs-canvas-holder-second-row"><canvas id="waveLine" class="chart chart-radar" chart-data="[data]" chart-labels="labels"></canvas></div></div></div><div class="col-md-6" ng-controller="chartJsWaveCtrl"><div ba-panel="" ba-panel-title="' + words["ANIMATED BARS"][lang] + '" ba-panel-class="col-eq-height"><div class="chartjs-canvas-holder-second-row"><canvas id="waveBars" class="chart chart-bar" chart-data="[data]" chart-labels="labels"></canvas></div></div></div></div><div class="row"><div class="col-lg-4 col-md-6" ng-controller="chartJs2DCtrl"><div ba-panel="" ba-panel-title="' + words["RADAR"][lang] + '" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-third-row"><canvas id="radar" class="chart chart-radar" chart-series="series" chart-data="data" chart-labels="labels" chart-click="changeData"></canvas></div></div></div><div class="col-lg-4 col-md-6" ng-controller="chartJs2DCtrl"><div ba-panel="" ba-panel-title="' + words["LINE"][lang] + '" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-third-row"><canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-click="changeData"></canvas></div></div></div><div class="col-lg-4 col-md-12" ng-controller="chartJs2DCtrl"><div ba-panel="" ba-panel-title="' + words["BARS"][lang] + '" ba-panel-class="with-scroll"><div class="chartjs-canvas-holder-third-row"><canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series" chart-click="changeData" chart-update="updateC"></canvas></div></div></div></div>'),
             e.put("app/pages/charts/morris/morris.html", '<section ng-controller="morrisCtrl"><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Line Chart" ba-panel-class="with-scroll"><div line-chart="" line-data="lineData" line-xkey="y" line-ykeys=\'["a", "b"]\' line-labels=\'["Serie A", "Serie B"]\' line-colors="colors"></div></div></div></div><div class="row"><div class="col-md-4"><div ba-panel="" ba-panel-title="Donut" ba-panel-class="with-scroll"><div donut-chart="" donut-data="donutData" donut-colors="colors" donut-formatter=\'"currency"\'></div></div></div><div class="col-md-8"><div ba-panel="" ba-panel-title="Bar Chart" ba-panel-class="with-scroll"><div bar-chart="" bar-data="barData" bar-x="y" bar-y=\'["a", "b"]\' bar-labels=\'["Series A", "Series B"]\' bar-colors="colors"></div></div></div></div><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Area Chart" ba-panel-class="with-scroll"><div area-chart="" area-data="areaData" area-xkey="y" area-ykeys=\'["a", "b"]\' %="" area-labels=\'["Serie A", "Serie B"]\' line-colors="colors"></div></div></div></div></section>'),
             e.put("app/pages/components/mail/mail.html", '<div class="row mail-client-container transparent"><div class="col-md-12"><div ba-panel="" ba-panel-class="xmedium-panel mail-panel"><div class="letter-layout"><div class="mail-navigation-container" ng-class="{\'expanded\' : !tabCtrl.navigationCollapsed}"><div class="text-center"><button type="button" class="btn btn-default compose-button" ng-click="tabCtrl.showCompose(\'\',\'\',\'\')">Compose</button></div><div ng-repeat="t in tabCtrl.tabs" ui-sref-active="active" class="mail-navigation" ui-sref="components.mail.label({label: t.label})" ng-click="selectTab(t.label)">{{t.name}}<span class="new-mails" ng-show="t.newMails">{{t.newMails}}</span></div><div class="labels"><div class="labels-title"></div><div class="labels-container"><div class="label-item"><span class="tag label work">Work</span></div><div class="label-item"><span class="tag label family">Family</span></div><div class="label-item"><span class="tag label friend">Friend</span></div><div class="label-item"><span class="tag label study">Study</span></div></div></div><div class="add-label-container"><i class="ion-plus-round"></i><span class="label-input-stub">Add new label</span></div></div><ui-view></ui-view></div></div></div></div>'),
             e.put("app/pages/components/timeline/timeline.html", '<div ba-panel=""><section id="cd-timeline" class="cd-container cssanimations" ng-controller="TimelineCtrl"><div class="cd-timeline-block"><div class="cd-timeline-img"><div class="kameleon-icon with-round-bg warning"><img ng-src="{{::( \'Euro-Coin\' | kameleonImg )}}"></div></div><div class="cd-timeline-content warning"><h5>Title of section 1</h5><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p><span class="cd-date">Jan 14</span></div></div><div class="cd-timeline-block"><div class="cd-timeline-img"><div class="kameleon-icon with-round-bg danger"><img ng-src="{{::( \'Laptop-Signal\' | kameleonImg )}}"></div></div><div class="cd-timeline-content danger"><h5>Title of section 2</h5><p>Donec dapibus at leo eget volutpat. Praesent dolor tellus, ultricies venenatis molestie eu, luctus eget nibh. Curabitur ullamcorper eleifend nisl.</p><span class="cd-date">Jan 18</span></div></div><div class="cd-timeline-block"><div class="cd-timeline-img"><div class="kameleon-icon with-round-bg primary"><img ng-src="{{::( \'Checklist\' | kameleonImg )}}"></div></div><div class="cd-timeline-content primary"><h5>Title of section 3</h5><p>Phasellus auctor tellus eget lacinia condimentum. Cum sociis natoque penatibus et magnis dis parturient montes.</p><span class="cd-date">Feb 18</span></div></div><div class="cd-timeline-block"><div class="cd-timeline-img"><div class="kameleon-icon with-round-bg warning"><img ng-src="{{::( \'Boss-3\' | kameleonImg )}}"></div></div><div class="cd-timeline-content warning"><h5>Title of section 4</h5><p>Morbi fringilla in massa ac posuere. Fusce non sagittis massa, id accumsan odio. Nullam eget tempor est. Etiam eu felis eu purus aliquam tristique id quis nisl. Nam eros nibh, consequat sed pulvinar eu, ultrices ornare ligula. Aenean interdum sed nunc sed hendrerit.</p><span class="cd-date">Feb 20</span></div></div><div class="cd-timeline-block"><div class="cd-timeline-img"><div class="kameleon-icon with-round-bg danger"><img ng-src="{{::( \'Online-Shopping\' | kameleonImg )}}"></div></div><div class="cd-timeline-content danger"><h5>Title of section 5</h5><p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur eget mattis metus. Nullam egestas eros metus, quis fringilla urna accumsan sed. Aliquam ultrices at arcu vitae tincidunt.</p><span class="cd-date">Feb 21</span></div></div><div class="cd-timeline-block"><div class="cd-timeline-img"><div class="kameleon-icon with-round-bg primary"><img ng-src="{{::( \'Money-Increase\' | kameleonImg )}}"></div></div><div class="cd-timeline-content primary"><h5>Title of section 6</h5><p>Praesent bibendum ante mattis augue consectetur, ut commodo turpis consequat. Donec ligula eros, porta in iaculis vel, semper ac sem. Integer at mauris lorem.</p><span class="cd-date">Feb 23</span></div></div><div class="cd-timeline-block"><div class="cd-timeline-img"><div class="kameleon-icon with-round-bg warning"><img ng-src="{{::( \'Vector\' | kameleonImg )}}"></div></div><div class="cd-timeline-content warning"><h5>Title of section 7</h5><p>Vivamus ut laoreet erat, vitae eleifend eros. Sed varius id tellus non lobortis. Sed dolor ante, cursus non scelerisque sed, euismod id eros.</p><span class="cd-date">Feb 24</span></div></div></section></div>'),
-            e.put("app/pages/components/tree/tree.html", '<div class="row" ng-controller="treeCtrl"><div class="col-md-6"><div ba-panel="" ba-panel-title="Basic Action" ba-panel-class="with-scroll tree-panel"><div class="row"><div class="col-sm-4"><div class="control-side text-center"><div><button class="btn btn-primary" ng-click="addNewNode()">Add</button></div><div><button class="btn btn-primary" ng-click="collapse()">Collapse All</button></div><div><button class="btn btn-primary" ng-click="expand()">Expand All</button></div><div><button class="btn btn-primary" ng-click="refresh()">Refresh</button></div></div></div><div class="col-sm-8"><div js-tree="basicConfig" ng-model="treeData" should-apply="applyModelChanges()" tree="basicTree" tree-events="ready:readyCB"></div></div></div></div></div><div class="col-md-6"><div ba-panel="" ba-panel-title="Drag & Drop" ba-panel-class="with-scroll tree-panel"><div js-tree="dragConfig" ng-model="dragData"></div></div></div></div>'),
+            e.put("app/pages/components/tree/tree.html", '<div class="row" ng-controller="treeCtrl"><div class="col-md-6"><div ba-panel="" ba-panel-title="Basic Action" ba-panel-class="with-scroll tree-panel"><div class="row"><div class="col-sm-4"><div class="control-side text-center"><div><button class="btn btn-primary" ng-click="addNewNode()">Add</button></div><div><button class="btn btn-primary" ng-click="collapse()">Collapse All</button></div><div><button class="btn btn-primary" ng-click="expand()">Expand All</button></div><div><button class="btn btn-primary" ng-click="refresh()">Refresh</button></div></div></div><div class="col-sm-8"><div js-tree="basicConfig" ng-model="treeData" should-apply="applyModelChanges()" tree="basicTree" tree-events="ready:readyCB"></div></div></div></div></div><div class="col-md-6"><div ba-panel="" ba-panel-title="Creation" ba-panel-class="with-scroll tree-panel"><div js-tree="dragConfig" ng-model="dragData"></div></div></div></div>'),
             e.put("app/pages/dashboard/blurFeed/blurFeed.html", '<div class="feed-messages-container" track-width="smallContainerWidth" min-width="360"><div class="feed-message" ng-repeat="message in feed" ng-click="expandMessage(message)"><div class="message-icon" ng-if="message.type == \'text-message\'"><img class="photo-icon" ng-src="{{::( message.author | profilePicture )}}"></div><div class="message-icon" ng-if="message.type != \'text-message\'"><img class="photo-icon" ng-src="{{::( message.author | profilePicture )}}"> <span class="sub-photo-icon" ng-class="::message.type"></span></div><div class="text-block text-message"><div class="message-header"><span class="author">{{ ::message.author }} {{ ::message.surname}}</span></div><div class="message-content line-clamp" ng-class="{\'line-clamp-2\' : !message.expanded}"><span ng-if="message.preview">{{message.header}}</span>{{::message.text}}</div><div class="preview" ng-show="message.expanded" ng-if="message.preview"><a href="{{::message.link}}" target="_blank"><img ng-src="{{ ::( message.preview | appImage )}}"></a></div><div ng-show="message.expanded" class="message-time"><div class="post-time">{{::message.time}}</div><div class="ago-time">{{::message.ago}}</div></div></div></div></div>'),
             e.put("app/pages/dashboard/dashboardCalendar/dashboardCalendar.html", '<div id="calendar" class="blurCalendar"></div>'),
             e.put("app/pages/dashboard/dashboardLineChart/dashboardLineChart.html", '<div id="amchart"></div>'),
             e.put("app/pages/dashboard/dashboardMap/dashboardMap.html", '<div id="amChartMap"></div>'),
             e.put("app/pages/dashboard/dashboardPieChart/dashboardPieChart.html", '<div class="row pie-charts"><div class="pie-chart-item-container" ng-repeat="chart in charts"><div ba-panel=""><div class="pie-chart-item"><div class="chart" rel="{{ ::chart.color }}" data-percent="60"><span class="percent"></span></div><div class="description"><div>{{ ::chart.description }}</div><div class="description-stats">{{ ::chart.stats }}</div></div><i class="chart-icon i-{{ ::chart.icon }}"></i></div></div></div></div>'),
-            e.put("app/pages/dashboard/dashboardTodo/dashboardTodo.html", '<div class="task-todo-container" ng-class="{\'transparent\': transparent}"><input type="text" value="" class="form-control task-todo" placeholder="Task to do.." ng-keyup="addToDoItem($event)" ng-model="newTodoText"> <i ng-click="addToDoItem(\'\',true)" class="add-item-icon ion-plus-round"></i><div class="box-shadow-border"></div><ul class="todo-list" ui-sortable="" ng-model="todoList"><li ng-repeat="item in todoList" ng-if="!item.deleted" ng-init="activeItem=false" ng-class="{checked: isChecked, active: activeItem}" ng-mouseenter="activeItem=true" ng-mouseleave="activeItem=false"><div class="blur-container"><div class="blur-box"></div></div><i class="mark" style="background-color: {{::item.color}}"></i> <label class="todo-checkbox custom-checkbox custom-input-success"><input type="checkbox" ng-model="isChecked"> <span class="cut-with-dots">{{ item.text }}</span></label> <i class="remove-todo ion-ios-close-empty" ng-click="item.deleted = true"></i></li></ul></div>'),
-            // e.put("app/pages/dashboard/popularApp/popularApp.html", '<div class="popular-app-img-container"><div class="popular-app-img"><img ng-src="{{::( \'app/my-app-logo.png\' | appImage )}}"> <span class="logo-text">Super&nbspApp</span></div></div><div class="popular-app-cost row"><div class="col-xs-9">Most Popular App</div><div class="col-xs-3 text-right">175$</div></div><div class="popular-app-info row"><div class="col-xs-4 text-left"><div class="info-label">Total Visits</div><div>47,512</div></div><div class="col-xs-4 text-center"><div class="info-label">New Visits</div><div>9,217</div></div><div class="col-xs-4 text-right"><div class="info-label">Sales</div><div>2,928</div></div></div>'),
-            e.put("app/pages/dashboard/trafficChart/trafficChart.html", '<div class="channels-block" ng-class="{\'transparent\': transparent}"><div class="chart-bg"></div><div class="traffic-chart" id="trafficChart"><div class="canvas-holder"><canvas id="chart-area" width="280" height="280"></canvas><div class="traffic-text">$925,000 <span style = "font-size: smaller;">TOTAL Budget (Expenses)</span></div></div></div><div class="channels-info"><div><div class="channels-info-item" ng-repeat="label in doughnutData.labels" ng-init="i = $index; data = doughnutData.datasets[0]"><div class="legend-color" style="background-color: {{::data.backgroundColor[i]}}"></div><p>{{::label}}<span class="channel-number">+{{data.percentage[i]}}%</span></p><div class="progress progress-sm channel-progress"><div class="progress-bar" role="progressbar" aria-valuenow="{{data.percentage[i]}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.percentage}}%"></div></div></div></div></div></div>'),
+            e.put("app/pages/dashboard/dashboardTodo/dashboardTodo.html", '<div class="task-todo-container" ng-class="{\'transparent\': transparent}"><input type="text" value="" class="form-control task-todo" placeholder="' + words["Task to do"][lang] + '.." ng-keyup="addToDoItem($event)" ng-model="newTodoText"> <i ng-click="addToDoItem(\'\',true)" class="add-item-icon ion-plus-round"></i><div class="box-shadow-border"></div><ul class="todo-list" ui-sortable="" ng-model="todoList"><li ng-repeat="item in todoList" ng-if="!item.deleted" ng-init="activeItem=false" ng-class="{checked: isChecked, active: activeItem}" ng-mouseenter="activeItem=true" ng-mouseleave="activeItem=false"><div class="blur-container"><div class="blur-box"></div></div><i class="mark" style="background-color: {{::item.color}}"></i> <label class="todo-checkbox custom-checkbox custom-input-success"><input type="checkbox" ng-model="isChecked"> <span class="cut-with-dots">{{ item.text }}</span></label> <i class="remove-todo ion-ios-close-empty" ng-click="item.deleted = true"></i></li></ul></div>'),
+            
+            e.put("app/pages/dashboard/trafficChart/trafficChart.html", '<div class="channels-block" ng-class="{\'transparent\': transparent}"><div class="chart-bg"></div><div class="traffic-chart" id="trafficChart"><div class="canvas-holder"><canvas id="chart-area" width="280" height="280"></canvas><div class="traffic-text">$925,000 <span style = "font-size: smaller;">' + words["Expenses"][lang] +'</span></div></div></div><div class="channels-info"><div><div class="channels-info-item" ng-repeat="label in doughnutData.labels" ng-init="i = $index; data = doughnutData.datasets[0]"><div class="legend-color" style="background-color: {{::data.backgroundColor[i]}}"></div><p>{{::label}}<span class="channel-number">+{{data.percentage[i]}}%</span></p><div class="progress progress-sm channel-progress"><div class="progress-bar" role="progressbar" aria-valuenow="{{data.percentage[i]}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.percentage}}%"></div></div></div></div></div></div>'),
             e.put("app/pages/dashboard/weather/weather.html", '<div class="weather-wrapper"><div class="weather-main-info"><h5 class="city-date font-x1dot5"><div>{{geoData.geoplugin_city}} - {{geoData.geoplugin_countryName | uppercase}}</div><div>{{ weather.days[weather.current].date | date : \'EEEE h:mm\'}}</div></h5><div class="weather-description font-x1dot5"><i class="font-x3 {{weatherIcons[weather.days[weather.current].icon]}}"></i><div class="weather-info">{{weather.days[weather.current].main}} - {{weather.days[weather.current].description}}</div></div><div class="weather-temp font-x1dot5"><i class="font-x2 ion-thermometer"></i><div class="weather-info" ng-switch="" on="units"><span ng-switch-when="metric">{{weather.days[weather.current].temp}} °C | <a ng-click="switchUnits(\'imperial\')" href="">°F</a></span> <span ng-switch-when="imperial">{{weather.days[weather.current].temp}} °F | <a ng-click="switchUnits(\'metric\')" href="">°C</a></span></div></div></div><div id="tempChart" class="temp-by-time"></div><div class="select-day"><div class="day" ng-repeat="day in weather.days" ng-click="switchDay($index)"><div><span class="font-x1dot25">{{day.temp}}</span></div><div><i class="weatherIcon font-x2 {{weatherIcons[day.icon]}}"></i> <span class="select-day-info">{{day.main}}</span></div><div><span>{{day.date | date : \'EEE\'}}</span></div></div></div></div>'),
-           // e.put("app/pages/form/inputs/inputs.html", '<div class="widgets"><div class="row"><div class="col-md-6"><div ba-panel="" ba-panel-title="Standard Fields" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/standardFields.html\'"></div></div><div ba-panel="" ba-panel-title="Tags Input" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/tagsInput/tagsInput.html\'"></div></div><div ba-panel="" ba-panel-title="Input Groups" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/inputGroups.html\'"></div></div><div ba-panel="" ba-panel-title="Checkboxes & Radios" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/checkboxesRadios.html\'"></div></div><div ba-panel="" ba-panel-title="On/Off Switches" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/switches/switch.html\'"></div></div><div ba-panel="" ba-panel-title="Old On/Off Switches (Deprecated)" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/oldSwitches/switch.html\'"></div></div><div ba-panel="" ba-panel-title="Datepicker" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/datePickers/datePickers.html\'"></div></div></div><div class="col-md-6"><div ba-panel="" ba-panel-title="Validation States" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/validationStates.html\'"></div></div><div ba-panel="" ba-panel-title="Selects" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/select/select.html\'"></div></div><div ba-panel="" ba-panel-title="Old selects(deprecated)" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/inputs/widgets/oldSelect/select.html\'"></div></div></div></div></div>'),
-           // e.put("app/pages/form/builder/builder.html", '<div style="height:100%; width:100%"><iframe  height="100%" width="100%" id="myFrame" src="angular-form-builder-master/index.html"></iframe></div>'),
+           
             e.put("app/pages/SmartLibrary/smartlibrary.html", '<div class="widgets"><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Editable Rows" ba-panel-class="with-scroll"><div include-with-scope="app/pages/tables/widgets/editableRowTable.html"></div></div></div></div><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Editable Cells" ba-panel-class="with-scroll"><div include-with-scope="app/pages/tables/widgets/editableTable.html"></div></div></div></div><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Smart Table With Filtering, Sorting And Pagination" ba-panel-class="with-scroll"><div include-with-scope="app/pages/tables/widgets/smartTable.html"></div></div></div></div></div>'),
             e.put("app/pages/SmartDocument/smartdocument.html", '<div class="widgets"><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Editable Rows" ba-panel-class="with-scroll"><div include-with-scope="app/pages/tables/widgets/editableRowTable.html"></div></div></div></div><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Editable Cells" ba-panel-class="with-scroll"><div include-with-scope="app/pages/tables/widgets/editableTable.html"></div></div></div></div><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Smart Table With Filtering, Sorting And Pagination" ba-panel-class="with-scroll"><div include-with-scope="app/pages/tables/widgets/smartTable.html"></div></div></div></div></div>'),
 
 
 
 
-           // e.put("app/pages/form/layouts/layouts.html", '<div class="widgets"><div class="row"><div class="col-md-12" ba-panel="" ba-panel-title="Inline Form" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/layouts/widgets/inlineForm.html\'"></div></div></div><div class="row"><div class="col-md-6"><div ba-panel="" ba-panel-title="Basic Form" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/layouts/widgets/basicForm.html\'"></div></div><div ba-panel="" ba-panel-title="Horizontal Form" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/layouts/widgets/horizontalForm.html\'"></div></div></div><div class="col-md-6"><div ba-panel="" ba-panel-title="Form Without Labels" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/layouts/widgets/formWithoutLabels.html\'"></div></div><div ba-panel="" ba-panel-title="Block Form" ba-panel-class="with-scroll"><div ng-include="\'app/pages/form/layouts/widgets/blockForm.html\'"></div></div></div></div></div>'),
-          //  e.put("app/pages/form/wizard/wizard.html", '<div class="widgets"><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Form Wizard" ba-panel-class="with-scroll"><ba-wizard><ba-wizard-step title="Personal info" form="vm.personalInfoForm"><form name="vm.personalInfoForm" novalidate=""><div class="row"><div class="col-md-6"><div class="form-group has-feedback" ng-class="{\'has-error\': vm.personalInfoForm.username.$invalid && (vm.personalInfoForm.username.$dirty || vm.personalInfoForm.$submitted)}"><label for="exampleUsername1">Username</label> <input type="text" class="form-control" id="exampleUsername1" name="username" placeholder="Username" ng-model="vm.personalInfo.username" required=""> <span class="help-block error-block basic-block">Required</span></div><div class="form-group" ng-class="{\'has-error\': vm.personalInfoForm.email.$invalid && (vm.personalInfoForm.email.$dirty || vm.personalInfoForm.$submitted)}"><label for="exampleInputEmail1">Email address</label> <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email" ng-model="vm.personalInfo.email" required=""> <span class="help-block error-block basic-block">Proper email required</span></div></div><div class="col-md-6"><div class="form-group" ng-class="{\'has-error\': vm.personalInfoForm.password.$invalid && (vm.personalInfoForm.password.$dirty || vm.personalInfoForm.$submitted)}"><label for="exampleInputPassword1">Password</label> <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" ng-model="vm.personalInfo.password" required=""> <span class="help-block error-block basic-block">Required</span></div><div class="form-group" ng-class="{\'has-error\': !vm.arePersonalInfoPasswordsEqual() && (vm.personalInfoForm.confirmPassword.$dirty || vm.personalInfoForm.$submitted)}"><label for="exampleInputConfirmPassword1">Confirm Password</label> <input type="password" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Confirm Password" ng-model="vm.personalInfo.confirmPassword" required=""> <span class="help-block error-block basic-block">Passwords should match</span></div></div></div></form></ba-wizard-step><ba-wizard-step title="Product Info" form="vm.productInfoForm"><form name="vm.productInfoForm" novalidate=""><div class="row"><div class="col-md-6"><div class="form-group has-feedback" ng-class="{\'has-error\': vm.productInfoForm.productName.$invalid && (vm.productInfoForm.productName.$dirty || vm.productInfoForm.$submitted)}"><label for="productName">Product name</label> <input type="text" class="form-control" id="productName" name="productName" placeholder="Product name" ng-model="vm.productInfo.productName" required=""> <span class="help-block error-block basic-block">Required</span></div><div class="form-group" ng-class="{\'has-error\': vm.productInfoForm.productId.$invalid && (vm.productInfoForm.productId.$dirty || vm.productInfoForm.$submitted)}"><label for="productId">Product id</label> <input type="text" class="form-control" id="productId" name="productId" placeholder="productId" ng-model="vm.productInfo.productId" required=""> <span class="help-block error-block basic-block">Required</span></div></div><div class="col-md-6"><div class="form-group"><label for="productName">Category</label><select class="form-control" title="Category" selectpicker=""><option selected="">Electronics</option><option>Toys</option><option>Accessories</option></select></div></div></div></form></ba-wizard-step><ba-wizard-step title="Shipment" form="vm.addressForm"><form name="vm.addressForm" novalidate=""><div class="row"><div class="col-md-6"><div class="form-group has-feedback" ng-class="{\'has-error\': vm.addressForm.address.$invalid && (vm.addressForm.address.$dirty || vm.addressForm.$submitted)}"><label for="productName">Shipment address</label> <input type="text" class="form-control" id="address" name="address" placeholder="Shipment address" ng-model="vm.shipment.address" required=""> <span class="help-block error-block basic-block">Required</span></div></div><div class="col-md-6"><div class="form-group"><label for="productName">Shipment method</label><select class="form-control" title="Category" selectpicker=""><option selected="">Fast & expensive</option><option>Cheap & free</option></select></div></div></div><div class="checkbox"><label class="custom-checkbox"><input type="checkbox"> <span>Save shipment info</span></label></div></form></ba-wizard-step><ba-wizard-step title="Finish"><form class="form-horizontal" name="vm.finishForm" novalidate="">Congratulations! You have successfully filled the form!</form></ba-wizard-step></ba-wizard></div></div></div></div>'),
-           // e.put("app/pages/maps/google-maps/google-maps.html", '<div ba-panel="" ba-panel-title="Google Maps" class="viewport100"><div id="google-maps"></div></div>'),
-          //  e.put("app/pages/maps/leaflet/leaflet.html", '<div ba-panel="" ba-panel-title="Leaflet" class="viewport100"><div id="leaflet-map"></div></div>'),
-          //  e.put("app/pages/maps/map-bubbles/map-bubbles.html", '<div ba-panel="" ba-panel-title="Map with Bubbles" class="viewport100"><div id="map-bubbles"></div></div>'),
-          //  e.put("app/pages/maps/map-lines/map-lines.html", '<div ba-panel="" ba-panel-title="Line Map" class="viewport100"><div id="map-lines"></div></div>'),
-           // e.put("app/pages/tables/basic/tables.html", '<div class="widgets"><div class="row"><div class="col-lg-6 col-md-12"><div ba-panel="" ba-panel-title="Hover Rows" ba-panel-class="with-scroll table-panel"><div include-with-scope="app/pages/tables/widgets/hoverRows.html"></div></div></div><div class="col-lg-6 col-md-12"><div ba-panel="" ng-click="<script>alert("123");</script>" ba-panel-title="Bordered Table" ba-panel-class="with-scroll table-panel"><div include-with-scope="app/pages/tables/widgets/borderedTable.html"></div></div></div></div><div class="row"><div class="col-lg-6 col-md-12"><div ba-panel="" ba-panel-title="Condensed Table" ba-panel-class="with-scroll table-panel"><div include-with-scope="app/pages/tables/widgets/condensedTable.html"></div></div></div><div class="col-lg-6 col-md-12"><div ba-panel="" ba-panel-title="Striped Rows" ba-panel-class="with-scroll table-panel"><div include-with-scope="app/pages/tables/widgets/stripedRows.html"></div></div></div></div><div class="row"><div class="col-lg-6 col-md-12"><div ba-panel="" ba-panel-title="Contextual Table" ba-panel-class="with-scroll table-panel"><div include-with-scope="app/pages/tables/widgets/contextualTable.html"></div></div></div><div class="col-lg-6 col-md-12"><div ba-panel="" ba-panel-title="Responsive Table" ba-panel-class="with-scroll table-panel"><div include-with-scope="app/pages/tables/widgets/responsiveTable.html"></div></div></div></div></div>'),
+         
             e.put("app/pages/tables/smart/tables.html", '<div class="widgets"><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Editable Rows" ba-panel-class="with-scroll"><div include-with-scope="app/pages/tables/widgets/editableRowTable.html"></div></div></div></div><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Editable Cells" ba-panel-class="with-scroll"><div include-with-scope="app/pages/tables/widgets/editableTable.html"></div></div></div></div><div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Smart Table With Filtering, Sorting And Pagination" ba-panel-class="with-scroll"><div include-with-scope="app/pages/tables/widgets/smartTable.html"></div></div></div></div></div>'),
-            e.put("app/pages/tables/field/tables.html", '<div style="height:1200px; width:80%"><iframe scrolling="No" height="100%" width="80%" id="myFrame1" src="fileupload/CustomTable.html"></iframe></div>'),
+           // e.put("app/pages/tables/field/tables.html", '<div style="height:1200px; width:80%"><iframe scrolling="No" height="100%" width="80%" id="myFrame1" src="fileupload/CustomTable.html"></iframe></div>'),
             
 
 
@@ -8163,7 +3438,7 @@ function() {
             e.put("app/pages/ui/notifications/notifications.html", '<div ba-panel="" ba-panel-class="with-scroll notification-panel"><div class="row"><div class="col-md-3 col-sm-4"><div class="control"><label for="title">Title</label> <input ng-model="options.title" type="text" class="form-control" id="title" placeholder="Enter a title ..."></div><div class="control"><label for="message">Message</label> <textarea ng-model="options.msg" class="form-control" id="message" rows="3" placeholder="Enter a message ..."></textarea></div><div class="control-group"><div class="control"><label class="checkbox-inline custom-checkbox nowrap"><input ng-model="options.closeButton" type="checkbox" id="closeButton"> <span>Close Button</span></label></div><div class="control"><label class="checkbox-inline custom-checkbox nowrap"><input ng-model="options.allowHtml" type="checkbox" id="html"> <span>Allow html</span></label></div><div class="control"><label class="checkbox-inline custom-checkbox nowrap"><input ng-model="options.progressBar" type="checkbox" id="progressBar"> <span>Progress bar</span></label></div><div class="control"><label class="checkbox-inline custom-checkbox nowrap"><input ng-model="options.preventDuplicates" type="checkbox" id="preventDuplicates"> <span>Prevent duplicates</span></label></div><div class="control"><label class="checkbox-inline custom-checkbox nowrap"><input ng-model="options.preventOpenDuplicates" type="checkbox" id="preventOpenDuplicates"> <span>Prevent open duplicates</span></label></div><div class="control"><label class="checkbox-inline custom-checkbox nowrap"><input ng-model="options.tapToDismiss" type="checkbox" id="tapToDismiss"> <span>Tap to dismiss</span></label></div><div class="control"><label class="checkbox-inline custom-checkbox nowrap"><input ng-model="options.newestOnTop" type="checkbox" id="newestOnTop"> <span>Newest on top</span></label></div></div></div><div class="col-md-2 col-sm-3 toastr-radio-setup"><div id="toastTypeGroup"><div class="controls radio-controls"><label class="radio-header">Toast Type</label> <label class="radio custom-radio"><input type="radio" ng-model="options.type" name="toasts" value="success"><span>Success</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.type" name="toasts" value="info"><span>Info</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.type" name="toasts" value="warning"><span>Warning</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.type" name="toasts" value="error"><span>Error</span></label></div></div><div id="positionGroup"><div class="controls radio-controls"><label class="radio-header position-header">Position</label> <label class="radio custom-radio"><input type="radio" ng-model="options.positionClass" name="positions" value="toast-top-right"> <span>Top Right</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.positionClass" name="positions" value="toast-bottom-right"> <span>Bottom Right</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.positionClass" name="positions" value="toast-bottom-left"> <span>Bottom Left</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.positionClass" name="positions" value="toast-top-left"> <span>Top Left</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.positionClass" name="positions" value="toast-top-full-width"> <span>Top Full Width</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.positionClass" name="positions" value="toast-bottom-full-width"> <span>Bottom Full Width</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.positionClass" name="positions" value="toast-top-center"> <span>Top Center</span></label> <label class="radio custom-radio"><input type="radio" ng-model="options.positionClass" name="positions" value="toast-bottom-center"> <span>Bottom Center</span></label></div></div></div><div class="col-md-2 col-sm-3"><div class="control"><label for="timeOut">Time out</label> <input type="text" class="form-control" id="timeOut" ng-model="options.timeOut" placeholder="ms"> <label class="sub-label" for="timeOut">If you set it to 0, it will stick</label></div><div class="control"><label for="extendedTimeOut">Extended time out</label> <input type="text" class="form-control" id="extendedTimeOut" ng-model="options.extendedTimeOut" placeholder="ms"></div><div class="control"><label for="maxOpened">Maximum number of toasts</label> <input type="text" class="form-control" id="maxOpened" ng-model="options.maxOpened" value="0"> <label for="maxOpened" class="sub-label">0 means no limit</label></div><div class="control"><label class="checkbox-inline custom-checkbox nowrap"><input ng-model="options.autoDismiss" type="checkbox" id="autoDismiss"> <span>Auto dismiss</span></label></div></div><div class="col-md-5 col-sm-12"><label>Result:</label><pre class="result-toastr" id="toastrOptions">{{optionsStr}}</pre></div></div><div class="row"><div class="col-md-12 button-row"><button ng-click="openToast()" class="btn btn-primary">Open Toast</button> <button ng-click="openRandomToast()" class="btn btn-primary">Random Toast</button> <button ng-click="clearToasts()" class="btn btn-danger">Clear Toasts</button> <button ng-click="clearLastToast()" class="btn btn-danger">Clear Last Toast</button></div></div></div>'),
             e.put("app/pages/ui/panels/panels.html", '<h2>Default panels</h2><div class="row"><div class="col-md-12 col-lg-4"><div ba-panel="" ba-panel-class="xsmall-panel light-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac mi erat. Phasellus placerat, elit a laoreet semper, enim ipsum ultricies orci, ac tincidunt tellus massa eu est. Nam non porta purus, sed facilisis justo. Nam pulvinar sagittis quam.</div></div><div class="col-md-12 col-lg-4"><div ba-panel="" ba-panel-title="Panel with header" ba-panel-class="xsmall-panel light-text">Phasellus maximus venenatis augue, et vestibulum neque aliquam ut. Morbi mattis libero vitae vulputate dignissim. Praesent placerat, sem non dapibus cursus, lacus nisi blandit quam, vitae porttitor lectus lacus non turpis. Donec suscipit consequat tellus.</div></div><div class="col-md-12 col-lg-4"><div ba-panel="" ba-panel-title="Panel with header & scroll" ba-panel-class="xsmall-panel with-scroll light-text"><p>Suspendisse nec tellus urna. Sed id est metus. Nullam sit amet dolor nec ipsum dictum suscipit. Mauris sed nisi mauris. Nulla iaculis nisl ut velit ornare imperdiet. Suspendisse potenti. In tempor leo sed sem malesuada pellentesque. Maecenas faucibus metus lacus, ac egestas diam vulputate vitae.</p><p>Sed dapibus, purus vel hendrerit consectetur, lectus orci gravida massa, sed bibendum dui mauris et eros. Nulla dolor massa, posuere et dictum sit amet, dignissim quis odio. Fusce mollis finibus dignissim. Integer sodales augue erat. Pellentesque laoreet vestibulum urna at iaculis. Nulla libero augue, euismod at diam eget, aliquam condimentum ligula. Donec a leo eu est molestie lacinia hendrerit sed lorem. Duis id diam eu metus sodales consequat vel eu elit. Praesent dolor nibh, convallis eleifend feugiat a, finibus porttitor nibh. Ut non libero vel velit pulvinar scelerisque non vel lorem. Integer porta tempor nulla. Sed nibh erat, ultrices vel lorem eu, rutrum vehicula sem.</p><p>Donec nec tellus urna. Sed id est metus. Nullam sit amet dolor nec ipsum dictum suscipit. Mauris sed nisi mauris. Nulla iaculis nisl ut velit ornare imperdiet. Suspendisse potenti. In tempor leo sed sem malesuada pellentesque. Maecenas faucibus metus lacus, ac egestas diam vulputate vitae.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fermentum nec ligula egestas rhoncus. Sed dignissim, augue vel scelerisque vulputate, nisi ante posuere lorem, quis iaculis eros dolor eu nisl. Etiam sagittis, ipsum ac tempor iaculis, justo neque mattis ante, ac maximus sapien risus eu sapien. Morbi erat urna, varius et lectus vel, porta dictum orci. Duis bibendum euismod elit, et lobortis purus venenatis in. Mauris eget lacus enim. Cras quis sem et magna fringilla convallis. Proin hendrerit nulla vel gravida mollis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum consectetur quis purus vel aliquam.</p></div></div></div><h2>Bootstrap panels</h2><div class="row"><div class="col-md-12 col-lg-4"><div class="panel panel-default bootstrap-panel xsmall-panel"><div class="panel-body"><p>A panel in bootstrap is a bordered box with some padding around its content.</p><p class="p-with-code">Panels are created with the <code>.panel</code> class, and content inside the panel has a <code>.panel-body</code> class. The <code>.panel-default .panel-primary .panel-danger</code> and other classes are used to style the color of the panel. See the next example on this page for more contextual classes.</p></div></div></div><div class="col-md-12 col-lg-4"><div class="panel panel-default bootstrap-panel xsmall-panel"><div class="panel-heading">Panel Heading</div><div class="panel-body"><p class="p-with-code">The <code>.panel-heading</code> class adds a heading to the panel.Easily add a heading container to your panel with .panel-heading. You may also include any <code>h1-h6</code> with a <code>.panel-title</code> class to add a pre-styled heading.</p></div></div></div><div class="col-md-12 col-lg-4"><div class="panel panel-default bootstrap-panel"><div class="panel-body footer-panel"><p class="p-with-code">Wrap buttons or secondary text in <code>.panel-footer</code>. Note that panel footers do not inherit colors and borders when using contextual variations as they are not meant to be in the foreground.</p></div><div class="panel-footer">Panel Footer</div></div></div></div><h2>Panels with Contextual Classes</h2><div class="row"><div class="col-md-6 col-lg-4"><div class="panel panel-default contextual-example-panel bootstrap-panel"><div class="panel-heading">Panel with panel-default class</div><div class="panel-body">To color the panel, use contextual classes. This is sample <code>.panel-default</code> panel</div></div></div><div class="col-md-6 col-lg-4"><div class="panel panel-primary contextual-example-panel bootstrap-panel"><div class="panel-heading">Panel with panel-primary class</div><div class="panel-body">Sample <code>.panel-primary</code> panel</div></div></div><div class="col-md-6 col-lg-4"><div class="panel panel-success contextual-example-panel bootstrap-panel"><div class="panel-heading">Panel with panel-success class</div><div class="panel-body">Sample <code>.panel-success</code> panel</div></div></div><div class="col-md-6 col-lg-4"><div class="panel panel-info contextual-example-panel bootstrap-panel"><div class="panel-heading">Panel with panel-info class</div><div class="panel-body">Sample <code>.panel-info</code> panel</div></div></div><div class="col-md-6 col-lg-4"><div class="panel panel-warning contextual-example-panel bootstrap-panel"><div class="panel-heading">Panel with panel-warning class</div><div class="panel-body">Sample <code>.panel-warning</code> panel</div></div></div><div class="col-md-6 col-lg-4"><div class="panel panel-danger contextual-example-panel bootstrap-panel"><div class="panel-heading">Panel with panel-danger class</div><div class="panel-body">Sample <code>.panel-danger</code> panel</div></div></div></div><div class="row"><div class="col-md-12"><h2>Panel Group</h2><div class="panel-group"><div class="panel panel-default bootstrap-panel"><div class="panel-heading">Panel group 1</div><div class="panel-body"><p>To group many panels together, wrap a <code>&lt;div&gt;</code> with class <code>\r\n            .panel-group</code> around them.</p></div></div><div class="panel panel-default bootstrap-panel"><div class="panel-heading">Panel group 2</div><div class="panel-body"><p>The <code>.panel-group</code> class clears the bottom-margin of each panel.</p></div></div></div></div></div>'),
             e.put("app/pages/ui/progressBars/progressBars.html", '<div class="widgets"><div class="row"><div class="col-md-6"><div ba-panel="" ba-panel-title="Basic" ba-panel-class="with-scroll"><div ng-include="\'app/pages/ui/progressBars/widgets/basic.html\'"></div></div><div ba-panel="" ba-panel-title="Striped" ba-panel-class="with-scroll"><div ng-include="\'app/pages/ui/progressBars/widgets/striped.html\'"></div></div></div><div class="col-md-6"><div ba-panel="" ba-panel-title="With label" ba-panel-class="with-scroll"><div ng-include="\'app/pages/ui/progressBars/widgets/label.html\'"></div></div><div ba-panel="" ba-panel-title="Animated" ba-panel-class="with-scroll"><div ng-include="\'app/pages/ui/progressBars/widgets/animated.html\'"></div></div></div></div><div class="row"><div class="col-md-12" ba-panel="" ba-panel-title="Stacked" ba-panel-class="with-scroll"><div ng-include="\'app/pages/ui/progressBars/widgets/stacked.html\'"></div></div></div></div>'),
-            e.put("app/pages/ui/slider/slider.html", '<div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Ion Range Slider" ba-panel-class="with-scroll"><div class="slider-box"><h5>Basic</h5><ion-slider type="single" grid="false" min="0" max="100" from="45" disable="false"></ion-slider></div><div class="slider-box"><h5>With prefix</h5><ion-slider type="single" grid="true" min="100" max="1200" prefix="$" from="420" disable="false"></ion-slider></div><div class="slider-box"><h5>With postfix</h5><ion-slider type="single" grid="true" min="-90" max="90" postfix="°" from="36" disable="false"></ion-slider></div><div class="slider-box"><h5>Two way range</h5><ion-slider type="double" grid="true" min="100" max="1200" from="420" to="900" disable="false"></ion-slider></div><div class="slider-box"><h5>With Steps</h5><ion-slider type="single" grid="true" min="0" max="1000" from="300" step="50" disable="false"></ion-slider></div><div class="slider-box"><h5>Decorating numbers</h5><ion-slider type="single" grid="true" min="0" max="1000000" from="300000" step="1000" prettify-separator="." prettify="true" disable="false"></ion-slider></div><div class="slider-box"><h5>Using custom values array</h5><ion-slider type="single" grid="true" from="5" step="1000" values="[\'January\', \'February\', \'March\', \'April\', \'May\', \'June\', \'July\', \'August\', \'September\', \'October\', \'November\', \'December\']" disable="false"></ion-slider></div><div class="slider-box"><h5>Disabled</h5><ion-slider type="single" grid="false" min="0" max="100" from="45" disable="true"></ion-slider></div></div></div></div>'),
+            e.put("app/pages/ui/slider/slider.html", '<div class="row"><div class="col-md-12"><div ba-panel="" ba-panel-title="Ion Range Slider" ba-panel-class="with-scroll"><div class="slider-box"><h5>Basic</h5><ion-slider type="single" grid="false" min="0" max="100" from="45" disable="false"></ion-slider></div><div class="slider-box"><h5>With prefix</h5><ion-slider type="single" grid="true" min="100" max="1200" prefix="$" from="420" disable="false"></ion-slider></div><div class="slider-box"><h5>With postfix</h5><ion-slider type="single" grid="true" min="-90" max="90" postfix="°" from="36" disable="false"></ion-slider></div><div class="slider-box"><h5>Two way range</h5><ion-slider type="double" grid="true" min="100" max="1200" from="420" to="900" disable="false"></ion-slider></div><div class="slider-box"><h5>With Steps</h5><ion-slider type="single" grid="true" min="0" max="1000" from="300" step="50" disable="false"></ion-slider></div><div class="slider-box"><h5>Decorating numbers</h5><ion-slider type="single" grid="true" min="0" max="1000000" from="300000" step="1000" prettify-separator="." prettify="true" disable="false"></ion-slider></div><div class="slider-box"><h5>Using custom values array</h5><ion-slider type="single" grid="true" from="5" step="1000" values="[\'' + words["January"][lang] + '\', \'' + words["February"][lang] + '\', \'March\', \'April\', \'May\', \'June\', \'July\', \'August\', \'September\', \'October\', \'November\', \'December\']" disable="false"></ion-slider></div><div class="slider-box"><h5>Disabled</h5><ion-slider type="single" grid="false" min="0" max="100" from="45" disable="true"></ion-slider></div></div></div></div>'),
             e.put("app/pages/ui/tabs/contextualAccordion.html", '<uib-accordion><uib-accordion-group heading="Primary" panel-class="panel-primary bootstrap-panel accordion-panel">Primary <i class="ion-heart"></i></uib-accordion-group><uib-accordion-group heading="Success" panel-class="panel-success bootstrap-panel accordion-panel">Success <i class="ion-checkmark-round"></i></uib-accordion-group><uib-accordion-group heading="Info" panel-class="panel-info bootstrap-panel accordion-panel">Info <i class="ion-information-circled"></i></uib-accordion-group><uib-accordion-group heading="Warning" panel-class="panel-warning bootstrap-panel accordion-panel">Warning <i class="ion-alert"></i></uib-accordion-group><uib-accordion-group heading="Danger" panel-class="panel-danger bootstrap-panel accordion-panel">Danger <i class="ion-nuclear"></i></uib-accordion-group></uib-accordion>'),
             e.put("app/pages/ui/tabs/mainTabs.html", '<uib-tabset active="$tabSetStatus.activeTab"><uib-tab heading="Start"><p>Take up one idea. Make that one idea your life--think of it, dream of it, live on that idea. Let the brain, muscles, nerves, every part of your body, be full of that idea, and just leave every other idea alone. This is the way to success.</p><p>People who succeed have momentum. The more they succeed, the more they want to succeed, and the more they find a way to succeed. Similarly, when someone is failing, the tendency is to get on a downward spiral that can even become a self-fulfilling prophecy.</p><div class="text-center"><div class="kameleon-icon with-round-bg primary inline-icon"><img ng-src="{{::( \'Shop\' | kameleonImg )}}"></div><div class="kameleon-icon with-round-bg primary inline-icon"><img ng-src="{{::( \'Programming\' | kameleonImg )}}"></div><div class="kameleon-icon with-round-bg primary inline-icon"><img ng-src="{{::( \'Dna\' | kameleonImg )}}"></div></div><p>The reason most people never reach their goals is that they don\'t define them, or ever seriously consider them as believable or achievable. Winners can tell you where they are going, what they plan to do along the way, and who will be sharing the adventure with them.</p></uib-tab><uib-tab heading="Getting Done"><p>You can\'t connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something--your gut, destiny, life, karma, whatever. This approach has never let me down, and it has made all the difference in my life.</p><p>The reason most people never reach their goals is that they don\'t define them, or ever seriously consider them as believable or achievable. Winners can tell you where they are going, what they plan to do along the way, and who will be sharing the adventure with them.</p></uib-tab><uib-tab ng-init="$dropdownTabActive = 1" class="with-dropdown"><uib-tab-heading uib-dropdown=""><a uib-dropdown-toggle="" ng-click="$event.stopPropagation()">Dropdown tab <i class="caret"></i></a><ul class="dropdown-menu" uib-dropdown-menu=""><li><a ng-click="$dropdownTabActive = 1; $tabSetStatus.activeTab = 3">Tab 1</a></li><li><a ng-click="$dropdownTabActive = 2; $tabSetStatus.activeTab = 3">Tab 2</a></li></ul></uib-tab-heading><div ng-show="$dropdownTabActive == 1"><p>Success is ... knowing your purpose in life, growing to reach your maximum potential, and sowing seeds that benefit others.</p><p>Failure is the condiment that gives success its flavor.</p></div><div ng-show="$dropdownTabActive == 2"><p class="text-center"><button class="btn btn-danger">I\'m just a dummy button</button></p></div></uib-tab></uib-tabset>'),
             e.put("app/pages/ui/tabs/sampleAccordion.html", '<uib-accordion><uib-accordion-group is-open="true" heading="Static Header, initially expanded" panel-class="bootstrap-panel accordion-panel panel-default">This content is straight in the template.</uib-accordion-group><uib-accordion-group heading="Dynamic Body Content" panel-class="bootstrap-panel accordion-panel panel-default"><p>The body of the uib-accordion group grows to fit the contents</p><button type="button" class="btn btn-primary btn-sm">Add Item</button></uib-accordion-group><uib-accordion-group heading="Custom template" panel-class="bootstrap-panel accordion-panel panel-default">Hello</uib-accordion-group><uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default"><uib-accordion-heading>I can have markup, too! <i class="fa pull-right ion-settings"></i></uib-accordion-heading>This is just some content to illustrate fancy headings.</uib-accordion-group></uib-accordion>'),
@@ -8181,7 +3456,10 @@ function() {
             e.put("app/pages/components/mail/detail/mailDetail.html", '<div class="message-container" ng-class="{\'expanded\': tabCtrl.navigationCollapsed}"><div class="message"><div class="row"><div class="toggle-navigation-container detail-page"><a href="" class="collapse-navigation-link ion-navicon" ng-click="tabCtrl.navigationCollapsed=!tabCtrl.navigationCollapsed"></a></div><button ui-sref="components.mail.label({label : detailCtrl.label})" type="button" class="back-button btn btn-default btn-with-icon"><i class="ion-chevron-left"></i>Back</button></div><div class="person-info row"><div class="col-lg-4 col-md-12 no-padding"><img ng-src="{{detailCtrl.mail.name.split(\' \')[0] | profilePicture}}" class="human-picture"><div class="name"><h2 class="name-h">{{detailCtrl.mail.name.split(\' \')[0]}}</h2><h2 class="name-h second-name">{{detailCtrl.mail.name.split(\' \')[1]}}</h2><div><span class="mail-tag tag label {{detailCtrl.mail.tag}}">{{detailCtrl.mail.tag}}</span></div></div></div><div class="col-lg-4 col-md-6 col-xs-12 no-padding"><div class="contact-info phone-email"><div><i class="ion-iphone"></i> <span class="phone">777-777-7777</span></div><div><i class="ion-email"></i> <span class="email">{{detailCtrl.mail.email}}</span></div></div></div><div class="col-lg-4 col-md-6 col-xs-12 no-padding"><div class="contact-info position-address"><div><span class="position">{{detailCtrl.mail.position}}</span></div><div><span class="address">12 Nezavisimosti st. Vilnius, Lithuania</span></div></div></div></div><div class="row"></div><div class="line"></div><div class="message-details"><span class="subject">{{detailCtrl.mail.subject}}</span> <span class="date">• {{detailCtrl.mail.date | date : \'h:mm a MMMM d \'}}</span></div><div class="line"></div><div ng-bind-html="detailCtrl.mail.body" class="message-body"></div><div class="line"></div><div class="attachment" ng-show="detailCtrl.mail.attachment"><span class="file-links">1 Attachment - <a href="">View</a> | <a href="">Download</a></span><div><i class="file-icon ion-document"></i> <span class="file-name">{{detailCtrl.mail.attachment}}</span></div></div><div class="line" ng-show="detailCtrl.mail.attachment"></div><div class="answer-container"><button type="button" class="btn btn-with-icon" ng-click="tabCtrl.showCompose(detailCtrl.mail.subject,detailCtrl.mail.email,\'\')"><i class="ion-reply"></i>Reply</button> <button type="button" class="btn btn-with-icon" ng-click="tabCtrl.showCompose(detailCtrl.mail.subject,\'\',detailCtrl.mail.body)"><i class="ion-forward"></i>Forward</button> <button type="button" class="btn btn-with-icon"><i class="ion-printer"></i>Print</button> <button type="button" class="btn btn-with-icon"><i class="ion-android-remove-circle"></i>Spam</button> <button type="button" class="btn btn-with-icon"><i class="ion-android-delete"></i>Delete</button></div></div><div ng-show="!detailCtrl.mail"><h5 ng-class="text-center">Nothing to show</h5></div></div>'),
             e.put("app/pages/components/mail/list/mailList.html", '<div class="side-message-navigation" ng-class="{\'expanded\': tabCtrl.navigationCollapsed}"><div class="mail-messages-control side-message-navigation-item"><div class="toggle-navigation-container"><a href="" class="collapse-navigation-link ion-navicon" ng-click="tabCtrl.navigationCollapsed=!tabCtrl.navigationCollapsed"></a></div><label class="checkbox-inline custom-checkbox nowrap"><input type="checkbox" id="inlineCheckbox01" value="option1"> <span class="select-all-label">Select All</span></label> <button type="button" class="btn btn-icon refresh-button"><i class="ion-refresh"></i></button><div class="btn-group" uib-dropdown=""><button type="button" class="btn more-button" uib-dropdown-toggle="">More <span class="caret"></span></button><ul uib-dropdown-menu=""><li><a href="">Action</a></li><li><a href="">Another action</a></li><li><a href="">Something else here</a></li><li role="separator" class="divider"></li><li><a href="">Separated link</a></li></ul></div></div><div class="messages"><table><tr ng-repeat="m in listCtrl.messages track by m.id | orderBy:\'-date\'" class="side-message-navigation-item little-human shineHover {{m.tag}}"><td class="check-td"><div class="mail-checkbox"><label class="checkbox-inline custom-checkbox nowrap"><input type="checkbox"> <span></span></label></div></td><td class="photo-td" ui-sref="components.mail.detail({id: m.id, label: listCtrl.label})"><img ng-src="{{m.name.split(\' \')[0] | profilePicture}}" class="little-human-picture"></td><td ui-sref="components.mail.detail({id: m.id, label: listCtrl.label})"><div class="name-container"><div><span class="name">{{m.name}}</span></div><div><span class="tag label label-primary {{m.tag}}">{{m.tag}}</span></div></div></td><td ui-sref="components.mail.detail({id: m.id, label: listCtrl.label})"><div class="additional-info"><span class="subject">{{m.subject}}</span></div></td><td ui-sref="components.mail.detail({id: m.id, label: listCtrl.label})"><div class="mail-body-part">{{m.body | plainText}}</div></td><td class="date"><span>{{m.date | date : \'MMM d HH:mm\'}}</span></td></tr></table></div></div>'),
             e.put("app/pages/form/inputs/widgets/checkboxesRadios.html", '<div class="checkbox-demo-row"><div class="input-demo checkbox-demo row"><div class="col-md-4"><label class="checkbox-inline custom-checkbox nowrap"><input type="checkbox" id="inlineCheckbox01" value="option1"> <span>Check 1</span></label></div><div class="col-md-4"><label class="checkbox-inline custom-checkbox nowrap"><input type="checkbox" id="inlineCheckbox02" value="option2"> <span>Check 2</span></label></div><div class="col-md-4"><label class="checkbox-inline custom-checkbox nowrap"><input type="checkbox" id="inlineCheckbox03" value="option3"> <span>Check 3</span></label></div></div><div class="input-demo radio-demo row"><div class="col-md-4"><label class="radio-inline custom-radio nowrap"><input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> <span>Option 1</span></label></div><div class="col-md-4"><label class="radio-inline custom-radio nowrap"><input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> <span>Option 2</span></label></div><div class="col-md-4"><label class="radio-inline custom-radio nowrap"><input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> <span>Option3</span></label></div></div></div><div><div class="checkbox disabled"><label class="custom-checkbox nowrap"><input type="checkbox" value="" disabled=""> <span>Checkbox is disabled</span></label></div><div class="radio disabled"><label class="custom-radio nowrap"><input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled=""> <span>Disabled option</span></label></div></div>'),
+            
             e.put("app/pages/form/inputs/widgets/inputGroups.html", '<div class="input-group"><span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1">@</span> <input type="text" class="form-control with-primary-addon" placeholder="Username" aria-describedby="basic-addon1"></div><div class="input-group"><input type="text" class="form-control with-warning-addon" placeholder="Recipient\'s username" aria-describedby="basic-addon2"> <span class="input-group-addon input-group-addon-warning addon-right" id="basic-addon2">@example.com</span></div><div class="input-group"><span class="input-group-addon addon-left input-group-addon-success">$</span> <input type="text" class="form-control with-success-addon" aria-label="Amount (to the nearest dollar)"> <span class="input-group-addon addon-right input-group-addon-success">.00</span></div><div class="input-group"><input type="text" class="form-control with-danger-addon" placeholder="Search for..."> <span class="input-group-btn"><button class="btn btn-danger" type="button">Go!</button></span></div>'),
+
+
             e.put("app/pages/form/inputs/widgets/standardFields.html", '<form><div class="form-group"><label for="input01">Text</label> <input type="text" class="form-control" id="input01" placeholder="Text"></div><div class="form-group"><label for="input02">Password</label> <input type="password" class="form-control" id="input02" placeholder="Password"></div><div class="form-group"><label for="input03">Rounded Corners</label> <input type="text" class="form-control form-control-rounded" id="input03" placeholder="Rounded Corners"></div><div class="form-group"><label for="input04">With help</label> <input type="text" class="form-control" id="input04" placeholder="With help"> <span class="help-block sub-little-text">A block of help text that breaks onto a new line and may extend beyond one line.</span></div><div class="form-group"><label for="input05">Disabled Input</label> <input type="text" class="form-control" id="input05" placeholder="Disabled Input" disabled=""></div><div class="form-group"><label for="textarea01">Textarea</label> <textarea placeholder="Default Input" class="form-control" id="textarea01"></textarea></div><div class="form-group"><input type="text" class="form-control input-sm" id="input2" placeholder="Small Input"></div><div class="form-group"><input type="text" class="form-control input-lg" id="input4" placeholder="Large Input"></div></form>'),
             e.put("app/pages/form/inputs/widgets/validationStates.html", '<div class="form-group has-success"><label class="control-label" for="inputSuccess1">Input with success</label> <input type="text" class="form-control" id="inputSuccess1"></div><div class="form-group has-warning"><label class="control-label" for="inputWarning1">Input with warning</label> <input type="text" class="form-control" id="inputWarning1"></div><div class="form-group has-error"><label class="control-label" for="inputError1">Input with error</label> <input type="text" class="form-control" id="inputError1"></div><div class="has-success"><div class="checkbox"><label class="custom-checkbox"><input type="checkbox" id="checkboxSuccess" value="option1"> <span>Checkbox with success</span></label></div></div><div class="has-warning"><div class="checkbox"><label class="custom-checkbox"><input type="checkbox" id="checkboxWarning" value="option1"> <span>Checkbox with warning</span></label></div></div><div class="has-error"><div class="checkbox"><label class="custom-checkbox"><input type="checkbox" id="checkboxError" value="option1"> <span>Checkbox with error</span></label></div></div><div class="form-group has-success has-feedback"><label class="control-label" for="inputSuccess2">Input with success</label> <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status"> <i class="ion-checkmark-circled form-control-feedback" aria-hidden="true"></i> <span id="inputSuccess2Status" class="sr-only">(success)</span></div><div class="form-group has-warning has-feedback"><label class="control-label" for="inputWarning2">Input with warning</label> <input type="text" class="form-control" id="inputWarning2" aria-describedby="inputWarning2Status"> <i class="ion-alert-circled form-control-feedback" aria-hidden="true"></i> <span id="inputWarning2Status" class="sr-only">(warning)</span></div><div class="form-group has-error has-feedback"><label class="control-label" for="inputError2">Input with error</label> <input type="text" class="form-control" id="inputError2" aria-describedby="inputError2Status"> <i class="ion-android-cancel form-control-feedback" aria-hidden="true"></i> <span id="inputError2Status" class="sr-only">(error)</span></div><div class="form-group has-success has-feedback"><label class="control-label" for="inputGroupSuccess1">Input group with success</label><div class="input-group"><span class="input-group-addon addon-left">@</span> <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status"></div><i class="ion-checkmark-circled form-control-feedback" aria-hidden="true"></i> <span id="inputGroupSuccess1Status" class="sr-only">(success)</span></div>'),
             e.put("app/pages/form/layouts/widgets/basicForm.html", '<form><div class="form-group"><label for="exampleInputEmail1">Email address</label> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"></div><div class="form-group"><label for="exampleInputPassword1">Password</label> <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></div><div class="checkbox"><label class="custom-checkbox"><input type="checkbox"> <span>Check me out</span></label></div><button type="submit" class="btn btn-danger">Submit</button></form>'),
@@ -8332,8 +3610,3 @@ function datatest() {
 
 
 }
-
-
-
-
-//# sourceMappingURL=../maps/scripts/app-641bb9edfa.js.map
